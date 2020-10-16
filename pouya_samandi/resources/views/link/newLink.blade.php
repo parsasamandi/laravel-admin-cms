@@ -21,6 +21,9 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control" name="link" class="custom-file-input" placeholder="Link Url" required>
+                    @if($errors->has('link'))
+                        <span class="error">{{ $errors->first('link') }}</span>
+                    @endif
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="validationTextarea">Description Text</label>

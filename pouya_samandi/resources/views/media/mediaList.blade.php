@@ -17,8 +17,8 @@
             <br>
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationDefault03">Search in Height or Width:</label>
-                    <input name="media_hw" type="search" class="form-control" placeholder="Search...">
+                    <label for="validationDefault03">Search in Media Url:</label>
+                    <input name="media_yi" type="search" class="form-control" placeholder="Search...">
                 </div>
             </div>
             <div class="col-md-12 mb-3 text-center">
@@ -34,6 +34,7 @@
                     <tr>
                         <th scope="col">Media</th>
                         <th scope="col">Media Text</th>
+                        <th scope="col">Project(Two Medias in a row)</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -48,6 +49,7 @@
                                 <td>{{ $eachMedia->media_url }}</td>
                             @endif
                             <td>{{ optional($eachMedia->mediaTextRel)->mediaText }}</td>
+                            <td>{{ optional($eachMedia->project)->name }}</td>
                             <td><a href="/media/editMedia/{{ $eachMedia->id }}" class="btn btn-danger">Edit</a></td>
                             <td>
                                 <form action="{{ route('media.destroy', $eachMedia->id) }}" method="POST">

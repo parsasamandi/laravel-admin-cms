@@ -22,14 +22,14 @@ use App\SubProject;
 use DataTables;
 use Auth;
 use File;
+use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
-
 use App\Mail\ContactFormMail;
-use DB;
+
 
 
 class pouyaController extends Controller
@@ -814,7 +814,7 @@ class pouyaController extends Controller
         request()->validate([
             'email' => 'required',
             'password' => 'required',
-            ]);
+        ]);
      
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
@@ -1173,12 +1173,6 @@ class pouyaController extends Controller
     public function storeMedia(Request $request)
     {
         
-        // $rules = array(
-        //     'mediaTextBox' => 'required_without_all:image,youtube_url,descriptionBox',
-        //     'descriptionBox' => 'required_without_all:image,youtube_url,mediaTextBox'
-        // );
-        // $validator = Validator::make($request->all(), $rules);
-
         $media = new Media();
         if($request->hasFile('image'))
         {
@@ -1200,6 +1194,9 @@ class pouyaController extends Controller
         else if(request('descriptionBox') == 'description_null')
         {
             $media->desc_id = null;
+            request()->validate([
+                'projectBox' => 'required'
+            ]);
         }
         if(!(request('mediaTextBox') == 'mediaText_null'))
         {
@@ -1298,8 +1295,8 @@ class pouyaController extends Controller
     {
         if(!empty($request->input('media_url')))
         {
-            $media_hw = $request->get('media_hw');
-            $media = Media::where('height','LIKE','%'.$media_hw.'%')->orWhere('width', 'LIKE', '%'.$media_hw.'%')->paginate(5);
+            $media_yi = $request->get('media_yi');
+            $media = Media::where('media_url','LIKE','%'.$media_yi.'%');
             if(count($media) > 0)
                 return view('/media/mediaList',['media' => $media]);
             else 
@@ -1313,9 +1310,9 @@ class pouyaController extends Controller
         if($media->type == 0)
         {
             $imageDelete = public_path("images/$media->media_url");
-            if(File::exists($imageDelete))
+            if($imageDelete)
             {
-                unlink($imageDelete);
+                // unlink($imageDelete);
             }
         }
         $media->delete();
@@ -1398,6 +1395,9 @@ class pouyaController extends Controller
     // Stroing Link
     public function storeLink()
     {
+        request()->validate([
+            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        ]);
         $link = new Link();
         $link->text = request('text');
         $link->link = request('link');
@@ -1429,6 +1429,10 @@ class pouyaController extends Controller
     // Edit Link Page
     public function updateLink($id)
     {
+        request()->validate([
+            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        ]);
+
         Link::where('id', $id)->update(array(
             'text' => request('text'),
             'link' => request('link'),
@@ -1542,17 +1546,17 @@ class pouyaController extends Controller
 
         return redirect('/project/projectTitleList');
     }
-    // Getting Email from User
-    public function storeEmail()
-    {
-        $data = request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'message' => 'required'
-        ]);
-        // Send An Email
-        Mail::to('aba7bb255e-dd51c1@inbox.mailtrap.io')->send(new ContactFormMail($data));
-        return back()->with('success', 'You have successfully sumbitted data'); 
-    }
+    // // Getting Email from User
+    // public function storeEmail()
+    // {
+    //     $data = request()->validate([
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'message' => 'required'
+    //     ]);
+    //     // Send An Email
+    //     Mail::to('aba7bb255e-dd51c1@inbox.mailtrap.io')->send(new ContactFormMail($data));
+    //     return back()->with('success', 'You have successfully sumbitted data'); 
+    // }
 
 }

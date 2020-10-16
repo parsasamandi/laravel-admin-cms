@@ -31,7 +31,7 @@
             <br>
         </form>
         <hr>
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive">
             <table id="experience_table" class="table table-striped table-bordered text-center">
             <!-- class="thead-dark" -->
                 <thead>

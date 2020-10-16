@@ -16,7 +16,7 @@
             {{ csrf_field() }}
             <br>
             <div class="col-md-6 mb-3">
-                <input type="text" id="inputName" name="name" class="form-control" placeholder="Full name" autofocus>
+                <input type="text" id="inputName" name="name" class="form-control" placeholder="Full name" autofocus requireds>
                 @if ($errors->has('name'))
                     <span class="error">{{ $errors->first('name') }}</span>
                 @endif 

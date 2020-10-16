@@ -41,6 +41,9 @@
                         @foreach($description as $eachDescription)
                             <option value="{{ $eachDescription->id }}">{{ $eachDescription->desc }}</option>
                         @endforeach
+                        @if($errors->has('descriptionBox'))
+                            <span class="error">{{ $errors->first('password') }}</span>
+                        @endif  
                     </select>
                 </div>
             </div>

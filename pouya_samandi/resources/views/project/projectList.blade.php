@@ -17,7 +17,7 @@
             <br>
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationDefault03">Search in Title</label>
+                    <label for="validationDefault03">Search in Name </label>
                     <input name="name" type="search" class="form-control" placeholder="Search...">
                 </div>
             </div>
@@ -48,21 +48,21 @@
                             <td>{{ $eachProject->name }}</td>
                             <td>{{ $eachProject->background_color }}</td>
                             <td>{{ $eachProject->section_id}}</td>
-                            @forelse ($eachProject->sub_project as $projectTitle)
-                                <td>{{ $projectTitle->name}}</td>
-                            @empty
-                                <td></td>
-                            @endforelse
-                            @forelse ($eachProject->media as $projectMedia)
-                                <td><img style="width:50px;height:55px;" src="/images/{{ $projectMedia->media_url }}" /></td>
-                            @empty
-                                <td></td>
-                            @endforelse
-                            @forelse ($eachProject->description as $projectDesc)
-                                <td>{{ $projectDesc->desc }}</td>
-                            @empty
-                                <td></td>
-                            @endforelse
+                            <td>
+                                @foreach($eachProject->sub_project as $projectTitle)
+                                    {{ $projectTitle->name}}
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($eachProject->media as $projectMedia)
+                                    <img style="width:50px;height:55px;" src="/images/{{ $projectMedia->media_url }}" />
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($eachProject->description as $projectDesc)
+                                    [ {{ $projectDesc->desc }} ]/
+                                @endforeach
+                            </td>
                             <td><a href="/project/editProject/{{ $eachProject->project_id }}" class="btn btn-danger">Edit</a></td>
                             <td>
                                 <form action="{{ route('project.destroy', $eachProject->project_id) }}" method="POST">

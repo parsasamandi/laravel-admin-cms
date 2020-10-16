@@ -20,7 +20,7 @@
             </div>
             <div class="row row_style">
                 <div class="col-md-6 mb-3">
-                    <label for="validationTextarea">Project Name</label>
+                    <label for="validationTextarea">Project Name(If your description belongs to it)</label>
                     <select name="projectBox" class="browser-default custom-select">
                         <option name="project_name" value="project_name">Null</option>
                         @foreach($project as $eachProject)
@@ -29,7 +29,7 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationTextarea">Experience</label>
+                    <label for="validationTextarea">Experience(If your description belongs to it)</label>
                     <select name="experienceBox" class="browser-default custom-select">
                         <option name="experience_url" value="experience_url">Null</option>
                         @foreach($experience as $eachExperience)
@@ -40,7 +40,8 @@
             </div> 
             <div class="row row_style">
                 <div class="col-md-12 mb-3">
-                    <label for="validationTextarea">Size</label>
+                    {{-- Get col-md size from 1 to 12 --}}
+                    <label for="validationTextarea">Size(Choose a number from 1 to 12)</label>
                     <input type="text" class="form-control" name="size" class="custom-file-input" placeholder="Size">
                 </div>
             </div> 

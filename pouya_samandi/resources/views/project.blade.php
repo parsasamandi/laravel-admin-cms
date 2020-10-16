@@ -30,7 +30,7 @@
     
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navBarStyle">
-        <a class="navbar-brand text-white" href="#">Pouya Samandi</a>
+        <a class="navbar-brand text-white" href="/">Pouya Samandi</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
     <!-- Page Content-->
     <div class="container-fluid p-0">
         @foreach($projects as $project)
-            <section style="margin-bottom:-2em;" class="resume-section" id="{{ $project->section_id }}">
+            <section style="background-color:{{ $project->background_color }}" class="resume-section" id="{{ $project->section_id }}">
                 <div class="resume-section-content">
                     <h3 style="margin-top:1em">
                         {{ $project->name }}
@@ -76,6 +76,9 @@
                                         @if(!empty($description->desc))
                                             {{ $description->desc }}
                                         @endif
+                                        @foreach($description->link as $link)
+                                            <a class="text-primary" href="{{ $link->link }}">{{ $link->text }}</a>
+                                        @endforeach
                                         <br class="hide-on-mobile">
                                         <br class="hide-on-mobile">
                                     </p>
@@ -89,7 +92,7 @@
                                             </p>
                                         @elseif($description->media->type == 1)
                                             {{-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lu2r31NVulA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
-                                            <iframe width="100%" height="100%" src="{{ $description->media->media_url }}"
+                                            <iframe width="100%" height="330" src="{{ $description->media->media_url }}"
                                                 frameborder="0"
                                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen>
@@ -109,7 +112,7 @@
                                             {{ optional($eachMedia->mediaTextRel)->mediaText }}
                                         </p>
                                     @elseif($eachMedia->type == 1)
-                                        <iframe width="100%" height="100%" src="{{ $eachMedia->media_url }}"
+                                        <iframe width="100%" height="400" src="{{ $eachMedia->media_url }}"
                                             frameborder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen>

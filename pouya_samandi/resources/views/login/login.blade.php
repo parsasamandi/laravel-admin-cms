@@ -4,7 +4,7 @@
     <link href="/css/auth.css" rel="stylesheet">
 </head>
 <div class="wrapper">
-    <form action="{{url('post-login')}}" method="POST" id="logForm"     class="login">
+    <form action="{{url('post-login')}}" method="POST" id="logForm" class="login">
         {{ csrf_field() }}
         <p class="title">Log in</p>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address">
@@ -13,7 +13,7 @@
         @endif
         <i class="fa fa-user"></i>
         <input type="password" name="password" id="inputPassword" placeholder="Password" />
-        @if ($errors->has('password'))
+        @if($errors->has('password'))
             <span class="error">{{ $errors->first('password') }}</span>
         @endif
         <i class="fa fa-key"></i>

@@ -14,7 +14,7 @@ class Media extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class,'project_id','project_id')->where('twoInRow',1);
+        return $this->belongsTo(Project::class,'project_id','project_id');
     }
 
     public function getProject()
