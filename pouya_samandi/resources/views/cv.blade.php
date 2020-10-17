@@ -60,7 +60,6 @@
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
                 <h3 class="my-5">Experience &nbsp;<i class="fa fa-history"></i>
-                    <!-- <img style="width:100px;height:100px;" src="images/Male-Teacher-Transparent.png" />  -->
                 </h3>
                 @foreach($experience as $eachExperience)
                     <div style="margin-top:-1em" class="d-flex flex-column flex-md-row justify-content-between mb-3">
@@ -70,7 +69,7 @@
                                 <img style="width:50px;height:55px;" src="/images/{{ $eachExperience->image }}" />
                             </h4>
                             <hr>
-                            <p class="justify-center">
+                            <p>
                                 @foreach($eachExperience->description as $description)
                                     @if(!empty($description->desc))
                                         • {{ $description->desc }}
@@ -103,18 +102,10 @@
                                 <br>
                                 {{ $eachEducation->TOEFL }}
                                 <br>
-                                <a href="cv" class="text-primary">{{ $eachEducation->Thesis_topic }}</a>
+                                <a class="text-primary">{{ $eachEducation->Thesis_topic }}</a>
                                 <br>
                                 <br>
                                 {{ $eachEducation->university_desc }}
-                                <!-- Iran University of Science and Technology is one of the best universities of Iran based on
-                                international rankings such as <a target="_blank"
-                                href="https://www.usnews.com/education/best-global-universities/iran-university-science-technology-505518"
-                                style="color:blue">US news</a>,<a target="_blank" style="color:blue"
-                                href="https://www.topuniversities.com/universities/iran-university-science-technology">QS</a>,
-                                and <a
-                                href="https://www.timeshighereducation.com/world-university-rankings/iran-university-science-and-technology"
-                                style="color:blue" target="_blank">Times Higher Education</a>. -->
                             </p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">june 2014 to present(one semester left)</span>
@@ -268,14 +259,15 @@
                         <div class="d-flex flex-column flex-md-row justify-content-between">
                             <div class="col-md-10">
                                 <h4 class="mb-0 text-secondary">
+                                    {{-- Refree Name --}}
                                     {{ $eachRefree->name }}
                                 </h4>
                                 <br>
                                 <p>
-                                    {{ $eachRefree->desc }}.
-                                    For more information click on 
+                                    {{ $eachRefree->desc }}
+                                    {{-- Refree link --}}
                                     <a style="color:blue" href="{{ $eachRefree->link }}">
-                                        <!-- Professor  Davaie Markazi -->
+                                        {{-- Regree Name For Link --}}
                                         {{ $eachRefree->name }}
                                     </a> 
                                 </p>

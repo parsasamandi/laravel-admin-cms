@@ -15,15 +15,12 @@
         <form class="background_table" action="/refree/newRefree/" method="POST" enctype="multipart/form-data">
             @csrf
             <br>
-            <div class="container-fluid">
-                <div class="col-md-12 mb-3">
-                    <input type="file" name="image" class="custom-file-input">
-                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                </div>
+            <div class="col-md-12 mb-3">
+                <input type="file" name="image" required>
             </div>
-            <div style="margin-left:1px;margin-right:1px;" class="row">
+            <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" name="name" class="custom-file-input" placeholder="name">
+                    <input type="text" class="form-control" name="name" class="custom-file-input" placeholder="name" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <textarea name="desc" class="form-control" placeholder="Description"></textarea>
@@ -31,6 +28,9 @@
             </div>
             <div class="col-md-12 mb-3">
                 <input name="link" class="form-control" placeholder="ٌWebsite Link"></input>
+                @if($errors->has('link'))
+                    <span class="error">{{ $errors->first('link') }}</span>
+                @endif
             </div>
             <div class="col-md-12 mt-3 mb-2 text-center">
                 <button class="btn btn-primary" type="submit">Submit form</button>

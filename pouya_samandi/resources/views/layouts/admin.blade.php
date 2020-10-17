@@ -49,7 +49,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="/experience/newExperience">New Experience</a>
-                                    <a class="nav-link" href="/experience/experienceList">Experince List</a>
+                                    <a class="nav-link" href="/experience/experienceList">Experience List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#education" aria-expanded="false" aria-controls="collapseLayouts">

@@ -7,7 +7,7 @@
             <li class="breadcrumb-item active">each Refree</li>
         </ol>
         <hr>
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive">
             <table class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>

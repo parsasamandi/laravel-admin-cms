@@ -12,12 +12,16 @@
                 <thead>
                     <tr>
                         <th scope="col">Title</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Image</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ $experience->title }}</td>
+                        @foreach($experience->description as $desc)
+                            <td>{{ $desc->desc }}</td>
+                        @endforeach
                         <td><img style="width:50px;height:55px;" src="/images/{{ $experience->image }}" /></td>
                     </tr>
                 </tbody>

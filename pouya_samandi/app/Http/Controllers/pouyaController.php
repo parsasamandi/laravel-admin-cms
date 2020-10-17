@@ -160,11 +160,10 @@ class pouyaController extends Controller
     public function destroyExperience($id)
     {
         $experience = Experience::findOrFail($id);
-    
         $imageDelete = public_path("images/$experience->image");
         if(File::exists($imageDelete))
         {
-            unlink($imageDelete);
+            File::delete($imageDelete); 
         }
         $experience->delete();
         return redirect('experience/experienceList');
@@ -192,7 +191,7 @@ class pouyaController extends Controller
             $imageDelete = public_path("images/$exper->image");
             if(File::exists($imageDelete))
             {
-                unlink($imageDelete);
+                File::delete($imageDelete); 
             }
             
             $image = request('image');
@@ -455,25 +454,25 @@ class pouyaController extends Controller
         $imageDelete = public_path("images/$interest->image");
         if(File::exists($imageDelete))
         {
-            unlink($imageDelete);
+            File::delete($imageDelete); 
         }
 
         $imageDelete2 = public_path("images/$interest->image2");
         if(File::exists($imageDelete2))
         {
-            unlink($imageDelete2);
+            File::delete($imageDelete); 
         }
 
         $imageDelete3 = public_path("images/$interest->image3");
         if(File::exists($imageDelete3))
         {
-            unlink($imageDelete3);
+            File::delete($imageDelete); 
         }
 
         $imageDelete4 = public_path("images/$interest->image4");
         if(File::exists($imageDelete4))
         {
-            unlink($imageDelete4);
+            File::delete($imageDelete); 
         }
 
         $interest->delete();
@@ -498,7 +497,8 @@ class pouyaController extends Controller
             $imageDelete = public_path("images/$interest->image");
             if(File::exists($imageDelete))
             {
-                unlink($imageDelete);
+                File::delete($imageDelete); 
+
             }
 
             $image = $request->file('image');
@@ -697,6 +697,9 @@ class pouyaController extends Controller
     // store new Refree
     public function storeRefree(REquest $request)
     {
+        // $request->validate([
+        //     'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        // ]);
         $refree = new Refree();
         $refree->name = request('name');
         $refree->desc = request('desc');
@@ -730,7 +733,7 @@ class pouyaController extends Controller
         $imageDelete = public_path("images/$refree->image");
         if(File::exists($imageDelete))
         {
-            unlink($imageDelete);
+            File::delete($imageDelete); 
         }
 
         $refree->delete();
@@ -754,6 +757,10 @@ class pouyaController extends Controller
     // Update refree
     public function updateRefree($id,Request $request)
     {
+        $request->validate([
+            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        ]);
+        
         $refree = Refree::findOrFail($id);
         $refree->name = request('name');
         $refree->desc = request('desc');
@@ -762,7 +769,7 @@ class pouyaController extends Controller
         {
             $imageDelete = public_path("images/$refree->image"); // get previous image from folder
             if(File::exists($imageDelete)) { // unlink or remove previous image from folder
-                unlink($imageDelete);
+                File::delete($imageDelete); 
             }
             $image = $request->file('image');
             $file= rand() . '.' . $image->getClientOriginalExtension();
@@ -1245,7 +1252,7 @@ class pouyaController extends Controller
                 $imageDelete = public_path("images/$media->media_url");
                 if(File::exists($imageDelete))
                 {
-                    unlink($imageDelete);
+                    File::delete($imageDelete); 
                 }
             }
 
@@ -1312,7 +1319,7 @@ class pouyaController extends Controller
             $imageDelete = public_path("images/$media->media_url");
             if($imageDelete)
             {
-                // unlink($imageDelete);
+                File::delete($imageDelete); 
             }
         }
         $media->delete();

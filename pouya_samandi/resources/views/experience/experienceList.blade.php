@@ -31,7 +31,7 @@
             <br>
         </form>
         <hr>
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive">
             <table id="experience_table" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
@@ -48,9 +48,11 @@
                         <tr>
                             <td>{{ $eachExperience->title }}</td>
                             <td><img style="width:50px;height:55px;" src="/images/{{ $eachExperience->image }}" /></td>
-                            @foreach($eachExperience->description as $desc)
-                                <td>{{ $desc->desc }}</td>
-                            @endforeach
+                            <td>
+                                @foreach($eachExperience->description as $desc)
+                                    [ {{ $desc->desc }} ]/
+                                @endforeach
+                            </td>
                             <td><a class="btn btn-danger" href="/experience/eachExperience/{{ $eachExperience->id }}">{{ $eachExperience->id }}</a></td>
                             <td><a href="/experience/editExperience/{{ $eachExperience->id }}" class="btn btn-danger">Edit</a></td>
                             <td>

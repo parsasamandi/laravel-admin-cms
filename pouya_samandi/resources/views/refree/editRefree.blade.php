@@ -15,11 +15,9 @@
         <form class="background_table" action="/refree/editRefree/{{ $eachRefree->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             <br>
-            <div class="container-fluid">
-                <div class="col-md-12 mb-3">
-                    <input type="file" name="image" class="custom-file-input">
-                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                </div>
+            <div class="col-md-12 mb-3">
+                <input type="file" name="image">
+
             </div>
             <div class="row row_style">
                 <div class="col-md-6 mb-3">
