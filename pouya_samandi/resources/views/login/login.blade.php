@@ -2,6 +2,7 @@
 <html>
 <head>
     <link href="/css/auth.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <div class="wrapper">
     <form action="{{url('post-login')}}" method="POST" id="logForm" class="login">
@@ -22,8 +23,11 @@
             <span class="state">Log in</span>
         </button>
     </form>
+    <br>
     @if($message = Session::get('faliure'))
-        <footer><a target="blank">{{ $message }}</a></footer>
+        <div class="alert alert-danger right-direction">
+            <footer><a target="blank">{{ $message }}</a></footer>
+        </div>
     @endif
 
 </div>

@@ -7,6 +7,13 @@
                     <strong>{{ $message }}</strong>
             </div>
         @endif
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-block">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
         <h1 class="mt-4">Edit Media</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
@@ -32,7 +39,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Media Text</label>
                     <select name="mediaTextBox" class="browser-default custom-select">
-                        <option name="mediaText_null" value="mediaText_null">Null</option>
+                        <option value="">Null</option>
                         @foreach($media_text as $eachMediaText)
                             <option value="{{ $eachMediaText->id }}" {{ $eachMediaText->id == $media->mediaText_id ? 'selected' : '' }}>{{ $eachMediaText->mediaText }}</option>
                         @endforeach
@@ -41,7 +48,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Description</label>
                     <select name="descriptionBox" class="browser-default custom-select">
-                        <option name="description_null" value="description_null">Null</option>
+                        <option value="">Null</option>
                         @foreach($description as $eachDescription)
                             <option value="{{ $eachDescription->id }}" {{ $eachDescription->id == $media->desc_id ? 'selected' : '' }} required>{{ $eachDescription->desc }}</option>
                         @endforeach
@@ -53,7 +60,7 @@
                     <hr>
                     <label for="validationTextarea">Project(Put Two Medias in a row)</label>
                     <select name="projectBox" class="browser-default custom-select">
-                        <option name="project_null" value="project_null">Null</option>
+                        <option value="">Null</option>
                         @foreach($projects as $project)
                             <option value="{{ $project->project_id }}" {{ $project->project_id == $media->project_id ? 'selected' : '' }} >{{ $project->name }}</option>
                         @endforeach

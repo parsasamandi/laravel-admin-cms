@@ -28,10 +28,10 @@
                         <label class="custom-file-label" for="validatedCustomFile">Choose Third file...</label>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <textarea name="desc" class="form-control" placeholder="Description"></textarea>
+                        <textarea rows="4" name="desc" class="form-control" placeholder="Description"></textarea>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <textarea name="desc2" class="form-control" placeholder="Description"></textarea>
+                        <textarea rows="4" name="desc2" class="form-control" placeholder="Description"></textarea>
                     </div>
                 </div>
             </div>
@@ -42,10 +42,10 @@
                         <label class="custom-file-label" for="validatedCustomFile">Choose Third file...</label>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <textarea name="desc3" class="form-control" placeholder="Description"></textarea>
+                        <textarea rows="4" name="desc3" class="form-control" placeholder="Description"></textarea>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <textarea name="desc4" class="form-control" placeholder="Description"></textarea>
+                        <textarea rows="4" name="desc4" class="form-control" placeholder="Description"></textarea>
                     </div>
                 </div>
             </div>

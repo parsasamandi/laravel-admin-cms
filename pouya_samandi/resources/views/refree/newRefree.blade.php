@@ -23,11 +23,11 @@
                     <input type="text" class="form-control" name="name" class="custom-file-input" placeholder="name" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <textarea name="desc" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="5" cols="50" name="desc" class="form-control" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="col-md-12 mb-3">
-                <input name="link" class="form-control" placeholder="ٌWebsite Link"></input>
+                <input type="url" name="link" class="form-control" placeholder="ٌWebsite Link"></input>
                 @if($errors->has('link'))
                     <span class="error">{{ $errors->first('link') }}</span>
                 @endif

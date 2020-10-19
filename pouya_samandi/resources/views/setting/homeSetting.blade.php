@@ -12,7 +12,7 @@
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
             <li class="breadcrumb-item active">Home Setting</li>
         </ol>
-        <form class="baxkground_color" action="/setting/homeSetting/" method="POST" enctype="multipart/form-data">
+        <form class="background_table" action="/setting/homeSetting/" method="POST" enctype="multipart/form-data">
             @csrf
             <br>
             <div class="container-fluid">
@@ -41,12 +41,12 @@
             <div class="container-fluid">
                 <h5>Life Goals</h5>
                 <hr style="margin-top:0em">
-                <textarea type="text" class="form-control" name="life_goals" class="custom-file-input" placeholder="Description">{{ $home_setting6 }}</textarea>
+                <textarea rows="5" cols="50" type="text" class="form-control" name="life_goals" class="custom-file-input" placeholder="Description">{{ $home_setting6 }}</textarea>
             </div>
             <div class="container-fluid mt-3">
                 <h5>About Me</h5>
                 <hr style="margin-top:0em">
-                <textarea type="text" class="form-control" name="about_me" class="custom-file-input" placeholder="Description">{{ $home_setting7 }}</textarea>
+                <textarea rows="5" cols="50" type="text" class="form-control" name="about_me" class="custom-file-input" placeholder="Description">{{ $home_setting7 }}</textarea>
             </div>
             <div class="col-md-12 mt-3 mb-2 text-center">
                 <button class="btn btn-primary" type="submit">Submit form</button>

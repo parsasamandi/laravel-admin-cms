@@ -22,17 +22,17 @@
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Desc</label>
-                    <textarea name="desc1" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc1" class="form-control" placeholder="Description"></textarea>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Second Desc</label>
-                    <textarea name="desc2" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc2" class="form-control" placeholder="Description"></textarea>
                 </div>
             </div>
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-12 mb-3">
                     <label for="validationTextarea">Third Desc</label>
-                    <textarea name="desc3" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc3" class="form-control" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -42,17 +42,17 @@
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Fourth Desc</label>
-                    <textarea name="desc4" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc4" class="form-control" placeholder="Description"></textarea>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Fifth Desc</label>
-                    <textarea name="desc5" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc5" class="form-control" placeholder="Description"></textarea>
                 </div>
             </div>
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-12 mb-3">
                     <label for="validationTextarea">Sixth Desc</label>
-                    <textarea name="desc6" class="form-control" placeholder="Description"></textarea>
+                    <textarea rows="4" name="desc6" class="form-control" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="col-md-12 mb-2 mt-3 text-center">

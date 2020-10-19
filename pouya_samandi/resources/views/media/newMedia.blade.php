@@ -7,11 +7,20 @@
                     <strong>{{ $message }}</strong>
             </div>
         @endif
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-block">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
+
         <h1 class="mt-4">New Media</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
             <li class="breadcrumb-item active">New Media</li>
         </ol>
+        
         <form class="background_table" action="/media/newMedia/" method="POST" enctype="multipart/form-data">
             @csrf
             <br>
@@ -37,7 +46,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Description</label>
                     <select name="descriptionBox" class="browser-default custom-select">
-                        <option name="description_null" value="description_null">Null</option>
+                        <option value="">Null</option>
                         @foreach($description as $eachDescription)
                             <option value="{{ $eachDescription->id }}">{{ $eachDescription->desc }}</option>
                         @endforeach
@@ -52,7 +61,7 @@
                     <hr>
                     <label for="validationTextarea">Project(Put Two Medias in a row)</label>
                     <select name="projectBox" class="browser-default custom-select">
-                        <option name="project_null" value="project_null">Null</option>
+                        <option value="">Null</option>
                         @foreach($projects as $project)
                             <option value="{{ $project->project_id }}">{{ $project->name }}</option>
                         @endforeach

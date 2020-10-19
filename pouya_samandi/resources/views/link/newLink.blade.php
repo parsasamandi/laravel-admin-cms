@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" name="text" class="custom-file-input" placeholder="Text" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" name="link" class="custom-file-input" placeholder="Link Url" required>
+                    <input type="url" class="form-control" name="link" class="custom-file-input" placeholder="Link Url" required>
                     @if($errors->has('link'))
                         <span class="error">{{ $errors->first('link') }}</span>
                     @endif

@@ -7,6 +7,13 @@
                     <strong>{{ $message }}</strong>
             </div>
         @endif
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-block">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
         <h1 class="mt-4">Edit Description</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
@@ -22,7 +29,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Project Name</label>
                     <select name="projectBox" class="browser-default custom-select">
-                        <option name="project_name" value="project_name">Null</option>
+                        <option value="">Null</option>
                         @foreach($project as $eachProject)
                             <option name="project" value="{{ $eachProject->project_id }}" {{ $eachProject->project_id == $description->project_id ? 'selected' : '' }}  required>{{ $eachProject->name }}</option>
                         @endforeach
@@ -31,7 +38,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Experience</label>
                     <select name="experienceBox" class="browser-default custom-select">
-                        <option name="experience_url" value="experience_url">Null</option>
+                        <option value="">Null</option>
                         @foreach($experience as $eachExperience)
                             <option name="experience" value="{{ $eachExperience->id }}" {{ $eachExperience->id == $description->experience_id ? 'selected' : '' }}  required>{{ $eachExperience->title }}</option>
                         @endforeach

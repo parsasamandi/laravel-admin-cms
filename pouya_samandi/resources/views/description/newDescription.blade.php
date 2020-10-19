@@ -7,6 +7,13 @@
                     <strong>{{ $message }}</strong>
             </div>
         @endif
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-block">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
         <h1 class="mt-4">New Description</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
@@ -16,13 +23,13 @@
             @csrf
             <br>
             <div class="col-md-12 mb-3">
-                <input type="text" name="desc1" placeholder="Description" class="form-control">
+                <textarea rows="7" cols="50" type="text" name="desc1" placeholder="Description" class="form-control" required></textarea>
             </div>
             <div class="row row_style">
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Project Name(If your description belongs to it)</label>
                     <select name="projectBox" class="browser-default custom-select">
-                        <option name="project_name" value="project_name">Null</option>
+                        <option value="">Null</option>
                         @foreach($project as $eachProject)
                             <option name="project" value="{{ $eachProject->project_id }}" selected>{{ $eachProject->name }}</option>
                         @endforeach
@@ -31,7 +38,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="validationTextarea">Experience(If your description belongs to it)</label>
                     <select name="experienceBox" class="browser-default custom-select">
-                        <option name="experience_url" value="experience_url">Null</option>
+                        <option value="">Null</option>
                         @foreach($experience as $eachExperience)
                             <option name="experience" value="{{ $eachExperience->id }}" selected>{{ $eachExperience->title }}</option>
                         @endforeach

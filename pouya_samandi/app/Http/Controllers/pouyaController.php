@@ -697,9 +697,6 @@ class pouyaController extends Controller
     // store new Refree
     public function storeRefree(REquest $request)
     {
-        // $request->validate([
-        //     'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-        // ]);
         $refree = new Refree();
         $refree->name = request('name');
         $refree->desc = request('desc');
@@ -757,10 +754,6 @@ class pouyaController extends Controller
     // Update refree
     public function updateRefree($id,Request $request)
     {
-        $request->validate([
-            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-        ]);
-        
         $refree = Refree::findOrFail($id);
         $refree->name = request('name');
         $refree->desc = request('desc');
@@ -803,7 +796,7 @@ class pouyaController extends Controller
                  return back()->with('faliure', 'There were no results. please try again');
          }
      }
-    //logout
+    //Logout
     public function logout(Request $request) {
         Auth::logout();
         return redirect('login/login');
@@ -993,24 +986,30 @@ class pouyaController extends Controller
     // Store Description
     public function storeDescription(Request $request)
     {
+        $validator = $request->validate([
+            'experienceBox' => 'required_without:projectBox',
+            'size' => 'required_without:experienceBox',
+        ]);
+
         $description = new Description();
         $description->desc = request('desc1');
-        if(!(request('projectBox') == 'project_name'))
+        if(!(request('projectBox') == ''))
         {
             $description->project_id = request('projectBox');
         }
-        else if(request('projectBox') == 'project_name')
+        else if(request('projectBox') == '')
         {
             $description->project_id = null;
         }
-        if(!(request('experienceBox') == 'experience_url'))
+        if(!(request('experienceBox') == ''))
         {
             $description->experience_id = request('experienceBox');
         }
-        else if(request('experienceBox') == 'experience_url')
+        else if(request('experienceBox') == '')
         {
             $description->experience_id = null;
         }
+        
 
         $description->size = request('size');
         $description->save();
@@ -1126,32 +1125,35 @@ class pouyaController extends Controller
     }
 
     // Update Description
-    public function updateDescription($id)
+    public function updateDescription($id,Request $request)
     {
+        $validator = $request->validate([
+            'experienceBox' => 'required_without:projectBox',
+            'size' => 'required_without:experienceBox',
+        ]);
+
         $description = Description::findOrFail($id);
         $description->desc = request('desc1');
 
-        if(!(request('projectBox') == 'project_name'))
+        if(!(request('projectBox') == ''))
         {
             $description->project_id = request('projectBox');
         }
-        else if(request('projectBox') == 'project_name')
+        else if(request('projectBox') == '')
         {
             $description->project_id = null;
         }
-        if(!(request('experienceBox') == 'experience_url'))
+        if(!(request('experienceBox') == ''))
         {
             $description->experience_id = request('experienceBox');
         }
-        else if(request('experienceBox') == 'experience_url')
+        else if(request('experienceBox') == '')
         {
             $description->experience_id = null;
         }
 
         $description->size = request('size');
-
         $description->save();
-
         return redirect('description/descriptionList');
     }
 
@@ -1179,7 +1181,12 @@ class pouyaController extends Controller
     // Store Media
     public function storeMedia(Request $request)
     {
-        
+
+       $validator = $request->validate([
+           'youtube_url' => 'required_without:image',
+           'descriptionBox' => 'required_without:projectBox',
+       ]);
+
         $media = new Media();
         if($request->hasFile('image'))
         {
@@ -1194,16 +1201,13 @@ class pouyaController extends Controller
             $media->type = 1;
             $media->media_url = request('youtube_url');
         }
-        if(!(request('descriptionBox') == 'description_null'))
+        if(!(request('descriptionBox') == ''))
         {
             $media->desc_id = request('descriptionBox');
         }
-        else if(request('descriptionBox') == 'description_null')
+        else if(request('descriptionBox') == '')
         {
             $media->desc_id = null;
-            request()->validate([
-                'projectBox' => 'required'
-            ]);
         }
         if(!(request('mediaTextBox') == 'mediaText_null'))
         {
@@ -1214,12 +1218,12 @@ class pouyaController extends Controller
             $media->mediaText_id = null;
         }
 
-        if(!(request('projectBox') == 'project_null'))
+        if(!(request('projectBox') == ''))
         {
             $media->project_id = request('projectBox');
             $media->twoInRow = 1;
         }
-        else if(request('projectBox') == 'project_null')
+        else if(request('projectBox') == '')
         {
             $media->project_id = null;
         }
@@ -1244,6 +1248,11 @@ class pouyaController extends Controller
     // Update Media
     public function updateMedia($id,Request $request)
     {
+        $validator = $request->validate([
+            'youtube_url' => 'required_without:image',
+            'descriptionBox' => 'required_without:projectBox',
+        ]);
+
         $media = Media::findOrFail($id);
         if($request->hasFile('image'))
         {
@@ -1269,11 +1278,11 @@ class pouyaController extends Controller
             $media->type = 1;
             $media->media_url = request('youtube_url');
         }
-        if(!(request('descriptionBox') == 'description_null'))
+        if(!(request('descriptionBox') == ''))
         {
             $media->desc_id = request('descriptionBox');
         }
-        else if(request('descriptionBox') == 'description_null')
+        else if(request('descriptionBox') == '')
         {
             $media->desc_id = null;
         }
@@ -1285,14 +1294,17 @@ class pouyaController extends Controller
         {
             $media->mediaText_id = null;
         }
-        if(!(request('projectBox') == 'project_null'))
+        if(!(request('projectBox') == ''))
         {
             $media->project_id = request('projectBox');
+            $media->twoInRow = 1;
         }
-        else if(request('projectBox') == 'project_null')
+        else if(request('projectBox') == '')
         {
             $media->project_id = null;
         }
+
+        
 
         $media->save();
         return redirect('media/mediaList');
@@ -1402,9 +1414,9 @@ class pouyaController extends Controller
     // Stroing Link
     public function storeLink()
     {
-        request()->validate([
-            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-        ]);
+        // request()->validate([
+        //     'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        // ]);
         $link = new Link();
         $link->text = request('text');
         $link->link = request('link');
@@ -1436,10 +1448,6 @@ class pouyaController extends Controller
     // Edit Link Page
     public function updateLink($id)
     {
-        request()->validate([
-            'link' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-        ]);
-
         Link::where('id', $id)->update(array(
             'text' => request('text'),
             'link' => request('link'),

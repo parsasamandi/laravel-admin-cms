@@ -17,7 +17,7 @@
             <br>
             <div style="margin-left:1px;margin-right:1px;" class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationDefault03">Search in first Description</label>
+                    <label for="validationDefault03">Search in Description</label>
                     <input name="desc" type="search" class="form-control" placeholder="Search...">
                 </div>
             </div>
