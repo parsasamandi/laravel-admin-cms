@@ -22,14 +22,14 @@ Route::get('/','pouyaController@indexHome');
 Route::post('/','pouyaController@storeEmail');
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('/experience/newExperience','pouyaController@newExperience');
-  Route::post('/experience/newExperience', 'pouyaController@storeExperience');
-  Route::get('/experience/experienceList', 'pouyaController@indexExperience');
-  Route::get('/experience/experienceList/search', 'pouyaController@searchExperience');
-  Route::get('/experience/eachExperience/{id}', 'pouyaController@showExperience');
-  Route::delete('/experience/experienceList/{id}', 'pouyaController@destroyExperience')->name('experience.destroy'); 
-  Route::get('/experience/editExperience/{id}', 'pouyaController@editExperience'); 
-  Route::post('/experience/editExperience/{id}', 'pouyaController@updateExperience'); 
+  Route::get('/experience/newExperience','ExperienceController@new');
+  Route::post('/experience/newExperience', 'pouyaController@store');
+  Route::get('/experience/experienceList', 'pouyaController@index');
+  Route::get('/experience/experienceList/search', 'pouyaController@search');
+  Route::get('/experience/eachExperience/{id}', 'pouyaController@show');
+  Route::delete('/experience/experienceList/{id}', 'pouyaController@destroy')->name('experience.destroy'); 
+  Route::get('/experience/editExperience/{id}', 'pouyaController@edit'); 
+  Route::post('/experience/editExperience/{id}', 'pouyaController@update'); 
 
   Route::get('/education/newEducation/', 'pouyaController@newEducation'); 
   Route::post('/education/newEducation/', 'pouyaController@storeEducation'); 
@@ -97,37 +97,37 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/project/editProject/{id}','pouyaController@updateProject');
   Route::delete('/project/destroyProject/{id}', 'pouyaController@destroyProject')->name('project.destroy'); 
   
-  Route::get('/description/newDescription', 'pouyaController@newDescription');
-  Route::post('/description/newDescription', 'pouyaController@storeDescription');
-  Route::get('/description/descriptionList', 'pouyaController@indexDescription');
-  Route::get('/description/descriptionList/search', 'pouyaController@searchDescription');
-  Route::get('/description/editDescription/{id}', 'pouyaController@editDescription');
-  Route::post('/description/editDescription/{id}', 'pouyaController@updateDescription');
-  Route::delete('/description/descriptionList/{id}', 'pouyaController@destroyDescription')->name('description.destroy'); 
+  Route::get('/description/newDescription', 'DescriptionController@new');
+  Route::post('/description/newDescription', 'DescriptionController@store');
+  Route::get('/description/descriptionList', 'DescriptionController@index');
+  Route::get('/description/descriptionList/search', 'DescriptionController@search');
+  Route::get('/description/editDescription/{id}', 'DescriptionController@editDescription');
+  Route::post('/description/editDescription/{id}', 'DescriptionController@update');
+  Route::delete('/description/descriptionList/{id}', 'DescriptionController@destroy')->name('description.destroy'); 
 
-  Route::get('/media/newMedia', 'pouyaController@newMedia');
-  Route::post('/media/newMedia', 'pouyaController@storeMedia');
-  Route::get('/media/mediaList', 'pouyaController@indexMedia');
-  Route::get('/media/mediaList/search', 'pouyaController@searchMedia');
-  Route::get('/media/editMedia/{id}', 'pouyaController@editMedia');
-  Route::post('/media/editMedia/{id}', 'pouyaController@updateMedia'); 
-  Route::delete('/media/mediaList/{id}', 'pouyaController@destroyMedia')->name('media.destroy'); 
+  Route::get('/media/newMedia', 'MediaController@new');
+  Route::post('/media/newMedia', 'MediaController@store');
+  Route::get('/media/mediaList', 'MediaController@index');
+  Route::get('/media/mediaList/search', 'MediaController@search');
+  Route::get('/media/editMedia/{id}', 'MediaController@edit');
+  Route::post('/media/editMedia/{id}', 'MediaController@update'); 
+  Route::delete('/media/mediaList/{id}', 'MediaController@destroy')->name('media.destroy'); 
 
-  Route::get('/media/newMediaText', 'pouyaController@newMediaText');
-  Route::post('/media/newMediaText', 'pouyaController@storeMediaText');
-  Route::get('/media/mediaTextList', 'pouyaController@indexMediaText');
-  Route::get('/media/mediaTextList/search', 'pouyaController@searchMediaText');
-  Route::get('/media/editMediaText/{id}', 'pouyaController@editMediaText');
-  Route::post('/media/editMediaText/{id}', 'pouyaController@updateMediaText'); 
-  Route::delete('/media/mediaTextList/{id}', 'pouyaController@destroyMediaText')->name('mediaText.destroy');
+  Route::get('/media/newMediaText', 'MediaTextController@new');
+  Route::post('/media/newMediaText', 'MediaTextController@store');
+  Route::get('/media/mediaTextList', 'MediaTextController@index');
+  Route::get('/media/mediaTextList/search', 'MediaTextController@search');
+  Route::get('/media/editMediaText/{id}', 'MediaTextController@edit');
+  Route::post('/media/editMediaText/{id}', 'MediaTextController@update'); 
+  Route::delete('/media/mediaTextList/{id}', 'MediaTextController@destroy')->name('mediaText.destroy');
 
-  Route::get('/link/newLink', 'pouyaController@newLink');
-  Route::post('/link/newLink', 'pouyaController@storeLink');
-  Route::get('/link/linkList', 'pouyaController@indexLink');
-  Route::get('/link/linkList/search', 'pouyaController@searchLink');
-  Route::get('/link/editLink/{id}', 'pouyaController@editLink');
-  Route::post('/link/editLink/{id}', 'pouyaController@updateLink');
-  Route::delete('/link/editLink/{id}', 'pouyaController@destroyLink')->name('link.destroy'); 
+  Route::get('/link/newLink', 'LinkController@new');
+  Route::post('/link/newLink', 'LinkController@store');
+  Route::get('/link/linkList', 'LinkController@index');
+  Route::get('/link/linkList/search', 'LinkController@search');
+  Route::get('/link/editLink/{id}', 'LinkController@edit');
+  Route::post('/link/editLink/{id}', 'LinkController@update');
+  Route::delete('/link/editLink/{id}', 'LinkController@destroy')->name('link.destroy'); 
 
   Route::get('/project/newProjectTitle', 'pouyaController@newProjectTitle');
   Route::post('/project/newProjectTitle', 'pouyaController@storeProjectTitle');
