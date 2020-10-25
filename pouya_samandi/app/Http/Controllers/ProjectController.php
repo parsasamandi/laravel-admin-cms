@@ -8,14 +8,27 @@ use App\Project;
 
 class ProjectController extends Controller
 {
+    // Show Project Page
+    public function index()
+    {
+        $project = Project::all();
+        $description = Description::all();
+        $media = Media::all();
+        return view('/project', [
+            'projects' => $project,
+            'descriptions' => $description,
+            'media' => $media
+        ]);
+    }
+
     // New Project Page
-    public function newProject()
+    public function new()
     {
         return view('project/newProject');
     }
  
     // New Project Page
-    public function storeProject(Request $request)
+    public function store(Request $request)
     {
         $project = new Project();
         $project->name = request('name');
@@ -26,13 +39,13 @@ class ProjectController extends Controller
         return back()->with('success', 'You have successfully sumbitted data');
     }
     // Edit Project Page
-    public function editProject($id)
+    public function edit($id)
     {
         $project = Project::where('project_id', $id)->first();
         return view('project.editProject', ['project' => $project]);
     }
     // Update Project Page
-    public function updateProject($id,Request $request)
+    public function update($id,Request $request)
     {
 
         Project::where('project_id', $id)->update(array(
@@ -43,7 +56,7 @@ class ProjectController extends Controller
         return redirect('project/projectList');
     }
     // Delete Project
-    public function destroyProject($id)
+    public function destroy($id)
     {
         $project = Project::where('project_id', $id);
         $project->delete();
@@ -51,7 +64,7 @@ class ProjectController extends Controller
         return redirect('project/projectList');
     }
     // Delete Project
-    public function searchProject(Request $request)
+    public function search(Request $request)
     {
         if(!empty($request->input('name')))
         {
@@ -65,7 +78,7 @@ class ProjectController extends Controller
     }
 
     // Show Project List
-    public function indexProject()
+    public function index()
     {
         $project = Project::all();
         return view('project/projectList',[

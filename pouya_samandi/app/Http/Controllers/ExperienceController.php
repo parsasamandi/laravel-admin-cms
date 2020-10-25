@@ -10,12 +10,12 @@ class ExperienceController extends Controller
 {
     
     // new Experience page
-    public function newExperience(Request $request)
+    public function new(Request $request)
     {
         return view('/experience/newExperience');
     }
     // Insert Experience
-    public function storeExperience(Request $request)
+    public function store(Request $request)
     {
         $exper = new Experience();
         // completed
@@ -34,14 +34,14 @@ class ExperienceController extends Controller
     }
 
     // Show Each Experience
-    public function indexExperience() {
+    public function index() {
         $experience = Experience::all();      
         return view('experience/experienceList', [
           'experience' => $experience,
         ]);
     }   
     // Search for experience
-    public function searchExperience(Request $request)
+    public function search(Request $request)
     {
         if(!empty($request->input('title')))
         {
@@ -64,7 +64,7 @@ class ExperienceController extends Controller
         }
     }
     // Delete Experience
-    public function destroyExperience($id)
+    public function destroy($id)
     {
         $experience = Experience::findOrFail($id);
         $imageDelete = public_path("images/$experience->image");
@@ -76,19 +76,19 @@ class ExperienceController extends Controller
         return redirect('experience/experienceList');
     }
     // Show Each Experience
-    public function showExperience($id)
+    public function show($id)
     {
         $experience = Experience::findOrFail($id);
         return view('experience.eachExperience', ['experience' => $experience]);
     }
     // Edit Experience Page
-    public function editExperience($id)
+    public function edit($id)
     {
         $experience = Experience::findOrFail($id);
         return view('experience.editExperience', ['experience' => $experience]);
     }
     // update Experience
-    public function updateExperience($id,Request $request)
+    public function update($id,Request $request)
     {
         $exper = Experience::findOrFail($id);
         $exper->title = request('Title');

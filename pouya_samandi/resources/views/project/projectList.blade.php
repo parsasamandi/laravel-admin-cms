@@ -29,7 +29,6 @@
         <hr>
         <div class="table-responsive text-nowrap">
             <table id="experience_table" class="table table-striped table-bordered text-center">
-            <!-- class="thead-dark" -->
                 <thead>
                     <tr>
                         <th scope="col">Name</th>

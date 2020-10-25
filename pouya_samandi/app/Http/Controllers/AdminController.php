@@ -10,13 +10,13 @@ class AdminController extends Controller
 {
    
     // New Admin
-    public function newAdmin(Request $request)
+    public function new(Request $request)
     {  
         return view('admin.newAdmin');
     }
 
     // Store Admin
-    public function storeAdmin(Request $request)
+    public function store(Request $request)
     {
         User::create([
             'name' => $request['name'],
@@ -27,7 +27,7 @@ class AdminController extends Controller
     }
 
     // Admin List
-    public function indexAdmin2(Request $request)
+    public function index(Request $request)
     {
         $admin = User::all();
         return view('admin/adminList', [
@@ -36,7 +36,7 @@ class AdminController extends Controller
     }
 
     // Deleting Admin
-    public function destroyAdmin($id)
+    public function destroy($id)
     {
         $admin = User::findOrFail($id);
         $admin->delete();
@@ -44,14 +44,14 @@ class AdminController extends Controller
     }
 
     // Edit Admin
-    public function editAdmin($id)
+    public function edit($id)
     {
         $admin = User::findOrFail($id);
         return view('admin.editAdmin', ['admin' => $admin]);
     }
 
     // Update Admin
-    public function updateAdmin($id,Request $request)
+    public function update($id,Request $request)
     {
         $admin = User::findOrFail($id);
         $admin->name = $request['name'];
@@ -65,7 +65,7 @@ class AdminController extends Controller
     }
 
     // Search for Admin
-    public function searchAdmin(Request $request)
+    public function search(Request $request)
     {
         if(!empty($request->input('name')))
         {
@@ -86,5 +86,11 @@ class AdminController extends Controller
             return back()->with('faliure', 'There were no results. please try again');
         }
     }
+    //Logout
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('login/login');
+    }
+    
     
 }

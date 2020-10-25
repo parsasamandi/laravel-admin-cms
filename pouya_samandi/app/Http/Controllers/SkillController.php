@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Refree;
 use App\Experience;
+use App\Skill;
 
 class SkillController extends Controller
 {

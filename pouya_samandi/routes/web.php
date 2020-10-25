@@ -16,86 +16,86 @@
 
 Route::get('/cv','pouyaController@indexCv');
 Route::get('/project','pouyaController@indexProjectHome');
-Route::get('/login/login',[ 'as' => 'login.login', 'uses' => 'pouyaController@indexLogin']);
-Route::post('/post-login', 'pouyaController@storeLogin');   
+Route::get('/login/login',[ 'as' => 'login.login', 'uses' => 'Auth\LoginController@index']);
+Route::post('/post-login', 'Auth\LoginController@store');   
 Route::get('/','pouyaController@indexHome');
 Route::post('/','pouyaController@storeEmail');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/experience/newExperience','ExperienceController@new');
-  Route::post('/experience/newExperience', 'pouyaController@store');
-  Route::get('/experience/experienceList', 'pouyaController@index');
-  Route::get('/experience/experienceList/search', 'pouyaController@search');
-  Route::get('/experience/eachExperience/{id}', 'pouyaController@show');
-  Route::delete('/experience/experienceList/{id}', 'pouyaController@destroy')->name('experience.destroy'); 
-  Route::get('/experience/editExperience/{id}', 'pouyaController@edit'); 
-  Route::post('/experience/editExperience/{id}', 'pouyaController@update'); 
+  Route::post('/experience/newExperience', 'ExperienceController@store');
+  Route::get('/experience/experienceList', 'ExperienceController@index');
+  Route::get('/experience/experienceList/search', 'ExperienceController@search');
+  Route::get('/experience/eachExperience/{id}', 'ExperienceController@show');
+  Route::delete('/experience/experienceList/{id}', 'ExperienceController@destroy')->name('experience.destroy'); 
+  Route::get('/experience/editExperience/{id}', 'ExperienceController@edit'); 
+  Route::post('/experience/editExperience/{id}', 'ExperienceController@update'); 
 
-  Route::get('/education/newEducation/', 'pouyaController@newEducation'); 
-  Route::post('/education/newEducation/', 'pouyaController@storeEducation'); 
-  Route::get('/education/educationList/', 'pouyaController@indexEducation'); 
-  Route::get('/education/educationList/search', 'pouyaController@searchEducation');  
-  Route::delete('/education/educationList/{id}', 'pouyaController@destroyEducation')->name('education.destroy'); 
-  Route::get('/education/editEducation/{id}', 'pouyaController@editEducation'); 
-  Route::post('/education/editEducation/{id}', 'pouyaController@updateEducation'); 
-  Route::get('/education/eachEducation/{id}', 'pouyaController@showEducation');
+  Route::get('/education/newEducation/', 'EducationController@new'); 
+  Route::post('/education/newEducation/', 'EducationController@store'); 
+  Route::get('/education/educationList/', 'EducationController@index'); 
+  Route::get('/education/educationList/search', 'EducationController@search');  
+  Route::delete('/education/educationList/{id}', 'EducationController@destroy')->name('education.destroy'); 
+  Route::get('/education/editEducation/{id}', 'EducationController@edit'); 
+  Route::post('/education/editEducation/{id}', 'EducationController@update'); 
+  Route::get('/education/eachEducation/{id}', 'EducationController@show');
 
-  Route::get('/publication/newPublication/', 'pouyaController@newPublication');
-  Route::post('/publication/newPublication/', 'pouyaController@storePublication');
-  Route::get('/publication/publicationList/', 'pouyaController@indexPublication'); 
-  Route::get('/publication/eachPublication/{id}', 'pouyaController@showPublication'); 
-  Route::get('/publication/editPublication/{id}', 'pouyaController@editPublication'); 
-  Route::post('/publication/editPublication/{id}', 'pouyaController@updatePublication');
-  Route::delete('/publication/publicationList/{id}', 'pouyaController@destroyPublication')->name('publication.destroy'); 
-  Route::get('/publication/publicationList/search', 'pouyaController@searchEducation');  
+  Route::get('/publication/newPublication/', 'PublicationController@new');
+  Route::post('/publication/newPublication/', 'PublicationController@store');
+  Route::get('/publication/publicationList/', 'PublicationController@index'); 
+  Route::get('/publication/eachPublication/{id}', 'PublicationController@show'); 
+  Route::get('/publication/editPublication/{id}', 'PublicationController@edit'); 
+  Route::post('/publication/editPublication/{id}', 'PublicationController@update');
+  Route::delete('/publication/publicationList/{id}', 'PublicationController@destroy')->name('publication.destroy'); 
+  Route::get('/publication/publicationList/search', 'PublicaionController@search');  
 
-  Route::get('/interest/newInterest', 'pouyaController@newInterest');
-  Route::post('/interest/newInterest/', 'pouyaController@storeInterest');
-  Route::get('/interest/interestList/', 'pouyaController@indexInterest');
-  Route::get('/interest/eachInterest/{id}', 'pouyaController@showInterest'); 
-  Route::get('/interest/editInterest/{id}', 'pouyaController@editInterest'); 
-  Route::post('/interest/editInterest/{id}', 'pouyaController@updateInterest');
-  Route::delete('/interest/interestList/{id}', 'pouyaController@destroyInterest')->name('interest.destroy'); 
-  Route::get('/interest/interestList/search', 'pouyaController@searchInterest');  
+  Route::get('/interest/newInterest', 'InterestController@new');
+  Route::post('/interest/newInterest/', 'InterestController@store');
+  Route::get('/interest/interestList/', 'InterestController@index');
+  Route::get('/interest/eachInterest/{id}', 'InterestController@show'); 
+  Route::get('/interest/editInterest/{id}', 'InterestController@edit'); 
+  Route::post('/interest/editInterest/{id}', 'InterestController@update');
+  Route::delete('/interest/interestList/{id}', 'InterestController@destroy')->name('interest.destroy'); 
+  Route::get('/interest/interestList/search', 'InterestController@search');  
 
-  Route::get('/skill/newSkill', 'pouyaController@newSkill');
-  Route::post('/skill/newSkill/', 'pouyaController@storeSkill');
-  Route::get('/skill/skillList/', 'pouyaController@indexSkill');
-  Route::get('/skill/eachSkill/{id}', 'pouyaController@showSkill'); 
-  Route::get('/skill/editSkill/{id}', 'pouyaController@editSkill'); 
-  Route::post('/skill/editSkill/{id}', 'pouyaController@updateSkill');
-  Route::delete('/skill/skillList/{id}', 'pouyaController@destroySkill')->name('skill.destroy'); 
-  Route::get('/skill/skillList/search', 'pouyaController@searchSkill');  
+  Route::get('/skill/newSkill', 'SkillController@new');
+  Route::post('/skill/newSkill/', 'SkillController@store');
+  Route::get('/skill/skillList/', 'SkillController@index');
+  Route::get('/skill/eachSkill/{id}', 'SkillController@show'); 
+  Route::get('/skill/editSkill/{id}', 'SkillController@edit'); 
+  Route::post('/skill/editSkill/{id}', 'SkillController@update');
+  Route::delete('/skill/skillList/{id}', 'SkillController@destroy')->name('skill.destroy'); 
+  Route::get('/skill/skillList/search', 'SkillController@search');  
 
-  Route::get('/refree/newRefree', 'pouyaController@newRefree');
-  Route::post('/refree/newRefree/', 'pouyaController@storeRefree');
-  Route::get('/refree/refreeList/', 'pouyaController@indexRefree');
-  Route::get('/refree/eachRefree/{id}', 'pouyaController@showRefree'); 
-  Route::get('/refree/editRefree/{id}', 'pouyaController@editRefree'); 
-  Route::post('/refree/editRefree/{id}', 'pouyaController@updateRefree');
-  Route::delete('/refree/refreeList/{id}', 'pouyaController@destroyRefree')->name('refree.destroy'); 
-  Route::get('/refree/refreeList/search', 'pouyaController@searchRefree');
+  Route::get('/refree/newRefree', 'RefreeController@new');
+  Route::post('/refree/newRefree/', 'RefreeController@store');
+  Route::get('/refree/refreeList/', 'RefreeController@index');
+  Route::get('/refree/eachRefree/{id}', 'RefreeController@show'); 
+  Route::get('/refree/editRefree/{id}', 'RefreeController@edit'); 
+  Route::post('/refree/editRefree/{id}', 'RefreeController@update');
+  Route::delete('/refree/refreeList/{id}', 'RefreeController@destroy')->name('refree.destroy'); 
+  Route::get('/refree/refreeList/search', 'RefreeController@search');
+  // Admin Page
+  Route::get('/adminHome',function(){ $user = auth()->user(); return view('/adminHome');});
+  Route::get('/admin/newAdmin', 'AdminController@new'); 
+  Route::post('/admin/newAdmin', 'AdminController@store'); 
+  Route::get('/admin/adminList', 'AdminController@index'); 
+  Route::get('/admin/editAdmin/{id}', 'AdminController@edit');
+  Route::post('/admin/editAdmin/{id}', 'AdminController@update');
+  Route::get('/admin/adminList/search', 'AdminController@search');
+  Route::delete('/admin/adminList/{id}', 'AdminController@destroy')->name('admin.destroy'); 
+  Route::get('/logout', 'AdminController@logout');
 
-  Route::get('/adminHome','pouyaController@indexAdmin');
-  Route::get('/admin/newAdmin', 'pouyaController@newAdmin'); 
-  Route::post('/admin/newAdmin', 'pouyaController@storeAdmin'); 
-  Route::get('/admin/adminList', 'pouyaController@indexAdmin2'); 
-  Route::get('/admin/editAdmin/{id}', 'pouyaController@editAdmin');
-  Route::post('/admin/editAdmin/{id}', 'pouyaController@updateAdmin');
-  Route::get('/admin/adminList/search', 'pouyaController@searchAdmin');
-  Route::delete('/admin/adminList/{id}', 'pouyaController@destroyAdmin')->name('admin.destroy'); 
-  Route::get('/logout', 'pouyaController@logout');
+  Route::get('/setting/homeSetting', 'HomeController@indexSetting');
+  Route::post('/setting/homeSetting', 'HomeController@updateSetting');
 
-  Route::get('/setting/homeSetting', 'pouyaController@indexSetting');
-  Route::post('/setting/homeSetting', 'pouyaController@updateSetting');
-
-  Route::get('/project/newProject', 'pouyaController@newProject');
-  Route::post('/project/newProject', 'pouyaController@storeProject');
-  Route::get('/project/projectList','pouyaController@indexProject');
-  Route::get('/project/projectList/search','pouyaController@searchProject');
-  Route::get('/project/editProject/{id}','pouyaController@editProject');
-  Route::post('/project/editProject/{id}','pouyaController@updateProject');
-  Route::delete('/project/destroyProject/{id}', 'pouyaController@destroyProject')->name('project.destroy'); 
+  Route::get('/project/newProject', 'ProjectController@new');
+  Route::post('/project/newProject', 'ProjectController@store');
+  Route::get('/project/projectList','ProjectController@index');
+  Route::get('/project/projectList/search','ProjectController@search');
+  Route::get('/project/editProject/{id}','ProjectController@edit');
+  Route::post('/project/editProject/{id}','ProjectController@update');
+  Route::delete('/project/destroyProject/{id}', 'ProjectController@destroy')->name('project.destroy'); 
   
   Route::get('/description/newDescription', 'DescriptionController@new');
   Route::post('/description/newDescription', 'DescriptionController@store');
@@ -129,13 +129,11 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/link/editLink/{id}', 'LinkController@update');
   Route::delete('/link/editLink/{id}', 'LinkController@destroy')->name('link.destroy'); 
 
-  Route::get('/project/newProjectTitle', 'pouyaController@newProjectTitle');
-  Route::post('/project/newProjectTitle', 'pouyaController@storeProjectTitle');
-  Route::get('/project/projectTitleList', 'pouyaController@indexProjectTitle');
-  Route::get('/project/projectTitleList/search', 'pouyaController@searchProjectTitle');
-  Route::get('/project/editProjectTitle/{id}', 'pouyaController@editProjectTitle');
-  Route::post('/project/editProjectTitle/{id}', 'pouyaController@updateProjectTitle');
-  Route::delete('/project/projectTitleList/{id}', 'pouyaController@destroyProjectTitle')->name('projectTitle.destroy'); 
-  
-
+  Route::get('/project/newProjectTitle', 'ProjectTitleController@new');
+  Route::post('/project/newProjectTitle', 'ProjectTitleController@store');
+  Route::get('/project/projectTitleList', 'ProjectTitleController@index');
+  Route::get('/project/projectTitleList/search', 'ProjectTitleController@search');
+  Route::get('/project/editProjectTitle/{id}', 'ProjectTitleController@edit');
+  Route::post('/project/editProjectTitle/{id}', 'ProjectTitleController@update');
+  Route::delete('/project/projectTitleList/{id}', 'ProjectTitleController@destroy')->name('projectTitle.destroy'); 
 });

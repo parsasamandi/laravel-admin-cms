@@ -10,12 +10,12 @@ use App\Experience;
 class RefreeController extends Controller
 {
     // new Refree Page
-    public function newRefree()
+    public function new()
     {
         return view('refree.newRefree');
     }
     // store new Refree
-    public function storeRefree(REquest $request)
+    public function store(REquest $request)
     {
         $refree = new Refree();
         $refree->name = request('name');
@@ -34,7 +34,7 @@ class RefreeController extends Controller
     }
 
     // Show Refree
-    public function indexRefree(REquest $request)
+    public function index(REquest $request)
     {
         $refree = Refree::all();
         return view('refree/refreeList', [
@@ -43,7 +43,7 @@ class RefreeController extends Controller
     }
 
     // Delete Refree
-    public function destroyRefree($id)
+    public function destroy($id)
     {
         $refree = Refree::findOrFail($id);
         
@@ -58,21 +58,21 @@ class RefreeController extends Controller
     }
 
     // Show refree
-    public function showRefree($id)
+    public function show($id)
     {
         $refree = Refree::findOrFail($id);
         return view('refree.eachRefree', ['eachRefree' => $refree]);
     }
 
     // Edit refree
-    public function editRefree($id)
+    public function edit($id)
     {
         $refree = Refree::findOrFail($id);
         return view('refree.editRefree', ['eachRefree' => $refree]);
     }
 
     // Update refree
-    public function updateRefree($id,Request $request)
+    public function update($id,Request $request)
     {
         $refree = Refree::findOrFail($id);
         $refree->name = request('name');
@@ -95,7 +95,7 @@ class RefreeController extends Controller
     }
 
     // Search for refree
-    public function searchRefree(Request $request)
+    public function search(Request $request)
     {
         if(!empty($request->input('name')))
         {

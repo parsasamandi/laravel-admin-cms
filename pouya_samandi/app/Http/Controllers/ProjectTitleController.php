@@ -11,7 +11,7 @@ class ProjectTitleController extends Controller
 {
     
     // New Project TItle Page
-    public function newProjectTitle(Request $request)
+    public function new(Request $request)
     {   
         $project = Project::select('name','project_id')->get();
         return view('project/newProjectTitle',[
@@ -19,7 +19,7 @@ class ProjectTitleController extends Controller
         ]); 
     }
     // New Sub Title For Project
-    public function storeProjectTitle(Request $request)
+    public function store(Request $request)
     {
         $projectTitle = new SubProject();
         $projectTitle->name = request('name');
@@ -30,7 +30,7 @@ class ProjectTitleController extends Controller
 
     }
     // Project Title List
-    public function indexProjectTitle()
+    public function index()
     {
         $subProject = SubProject::all();
         return view('project/projectTitleList', [
@@ -38,7 +38,7 @@ class ProjectTitleController extends Controller
         ]);
     }
     // Search For Project Title
-    public function searchProjectTitle(Request $request)
+    public function search(Request $request)
     {
         if(!empty($request->input('name')))
         {
@@ -51,7 +51,7 @@ class ProjectTitleController extends Controller
         }
     }
     // Edit Project Title
-    public function editProjectTitle($id)
+    public function edit($id)
     {
         $project = Project::all();
         $subProject = SubProject::where('id', $id)->first();
@@ -61,7 +61,7 @@ class ProjectTitleController extends Controller
         ]);
     }
     // Update Project Title
-    public function updateProjectTitle($id,Request $request)
+    public function update($id,Request $request)
     {
         $rules = [
             'projectBox' => 'required|not_in:0'
@@ -75,7 +75,7 @@ class ProjectTitleController extends Controller
         return redirect('project/projectTitleList');
     }
     // Destroy Project Title
-    public function destroyProjectTitle($id)
+    public function destroy($id)
     {
         $projectTitle = SubProject::where('id', $id);
         $projectTitle->delete();

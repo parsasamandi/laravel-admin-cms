@@ -4,15 +4,11 @@
 @section('stylesheet')
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Pouya Samandizadeh,Mechanical Engineering">
+    <meta name="keywords" content="Pouya Samandi,Pouya,Mechanic,Robatic,Engineering">
+    <meta name="author" content="Pouya Samandi">
     <title>Pouya Samandi</title>
     <link rel="stylesheet" href="/css/index.css" />
-    <!-- Google fonts-->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" /> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" /> -->
-    <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/cvProj.css" rel="stylesheet" />
 @show
 
@@ -50,14 +46,9 @@
     
     <!-- Footer -->
     <footer id="footer">
-        <!-- Icons -->
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-        </ul>
         <!-- Menu -->
         <ul class="menu">
             E-mail: samandi.pouya@gmail.com
-            <!-- <li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li> -->
         </ul>
     </footer>
     @section('script')

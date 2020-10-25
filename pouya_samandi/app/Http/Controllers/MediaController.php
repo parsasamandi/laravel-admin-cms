@@ -11,7 +11,6 @@ use App\Description;
 
 class MediaController extends Controller
 {
-    
     // Media Page
     public function new()
     {
