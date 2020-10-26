@@ -36,7 +36,7 @@ class MediaController extends Controller
     public function store(Request $request)
     {
 
-       $validator = $request->validate([
+       $request->validate([
            'youtube_url' => 'required_without:image',
            'descriptionBox' => 'required_without:projectBox',
        ]);
