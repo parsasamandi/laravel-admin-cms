@@ -8,8 +8,6 @@
         <meta name="author" content="" />
         <title>@yield('title')</title>
         <link href="/css/admin.css" rel="stylesheet" />
-        <!-- <link href="/css/bootstrap.min.css" rel="stylesheet" /> -->
-        <!-- <link href="/css/index.css" rel="stylesheet" /> -->
     @show       
 
     <body class="sb-nav-fixed">

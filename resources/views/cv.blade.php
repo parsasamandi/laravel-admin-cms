@@ -13,7 +13,7 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li style="font-size:30px;" class="text-white">CV</li>
+                <li id="CV" class="text-white">CV</li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('experience')">Experience</a>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('education')">Education</a>
@@ -65,8 +65,8 @@
                     <div style="margin-top:-1em" class="d-flex flex-column flex-md-row justify-content-between mb-3">
                         <div class="flex-grow-1">
                             <h4 class="mb-0 text-danger">
+                                <img src="/images/{{ $eachExperience->image }}" />
                                 {{ $eachExperience->title }}
-                                <img style="width:50px;height:55px;" src="/images/{{ $eachExperience->image }}" />
                             </h4>
                             <hr>
                             <p>
@@ -92,8 +92,8 @@
                         <div class="flex-grow-1">
                             <h4 class="mb-0 text-danger">
                                 <a href="http://www.iust.ac.ir/">
-                                    {{ $eachEducation->name }}
                                     <i class="fa fa-university"></i>
+                                    {{ $eachEducation->name }}
                                 </a>
                             </h4>
                             <div class="subheading mb-3">{{ $eachEducation->degree }}</div>
@@ -159,13 +159,13 @@
         </section>
         <hr class="m-0" />
         <!-- Interests-->
-        <section class="resume-section resume-section-bg" id="interests">
+        <section class="resume-section resume-section-bg interests" id="interests">
             <div class="resume-section-content">
                 <h4 class="test-danger"><i class="fa fa-thumbs-up"></i> Fields Of Interests</h4>
                 @foreach($interest as $eachInterest)
                     <div class="row">
                         <div class="col-md-4">
-                            <img style="margin-top:4em" class="interestField_image" src="images/{{ $eachInterest->image }}" />
+                            <img class="interestField_image mt-4em" src="images/{{ $eachInterest->image }}" />
                         </div>
                         <div class="col-md-4">
                             <p>

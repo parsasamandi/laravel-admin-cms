@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Project;
+use App\Description;
+use App\Media;
 
 class ProjectController extends Controller
 {

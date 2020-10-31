@@ -108,7 +108,7 @@
 	<footer id="footer">
 		<!-- Icons -->
 		<ul class="menu">
-			E-mail: samandi.pouya@gmail.com
+			<a href="mailto:p.samandizadeh.shoushtari">samandi.pouya@gmail.com</a>
 			<hr>
             &copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a>
 

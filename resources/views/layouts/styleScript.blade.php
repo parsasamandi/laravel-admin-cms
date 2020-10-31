@@ -10,6 +10,7 @@
     <title>Pouya Samandi</title>
     <link rel="stylesheet" href="/css/index.css" />
     <link href="/css/cvProj.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 @show
 
 <script>
@@ -48,7 +49,7 @@
     <footer id="footer">
         <!-- Menu -->
         <ul class="menu">
-            E-mail: samandi.pouya@gmail.com
+			<a href="mailto:p.samandizadeh.shoushtari">samandi.pouya@gmail.com</a>
         </ul>
     </footer>
     @section('script')
