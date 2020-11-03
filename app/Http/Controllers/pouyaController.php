@@ -11,7 +11,7 @@ use App\Publication;
 use App\Interest;
 use App\User;
 use App\Skill;
-use App\home_setting;
+use App\HomeSetting;
 use App\Refree;
 use App\Media;
 use App\Description;
@@ -58,9 +58,9 @@ class pouyaController extends Controller
     public function indexHome()
     {
         // Header Image
-        $home_setting1 = home_setting::find(1);
+        $home_setting1 = HomeSetting::find(1);
         // First Name
-        $home_setting2 = home_setting::find(2);
+        $home_setting2 = HomeSetting::find(2);
         // Last Name
         $home_setting3 = home_setting::find(3);
         // Slogan

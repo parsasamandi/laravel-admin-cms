@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use App\Media_text;
 use App\Media;
 use App\Project;
@@ -44,7 +45,7 @@ class MediaController extends Controller
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
-            $file= rand() . '.' . $image->getClientOriginalExtension();
+            $file = $image->getClientOriginalName();
             $image->move(public_path('images'), $file);
             $media->media_url = $file;
             $media->type = 0;

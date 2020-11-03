@@ -266,7 +266,7 @@
                                 <p>
                                     {{ $eachRefree->desc }}
                                     {{-- Refree link --}}
-                                    <a style="color:blue" href="{{ $eachRefree->link }}">
+                                    <a href="{{ $eachRefree->link }}">
                                         {{-- Regree Name For Link --}}
                                         {{ $eachRefree->name }}
                                     </a> 
