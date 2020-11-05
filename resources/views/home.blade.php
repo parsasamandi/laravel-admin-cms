@@ -56,7 +56,7 @@
 			<header>
 				<h2 class="text-secondary"><span class="text-white">{{ $home_setting2 }} </span>{{ $home_setting3 }}</h2>
 			</header>
-			<h2 style="font-size:22px">{{ $home_setting4 }}</h2>
+			<h2>{{ $home_setting4 }}</h2>
 			<p>
 				{{ $home_setting5 }}
 			</p>
@@ -75,7 +75,7 @@
 			<p class="justify-center">
 				{{ $home_setting6 }}
 			</p>
-			<a href="/project" style="font-size:23px" class="btn btn-outline-primary">Projects</a>
+			<a href="/project" class="btn btn-outline-primary">Projects</a>
 		</div>
 		<a onclick="goto('two')" class="button style2 down anchored">Next</a>
 	</section>
@@ -89,7 +89,7 @@
 			<p class="justify-center">
 				{{ $home_setting7 }}
 			</p>
-			<a href="/cv" style="font-size:23px" class="btn btn-outline-primary">CV</a>
+			<a href="/cv" class="btn btn-outline-primary">CV</a>
 		</div>
 		<a onclick="goto('contact')" class="button style2 down anchored">Next</a>
 	</section>

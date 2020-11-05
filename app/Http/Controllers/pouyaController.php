@@ -30,8 +30,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
 
-
-
 class pouyaController extends Controller
 {
 
@@ -58,9 +56,9 @@ class pouyaController extends Controller
     public function indexHome()
     {
         // Header Image
-        $home_setting1 = HomeSetting::find(1);
+        $home_setting1 = home_setting::find(1);
         // First Name
-        $home_setting2 = HomeSetting::find(2);
+        $home_setting2 = home_setting::find(2);
         // Last Name
         $home_setting3 = home_setting::find(3);
         // Slogan

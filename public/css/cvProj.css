@@ -55,6 +55,16 @@ section.resume-section .resume-section-content {
   background-color: #F5F5F5;
 }
 
+section.resume-section {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  max-width: 75rem;
+}
+
 @media (min-width: 992px) {
   /* Every Section Style */
   section.resume-section {
@@ -182,27 +192,27 @@ section.resume-section .resume-section-content {
 
 
 /* --------------------------------------------  Interest Section -------------------------------------------- */
-.interestField_image{
+#interests img{
   width:100%;
   height:90%
 }
 
 @media (max-width: 769px) {
-  .interestField_image{
+  #interests img{
     width:100%;
     height:80%
   }
 }
 
 @media (max-width: 530px) {
-  .interestField_image{
+  #interests img{
     width:100%;
     height:70%
   }
 }
 
 @media (max-width: 350px) {
-  .interestField_image{
+  #interests img{
     width:100%;
     height:60%
   }
@@ -224,17 +234,6 @@ section.resume-section .resume-section-content {
   font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 500;
   font-size: 1.5rem;
-}
-
-/* Resume */
-section.resume-section {
-  display: flex;
-  align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
-  max-width: 75rem;
 }
 
 /* Justify Aligned Text */
@@ -260,10 +259,13 @@ section.resume-section {
   margin-top:0.5em;
   font-size: 14px;
 }
-
+#experience h3 {
+  margin-top: 1.2em;
+  margin-bottom: 1em;
+}
 
 /* -------------------------------------------- Refree Section -------------------------------------------- */
-.#refrees a {
+#refrees a {
   color:blue;
 }
 

@@ -59,10 +59,9 @@
         <!-- Experience-->
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
-                <h3 class="my-5"><i class="fa fa-history"></i> Experience 
-                </h3>
+                <h3><i class="fa fa-history"></i> Experience </h3>
                 @foreach($experience as $eachExperience)
-                    <div style="margin-top:-1em" class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
                         <div class="flex-grow-1">
                             <h4 class="mb-0 text-danger">
                                 <img src="/images/{{ $eachExperience->image }}" />
@@ -165,7 +164,7 @@
                 @foreach($interest as $eachInterest)
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="interestField_image mt-4em" src="images/{{ $eachInterest->image }}" />
+                            <img class="mt-4em" src="images/{{ $eachInterest->image }}" />
                         </div>
                         <div class="col-md-4">
                             <p>
@@ -178,7 +177,7 @@
                                     <br>
                                 @endif
                             </p>
-                            <img class="interestField_image" src="images/{{ $eachInterest->image2 }}" />
+                            <img src="images/{{ $eachInterest->image2 }}" />
                         </div>
                         <div class="col-md-4">
                             <p>
@@ -191,7 +190,7 @@
                                     <br>
                                 @endif
                             </p>
-                            <img class="interestField_image" src="images/{{ $eachInterest->image3 }}" />
+                            <img src="images/{{ $eachInterest->image3 }}" />
                         </div>
                     </div>
                 @endforeach
@@ -200,7 +199,7 @@
         <hr class="m-0" />
         <!-- Skills-->
         <section class="resume-section" id="skills">
-            <div class="resume-section-content justify-center">
+            <div class="resume-section-content">
                 <h3 class="mb-3">
                     <i class="fa fa-cogs"></i>
                     Skills
@@ -209,7 +208,7 @@
                     <div class="subheading mb-3 text-danger">
                         Programming Languages and Tools
                     </div>
-                    <p>
+                    <p class="justify-center">
                         @if(!empty($eachSkill->desc))
                             • {{ $eachSkill->desc }}
                             <br>
@@ -229,7 +228,7 @@
                             <br>
                         @endif
                     </div>
-                    <ul class="fa-ul mb-0">
+                    <ul class="fa-ul mb-0 justify-center">
                         <li>
                             <span class="fa-li"><i class="fas fa-check"></i></span>
                             @if(!empty($eachSkill->desc4))

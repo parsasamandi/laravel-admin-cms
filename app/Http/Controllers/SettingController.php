@@ -46,7 +46,7 @@ class SettingController extends Controller
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
-            $file= rand() . '.' . $image->getClientOriginalExtension();
+            $file= rand() . '.' . $image->getClientOriginalName();
             $image->move(public_path('images'), $file);
             $home_setting1->value = $file;
             $home_setting1->save();

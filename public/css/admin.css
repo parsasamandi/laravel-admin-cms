@@ -74,6 +74,7 @@ body {
 }
 
 hr {
+  margin-bottom: 1rem;
   box-sizing: content-box;
   height: 0;
   overflow: visible;
