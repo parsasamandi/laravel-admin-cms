@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//   return view('welcome');
-// });
 
 Route::get('/cv','pouyaController@indexCv');
 Route::get('/project','ProjectController@index');
@@ -23,118 +20,146 @@ Route::post('/','pouyaController@storeEmail');
 
 Route::group(['middleware' => 'auth'], function () {
   // Experience
-  Route::get('/experience/newExperience','ExperienceController@new');
-  Route::post('/experience/newExperience', 'ExperienceController@store');
-  Route::get('/experience/experienceList', 'ExperienceController@index');
-  Route::get('/experience/experienceList/search', 'ExperienceController@search');
-  Route::get('/experience/eachExperience/{id}', 'ExperienceController@show');
-  Route::delete('/experience/experienceList/{id}', 'ExperienceController@destroy')->name('experience.destroy'); 
-  Route::get('/experience/editExperience/{id}', 'ExperienceController@edit'); 
-  Route::post('/experience/editExperience/{id}', 'ExperienceController@update'); 
+  Route::prefix('experience')->group(function () {
+    Route::get('newExperience','ExperienceController@new');
+    Route::post('newExperience', 'ExperienceController@store');
+    Route::get('experienceList', 'ExperienceController@index');
+    Route::get('experienceList/search', 'ExperienceController@search');
+    Route::get('eachExperience/{id}', 'ExperienceController@show');
+    Route::delete('experienceList/{id}', 'ExperienceController@destroy')->name('experience.destroy'); 
+    Route::get('editExperience/{id}', 'ExperienceController@edit'); 
+    Route::post('editExperience/{id}', 'ExperienceController@update'); 
+  });
   // Education
-  Route::get('/education/newEducation/', 'EducationController@new'); 
-  Route::post('/education/newEducation/', 'EducationController@store'); 
-  Route::get('/education/educationList/', 'EducationController@index'); 
-  Route::get('/education/educationList/search', 'EducationController@search');  
-  Route::delete('/education/educationList/{id}', 'EducationController@destroy')->name('education.destroy'); 
-  Route::get('/education/editEducation/{id}', 'EducationController@edit'); 
-  Route::post('/education/editEducation/{id}', 'EducationController@update'); 
-  Route::get('/education/eachEducation/{id}', 'EducationController@show');
+  Route::prefix('education')->group(function () {
+    Route::get('newEducation', 'EducationController@new'); 
+    Route::post('newEducation', 'EducationController@store'); 
+    Route::get('educationList', 'EducationController@index'); 
+    Route::get('educationList/search', 'EducationController@search');  
+    Route::delete('educationList/{id}', 'EducationController@destroy')->name('education.destroy'); 
+    Route::get('editEducation/{id}', 'EducationController@edit'); 
+    Route::post('editEducation/{id}', 'EducationController@update'); 
+    Route::get('eachEducation/{id}', 'EducationController@show');
+  });
   // Publication
-  Route::get('/publication/newPublication/', 'PublicationController@new');
-  Route::post('/publication/newPublication/', 'PublicationController@store');
-  Route::get('/publication/publicationList/', 'PublicationController@index'); 
-  Route::get('/publication/eachPublication/{id}', 'PublicationController@show'); 
-  Route::get('/publication/editPublication/{id}', 'PublicationController@edit'); 
-  Route::post('/publication/editPublication/{id}', 'PublicationController@update');
-  Route::delete('/publication/publicationList/{id}', 'PublicationController@destroy')->name('publication.destroy'); 
-  Route::get('/publication/publicationList/search', 'PublicaionController@search');  
+  Route::prefix('publication')->group(function () {
+    Route::get('newPublication', 'PublicationController@new');
+    Route::post('newPublication', 'PublicationController@store');
+    Route::get('publicationList', 'PublicationController@index'); 
+    Route::get('eachPublication/{id}', 'PublicationController@show'); 
+    Route::get('editPublication/{id}', 'PublicationController@edit'); 
+    Route::post('editPublication/{id}', 'PublicationController@update');
+    Route::delete('publicationList/{id}', 'PublicationController@destroy')->name('publication.destroy'); 
+    Route::get('publicationList/search', 'PublicaionController@search');  
+  });
   // Interest
-  Route::get('/interest/newInterest', 'InterestController@new');
-  Route::post('/interest/newInterest/', 'InterestController@store');
-  Route::get('/interest/interestList/', 'InterestController@index');
-  Route::get('/interest/eachInterest/{id}', 'InterestController@show'); 
-  Route::get('/interest/editInterest/{id}', 'InterestController@edit'); 
-  Route::post('/interest/editInterest/{id}', 'InterestController@update');
-  Route::delete('/interest/interestList/{id}', 'InterestController@destroy')->name('interest.destroy'); 
-  Route::get('/interest/interestList/search', 'InterestController@search');  
+  Route::prefix('interest')->group(function () {
+    Route::get('newInterest', 'InterestController@new');
+    Route::post('newInterest', 'InterestController@store');
+    Route::get('interestList', 'InterestController@index');
+    Route::get('eachInterest/{id}', 'InterestController@show'); 
+    Route::get('editInterest/{id}', 'InterestController@edit'); 
+    Route::post('editInterest/{id}', 'InterestController@update');
+    Route::delete('interestList/{id}', 'InterestController@destroy')->name('interest.destroy'); 
+    Route::get('interestList/search', 'InterestController@search');  
+  });
   // Skill
-  Route::get('/skill/newSkill', 'SkillController@new');
-  Route::post('/skill/newSkill/', 'SkillController@store');
-  Route::get('/skill/skillList/', 'SkillController@index');
-  Route::get('/skill/eachSkill/{id}', 'SkillController@show'); 
-  Route::get('/skill/editSkill/{id}', 'SkillController@edit'); 
-  Route::post('/skill/editSkill/{id}', 'SkillController@update');
-  Route::delete('/skill/skillList/{id}', 'SkillController@destroy')->name('skill.destroy'); 
-  Route::get('/skill/skillList/search', 'SkillController@search');  
+  Route::prefix('skill')->group(function () {
+    Route::get('newSkill', 'SkillController@new');
+    Route::post('newSkill', 'SkillController@store');
+    Route::get('skillList', 'SkillController@index');
+    Route::get('eachSkill/{id}', 'SkillController@show'); 
+    Route::get('editSkill/{id}', 'SkillController@edit'); 
+    Route::post('editSkill/{id}', 'SkillController@update');
+    Route::delete('skillList/{id}', 'SkillController@destroy')->name('skill.destroy'); 
+    Route::get('skillList/search', 'SkillController@search');  
+  });
   // Refree
-  Route::get('/refree/newRefree', 'RefreeController@new');
-  Route::post('/refree/newRefree/', 'RefreeController@store');
-  Route::get('/refree/refreeList/', 'RefreeController@index');
-  Route::get('/refree/eachRefree/{id}', 'RefreeController@show'); 
-  Route::get('/refree/editRefree/{id}', 'RefreeController@edit'); 
-  Route::post('/refree/editRefree/{id}', 'RefreeController@update');
-  Route::delete('/refree/refreeList/{id}', 'RefreeController@destroy')->name('refree.destroy'); 
-  Route::get('/refree/refreeList/search', 'RefreeController@search');
+  Route::prefix('refree')->group(function () {
+    Route::get('newRefree', 'RefreeController@new');
+    Route::post('newRefree', 'RefreeController@store');
+    Route::get('refreeList', 'RefreeController@index');
+    Route::get('eachRefree/{id}', 'RefreeController@show'); 
+    Route::get('editRefree/{id}', 'RefreeController@edit'); 
+    Route::post('editRefree/{id}', 'RefreeController@update');
+    Route::delete('refreeList/{id}', 'RefreeController@destroy')->name('refree.destroy'); 
+    Route::get('refreeList/search', 'RefreeController@search');
+  });
   // Admin Page
   Route::get('/adminHome',function(){ $user = auth()->user(); return view('/adminHome');});
-  Route::get('/admin/newAdmin', 'AdminController@new'); 
-  Route::post('/admin/newAdmin', 'AdminController@store'); 
-  Route::get('/admin/adminList', 'AdminController@index'); 
-  Route::get('/admin/editAdmin/{id}', 'AdminController@edit');
-  Route::post('/admin/editAdmin/{id}', 'AdminController@update');
-  Route::get('/admin/adminList/search', 'AdminController@search');
-  Route::delete('/admin/adminList/{id}', 'AdminController@destroy')->name('admin.destroy'); 
   Route::get('/logout', 'AdminController@logout');
+  Route::prefix('admin')->group(function () {
+    Route::get('newAdmin', 'AdminController@new'); 
+    Route::post('newAdmin', 'AdminController@store'); 
+    Route::get('adminList', 'AdminController@index'); 
+    Route::get('editAdmin/{id}', 'AdminController@edit');
+    Route::post('editAdmin/{id}', 'AdminController@update');
+    Route::get('adminList/search', 'AdminController@search');
+    Route::delete('adminList/{id}', 'AdminController@destroy')->name('admin.destroy'); 
+  });
   // Setting
-  Route::get('/setting/homeSetting', 'SettingController@index');
-  Route::post('/setting/homeSetting', 'Settingontroller@update');
+  Route::prefix('setting')->group(function () {
+    Route::get('homeSetting', 'SettingController@index');
+    Route::post('homeSetting', 'Settingontroller@update');
+  });
   // Project
-  Route::get('/project/newProject', 'ProjectController@new');
-  Route::post('/project/newProject', 'ProjectController@store');
-  Route::get('/project/projectList','ProjectController@index');
-  Route::get('/project/projectList/search','ProjectController@search');
-  Route::get('/project/editProject/{id}','ProjectController@edit');
-  Route::post('/project/editProject/{id}','ProjectController@update');
-  Route::delete('/project/destroyProject/{id}', 'ProjectController@destroy')->name('project.destroy'); 
+  Route::prefix('project')->group(function () {
+    Route::get('newProject', 'ProjectController@new');
+    Route::post('newProject', 'ProjectController@store');
+    Route::get('projectList','ProjectController@index');
+    Route::get('projectList/search','ProjectController@search');
+    Route::get('editProject/{id}','ProjectController@edit');
+    Route::post('editProject/{id}','ProjectController@update');
+    Route::delete('destroyProject/{id}', 'ProjectController@destroy')->name('project.destroy'); 
+  });
   // Description
-  Route::get('/description/newDescription', 'DescriptionController@new');
-  Route::post('/description/newDescription', 'DescriptionController@store');
-  Route::get('/description/descriptionList', 'DescriptionController@index');
-  Route::get('/description/descriptionList/search', 'DescriptionController@search');
-  Route::get('/description/editDescription/{id}', 'DescriptionController@editDescription');
-  Route::post('/description/editDescription/{id}', 'DescriptionController@update');
-  Route::delete('/description/descriptionList/{id}', 'DescriptionController@destroy')->name('description.destroy'); 
-  // Media
-  Route::get('/media/newMedia', 'MediaController@new');
-  Route::post('/media/newMedia', 'MediaController@store');
-  Route::get('/media/mediaList', 'MediaController@index');
-  Route::get('/media/mediaList/search', 'MediaController@search');
-  Route::get('/media/editMedia/{id}', 'MediaController@edit');
-  Route::post('/media/editMedia/{id}', 'MediaController@update'); 
-  Route::delete('/media/mediaList/{id}', 'MediaController@destroy')->name('media.destroy'); 
-  // Media Text
-  Route::get('/media/newMediaText', 'MediaTextController@new');
-  Route::post('/media/newMediaText', 'MediaTextController@store');
-  Route::get('/media/mediaTextList', 'MediaTextController@index');
-  Route::get('/media/mediaTextList/search', 'MediaTextController@search');
-  Route::get('/media/editMediaText/{id}', 'MediaTextController@edit');
-  Route::post('/media/editMediaText/{id}', 'MediaTextController@update'); 
-  Route::delete('/media/mediaTextList/{id}', 'MediaTextController@destroy')->name('mediaText.destroy');
+  Route::prefix('description')->group(function () {
+    Route::get('newDescription', 'DescriptionController@new');
+    Route::post('newDescription', 'DescriptionController@store');
+    Route::get('descriptionList', 'DescriptionController@index');
+    Route::get('descriptionList/search', 'DescriptionController@search');
+    Route::get('editDescription/{id}', 'DescriptionController@editDescription');
+    Route::post('editDescription/{id}', 'DescriptionController@update');
+    Route::delete('descriptionList/{id}', 'DescriptionController@destroy')->name('description.destroy'); 
+  });
+
+  Route::prefix('media')->group(function () {
+    // Media
+    Route::get('newMedia', 'MediaController@new');
+    Route::post('newMedia', 'MediaController@store');
+    Route::get('mediaList', 'MediaController@index');
+    Route::get('mediaList/search', 'MediaController@search');
+    Route::get('editMedia/{id}', 'MediaController@edit');
+    Route::post('editMedia/{id}', 'MediaController@update'); 
+    Route::delete('mediaList/{id}', 'MediaController@destroy')->name('media.destroy');
+    // Media Text
+    Route::get('newMediaText', 'MediaTextController@new');
+    Route::post('newMediaText', 'MediaTextController@store');
+    Route::get('/media/mediaTextList', 'MediaTextController@index');
+    Route::get('/media/mediaTextList/search', 'MediaTextController@search');
+    Route::get('/media/editMediaText/{id}', 'MediaTextController@edit');
+    Route::post('/media/editMediaText/{id}', 'MediaTextController@update'); 
+    Route::delete('/media/mediaTextList/{id}', 'MediaTextController@destroy')->name('mediaText.destroy');
+  });
   // Link
-  Route::get('/link/newLink', 'LinkController@new');
-  Route::post('/link/newLink', 'LinkController@store');
-  Route::get('/link/linkList', 'LinkController@index');
-  Route::get('/link/linkList/search', 'LinkController@search');
-  Route::get('/link/editLink/{id}', 'LinkController@edit');
-  Route::post('/link/editLink/{id}', 'LinkController@update');
-  Route::delete('/link/editLink/{id}', 'LinkController@destroy')->name('link.destroy'); 
+  Route::prefix('link')->group(function () {
+    Route::get('newLink', 'LinkController@new');
+    Route::post('newLink', 'LinkController@store');
+    Route::get('linkList', 'LinkController@index');
+    Route::get('linkList/search', 'LinkController@search');
+    Route::get('editLink/{id}', 'LinkController@edit');
+    Route::post('editLink/{id}', 'LinkController@update');
+    Route::delete('editLink/{id}', 'LinkController@destroy')->name('link.destroy'); 
+  });
   // Project
-  Route::get('/project/newProjectTitle', 'ProjectTitleController@new');
-  Route::post('/project/newProjectTitle', 'ProjectTitleController@store');
-  Route::get('/project/projectTitleList', 'ProjectTitleController@index');
-  Route::get('/project/projectTitleList/search', 'ProjectTitleController@search');
-  Route::get('/project/editProjectTitle/{id}', 'ProjectTitleController@edit');
-  Route::post('/project/editProjectTitle/{id}', 'ProjectTitleController@update');
-  Route::delete('/project/projectTitleList/{id}', 'ProjectTitleController@destroy')->name('projectTitle.destroy'); 
+  Route::prefix('project')->group(function () {
+    Route::get('newProjectTitle', 'ProjectTitleController@new');
+    Route::post('newProjectTitle', 'ProjectTitleController@store');
+    Route::get('projectTitleList', 'ProjectTitleController@index');
+    Route::get('projectTitleList/search', 'ProjectTitleController@search');
+    Route::get('editProjectTitle/{id}', 'ProjectTitleController@edit');
+    Route::post('editProjectTitle/{id}', 'ProjectTitleController@update');
+    Route::delete('projectTitleList/{id}', 'ProjectTitleController@destroy')->name('projectTitle.destroy'); 
+  });
+
 });

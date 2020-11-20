@@ -1961,9 +1961,15 @@ body {
 }
 
 .main.style1 h2 {
-	font-size: 3.7em;
+	font-size: 22px;
 	line-height: 1em;
 }
+
+.main.style1 h1 {
+	font-size: 3em;
+	line-height: 1em;
+}
+
 
 .main.style1 > .content {
 	-moz-transition: opacity 1s ease;
@@ -2120,31 +2126,31 @@ body.is-touch .main {
 		padding: 4em 15px 4em 15px;
 	}
 
-		.main.style1 h2 {
-			font-size: 3em;
-		}
+	.main.style1 h2 {
+		font-size: 3em;
+	}
 
 	.main.style2 {
 		padding: 6em 15px 6em 15px;
 	}
 
-		.main.style2:before, .main.style2:after {
-			display: none !important;
-		}
+	.main.style2:before, .main.style2:after {
+		display: none !important;
+	}
 
-		.main.style2 .button.anchored {
-			display: none;
-		}
+	.main.style2 .button.anchored {
+		display: none;
+	}
 
-		.main.style2 .content {
-			width: 100%;
-			max-width: 100%;
-			text-align: center;
-			-moz-transform: none;
-			-webkit-transform: none;
-			-ms-transform: none;
-			transform: none;
-		}
+	.main.style2 .content {
+		width: 100%;
+		max-width: 100%;
+		text-align: center;
+		-moz-transform: none;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+	}
 
 	.main.style3 {
 		text-align: center;

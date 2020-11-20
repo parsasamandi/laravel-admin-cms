@@ -7,17 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Pouya Samandizadeh,Mechanical Engineering">
 	<!-- bootstrap.all.min.css -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/index.css" />
-	{{-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> --}}
 </head>
-<script>
-    // address diffrent parts of website
-	function goto($hashtag) {
-		document.location = "/#" + $hashtag;
-	}
-</script>
 
 <body class="is-preload">
 
@@ -54,7 +46,7 @@
 		<div class="content">
 			<!-- style="margin-bottom:5em;padding-left:40em;" -->
 			<header>
-				<h2 class="text-secondary"><span class="text-white">{{ $home_setting2 }} </span>{{ $home_setting3 }}</h2>
+				<h1 class="text-secondary"><span class="text-white">{{ $home_setting2 }} </span>{{ $home_setting3 }}</h1>
 			</header>
 			<h2>{{ $home_setting4 }}</h2>
 			<p>
@@ -122,13 +114,16 @@
 	<script src="js/jquery.scrollex.min.js"></script>
 	<script src="/js/browser.min.js"></script>
 	<script src="/js/breakpoints.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-		crossorigin="anonymous"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/util.js"></script>
 	<script src="/js/main.js"></script>
 
-
+	<script>
+		// address diffrent parts of website
+		function goto($hashtag) {
+			document.location = "/#" + $hashtag;
+		}
+	</script>
 </body>
 
 </html>
