@@ -7,8 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Pouya Samandizadeh,Mechanical Engineering">
 	<!-- bootstrap.all.min.css -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/index.css" />
+	<link rel="shortcut icon" href="#" />
 </head>
 
 <body class="is-preload">
@@ -42,15 +43,15 @@
 
 
 	<!-- Intro -->
-	<section style="background-image: url(/images/{{ $home_setting1 }})" id="intro" class="main style1 dark fullscreen">
+	<section style="background-image: url(/images/{{ $setting_image }})" id="intro" class="main style1 dark fullscreen">
 		<div class="content">
 			<!-- style="margin-bottom:5em;padding-left:40em;" -->
 			<header>
-				<h1 class="text-secondary"><span class="text-white">{{ $home_setting2 }} </span>{{ $home_setting3 }}</h1>
+				<h1 class="text-secondary"><span class="text-white">{{ $setting_first_name }} </span>{{ $setting_last_name }}</h1>
 			</header>
-			<h2>{{ $home_setting4 }}</h2>
+			<h2>{{ $setting_slogan }}</h2>
 			<p>
-				{{ $home_setting5 }}
+				{{ $setting_short_desc }}
 			</p>
 			<footer>
 				<a onclick="goto('one')" class="button style2 down">More</a>
@@ -65,7 +66,7 @@
 				<h2>LIFE GOAlS</h2>
 			</header>
 			<p class="justify-center">
-				{{ $home_setting6 }}
+				{{ $setting_life_goals }}
 			</p>
 			<a href="/project" class="btn btn-outline-primary">Projects</a>
 		</div>
@@ -79,7 +80,7 @@
 				<h2>Who Am I</h2>
 			</header>
 			<p class="justify-center">
-				{{ $home_setting7 }}
+				{{ $setting_about_me }}
 			</p>
 			<a href="/cv" class="btn btn-outline-primary">CV</a>
 		</div>
@@ -90,12 +91,12 @@
 	<section id="contact" class="main style3 secondary text-white">
 		<div class="content">
 			<header>
-				<h2 class="text-white">Contact Me.</h2>
+				<h2>Contact Me.</h2>
 				<p>Feel free as long as you want to contact me; <br> <a href="mailto:p.samandizadeh.shoushtari">samandi.pouya@gmail.com</a></p>
 			</header>
 		</div>
 	</section>
-
+	
 	<!-- Footer -->
 	<footer id="footer">
 		<!-- Icons -->
@@ -119,7 +120,7 @@
 	<script src="/js/main.js"></script>
 
 	<script>
-		// address diffrent parts of website
+		// address different parts of website
 		function goto($hashtag) {
 			document.location = "/#" + $hashtag;
 		}

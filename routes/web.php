@@ -15,7 +15,7 @@ Route::get('/cv','pouyaController@indexCv');
 Route::get('/project','ProjectController@index');
 Route::get('/login/login',[ 'as' => 'login.login', 'uses' => 'Auth\LoginController@index']);
 Route::post('/post-login', 'Auth\LoginController@store');   
-Route::get('/','pouyaController@indexHome');
+Route::get('/','HomeController@index');
 Route::post('/','pouyaController@storeEmail');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -86,7 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('refreeList/search', 'RefreeController@search');
   });
   // Admin Page
-  Route::get('/adminHome',function(){ $user = auth()->user(); return view('/adminHome');});
+  Route::get('/adminHome','AdminController@adminHome');
   Route::get('/logout', 'AdminController@logout');
   Route::prefix('admin')->group(function () {
     Route::get('newAdmin', 'AdminController@new'); 
@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
   // Setting
   Route::prefix('setting')->group(function () {
     Route::get('homeSetting', 'SettingController@index');
-    Route::post('homeSetting', 'Settingontroller@update');
+    Route::post('homeSetting', 'SettingController@update');
   });
   // Project
   Route::prefix('project')->group(function () {

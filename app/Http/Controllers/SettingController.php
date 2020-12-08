@@ -12,69 +12,63 @@ class SettingController extends Controller
    // Home Setting Information
    public function index(Request $request)
    {
-       // Header Image
-       $home_setting1 = homeSetting::find(1);
-       // First Name
-       $home_setting2 = homeSetting::find(2);
-       // Last Name
-       $home_setting3 = homeSetting::find(3);
-       // Slogan
-       $home_setting4 = homeSetting::find(4);
-       // Short Description
-       $home_setting5 = homeSetting::find(5);
-       // Life Goals
-       $home_setting6 = homeSetting::find(6);
-       // About Me
-       $home_setting7 = homeSetting::find(7);
+       $names = [
+           'image',
+           'first_name',
+           'last_name',
+           'slogan',
+           'short_desc',
+           'life_goals',
+           'about_me'
+       ];
 
-       return view('setting/homeSetting', [
-           'home_setting1' => $home_setting1->value,
-           'home_setting2' => $home_setting2->value,
-           'home_setting3' => $home_setting3->value,
-           'home_setting4' => $home_setting4->value,
-           'home_setting5' => $home_setting5->value,
-           'home_setting6' => $home_setting6->value,
-           'home_setting7' => $home_setting7->value
-       ]);
+       $home_settings = homeSetting::whereIn('name',$names)->get();
+       $vars = [];
+       foreach($home_settings as $setting)
+       {
+           $vars["setting_$setting->name"] = $setting->value;
+       }
+
+       return view('setting.homeSetting', $vars);
    }
 
     // Update Home Setting
     public function update(Request $request)
     {
         // Header Image
-        $home_setting1 = homeSetting::findOrFail(1);
+        $setting_image = homeSetting::where('name','image')->first();
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
             $file= rand() . '.' . $image->getClientOriginalName();
             $image->move(public_path('images'), $file);
-            $home_setting1->value = $file;
-            $home_setting1->save();
+            $setting_image->value = $file;
+            $setting_image->save();
         }
         // First Name
-        $home_setting2 = homeSetting::find(2);
-        $home_setting2->value = $request->get('first_name');
-        $home_setting2->save();
+        $setting_first_name = homeSetting::where('name','first_name')->first();
+        $setting_first_name->value = $request->get('first_name');
+        $setting_first_name->save();
         // Last Name
-        $home_setting3 = homeSetting::find(3);
-        $home_setting3->value = $request->get('last_name');
-        $home_setting3->save();
+        $setting_last_name = homeSetting::where('name','last_name')->first();
+        $setting_last_name->value = $request->get('last_name');
+        $setting_last_name->save();
         // Slogan
-        $home_setting4 = homeSetting::find(4);
-        $home_setting4->value = $request->get('slogan');
-        $home_setting4->save();
+        $setting_slogan = homeSetting::where('name','slogan')->first();
+        $setting_slogan->value = $request->get('slogan');
+        $setting_slogan->save();
         // Short Description
-        $home_setting5 = homeSetting::find(5);
-        $home_setting5->value = $request->get('short_desc');
-        $home_setting5->save();
+        $setting_short_desc = homeSetting::where('name','short_desc')->first();
+        $setting_short_desc->value = $request->get('short_desc');
+        $setting_short_desc->save();
         // Life Goals
-        $home_setting6 = homeSetting::find(6);
-        $home_setting6->value = $request->get('life_goals');
-        $home_setting6->save();
+        $setting_life_goals = homeSetting::where('name','life_goals')->first();
+        $setting_life_goals->value = $request->get('life_goals');
+        $setting_life_goals->save();
         // About Me
-        $home_setting7 = homeSetting::find(7);
-        $home_setting7->value = $request->get('about_me');
-        $home_setting7->save();
+        $setting_about_me = homeSetting::where('name','about_me')->first();
+        $setting_about_me->value = $request->get('about_me');
+        $setting_about_me->save();
 
         return back()->with('success', 'You have successfully sumbitted data');
     }

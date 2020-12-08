@@ -23,25 +23,25 @@
                         <input type="file" name="image" class="custom-file-input">
                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                     </div>
-                    <img class="mb-3" style="width:105px;height:110px;" src="/images/{{ $home_setting1 }}" />
+                    <img class="mb-3" style="width:105px;height:110px;" src="/images/{{ $setting_image }}" />
                 </div>
             </div>
             <div class="row row_Style">
                 <div class="col-md-3 mb-3">
                     <label>First Name</label>
-                    <input value="{{ $home_setting2 }}" type="text" class="form-control" name="first_name" class="custom-file-input" placeholder="First Name">
+                    <input value="{{ $setting_first_name }}" type="text" class="form-control" name="first_name" class="custom-file-input" placeholder="First Name">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label>Last Name</label>
-                    <input value="{{ $home_setting3 }}" type="text" class="form-control" name="last_name" class="custom-file-input" placeholder="Last Name">
+                    <input value="{{ $setting_last_name }}" type="text" class="form-control" name="last_name" class="custom-file-input" placeholder="Last Name">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label>Slogan</label>
-                    <input value="{{ $home_setting4 }}" type="text" class="form-control" name="slogan" class="custom-file-input" placeholder="slogan">
+                    <input value="{{ $setting_slogan }}" type="text" class="form-control" name="slogan" class="custom-file-input" placeholder="slogan">
                 </div>
                 <div class="col-md-3 mb-3">
                     <label>Description</label>
-                    <textarea type="text" class="form-control" name="short_desc" class="custom-file-input" placeholder="Short description">{{ $home_setting5 }}</textarea>
+                    <textarea type="text" class="form-control" name="short_desc" class="custom-file-input" placeholder="Short description">{{ $setting_short_desc }}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -49,7 +49,7 @@
                     <h5>Life Goals</h5>
                     <hr style="margin-top:0em">
                     <label>Life Goals</label>
-                    <textarea rows="5" cols="50" type="text" class="form-control" name="life_goals" class="custom-file-input" placeholder="Life Goals">{{ $home_setting6 }}</textarea>
+                    <textarea rows="5" cols="50" type="text" class="form-control" name="life_goals" class="custom-file-input" placeholder="Life Goals">{{ $setting_life_goals }}</textarea>
                 </div>
             </div>
             <div class="row mt-3">
@@ -57,7 +57,7 @@
                     <h5>About Me</h5>
                     <hr style="margin-top:0em">
                     <label>About Me</label>
-                    <textarea rows="5" cols="50" type="text" class="form-control" name="about_me" class="custom-file-input" placeholder="About Me">{{ $home_setting7 }}</textarea>
+                    <textarea rows="5" cols="50" type="text" class="form-control" name="about_me" class="custom-file-input" placeholder="About Me">{{ $setting_about_me }}</textarea>
                 </div>
             </div>
             <div class="col-md-12 mt-3 mb-2 text-center">

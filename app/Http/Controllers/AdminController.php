@@ -8,7 +8,11 @@ use App\Admin;
 
 class AdminController extends Controller
 {
-   
+   public function adminHome()
+   {
+       return view('/adminHome');
+   }
+
     // New Admin
     public function new(Request $request)
     {  

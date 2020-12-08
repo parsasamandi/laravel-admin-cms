@@ -52,41 +52,6 @@ class pouyaController extends Controller
         ]);
     }
 
-    // Home page
-    public function indexHome()
-    {
-        // Header Image
-        $home_setting1 = homeSetting::find(1);
-        // First Name
-        $home_setting2 = homeSetting::find(2);
-        // Last Name
-        $home_setting3 = homeSetting::find(3);
-        // Slogan
-        $home_setting4 = homeSetting::find(4);
-        // Short Description
-        $home_setting5 = homeSetting::find(5);
-        // Life Goals
-        $home_setting6 = homeSetting::find(6);
-        // About Me
-        $home_setting7 = homeSetting::find(7);
-
-        return view('home', [
-            'home_setting1' => $home_setting1->value,
-            'home_setting2' => $home_setting2->value,
-            'home_setting3' => $home_setting3->value,
-            'home_setting4' => $home_setting4->value,
-            'home_setting5' => $home_setting5->value,
-            'home_setting6' => $home_setting6->value,
-            'home_setting7' => $home_setting7->value
-        ]);
-    }
-
-    // Admin Page
-    public function indexAdmin()
-    {
-        $user = auth()->user();
-        return view('/adminHome');
-    }
     // login
     public function indexLogin()
     {
