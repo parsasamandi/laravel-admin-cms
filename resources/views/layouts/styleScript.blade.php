@@ -8,7 +8,6 @@
     <meta name="keywords" content="Pouya Samandi,Pouya,Mechanic,Robatic,Engineering">
     <meta name="author" content="Pouya Samandi">
     <title>Pouya Samandi</title>
-    <link rel="stylesheet" href="/css/index.css" />
     <link href="/css/cvProj.css" rel="stylesheet" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 @show

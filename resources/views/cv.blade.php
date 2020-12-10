@@ -1,58 +1,18 @@
 @extends('layouts.styleScript')
 
 @section('content')
-    <!-- Sidebar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">Pouya Samandi</span>
-            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-                    src="images/pouya2.jpeg" alt="" /></span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li id="CV" class="text-white">CV</li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('experience')">Experience</a>
-                </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('education')">Education</a>
-                </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('publication')">Publications &
-                        Presentations</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('interests')">Fields of
-                        Interests</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('skills')">Skills</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('refrees')">Refrees</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Sidebar And Navgiation bar -->
+    <x-sidebar>
+        <x-slot name="cv_titles">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Experience')">Experience</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Education')">Education</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Publication')">Publication & Presentation</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Interests')">Fields Of Interests</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Skills')">Skills</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('Refrees')">Refrees</a></li>
+        </x-slot>
+    </x-sidebar>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navBarStyle">
-        <a class="navbar-brand text-white" href="/">Pouya Samandi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/cv">CV</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/project">Projects</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-white" onclick="goto('footer')">Contact me <span
-                            class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <!-- Page Content-->
     <div class="container-fluid p-0">
