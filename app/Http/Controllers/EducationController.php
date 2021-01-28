@@ -4,107 +4,122 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Education;
+use App\Models\Education;
+use App\DataTables\EducationDataTable;
 
 class EducationController extends Controller
 {
     
-    // New Education Page
-    public function new()
-    {
-        return view('education.newEducation');
+    // Education Table
+    public function list(Request $request) {
+        // DataTable
+        $dataTable = new EducationDataTable();
+
+        $vars['educationTable'] = $dataTable->html();
+
+        return view('educationList', $vars);
     }
-    // Show Each Education
-    public function index()
+
+    // DataTable
+    public function educationTable(EducationDataTable $dataTable) {
+        return $dataTable->render('educationList');
+    }
+
+    // Store Description
+    public function store(Request $request)
     {
-        $education = Education::all();      
-        return view('education/educationList', [
-          'education' => $education,
+        $validation = Validator::make($request->all(), [
+            'name' => 'required',
+            'university_description' => 'required'
         ]);
+ 
+        $error_array = array();
+        $success_output = '';
+        
+        // Validation
+        if($validation->fails()) {
+            foreach($validation->messages()->getMessages() as $field_name => $messages) {
+                $error_array[] = $messages;
+            }
+        }
+        else {
+            // Insert
+            if($request->get('button_action') == "insert") {
+                $this->addEducation($request);
+                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+            }
+            // Update
+            else if($request->get('button_action') == "update") {
+                $this->addEducation($request);
+                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+            }
+        }
+        $output = array(
+            'error' => $error_array,
+            'success' => $success_output
+        );
+ 
+        return json_encode($output);
     }
-    // Insert Education
-    public function store()
-    {
-        $educ = new Education();
-        $educ->name = request('name');
-        $educ->GPA = request('GPA');
-        $educ->degree = request('degree');
-        $educ->TOEFL = request('toefl');
-        $educ->education_period = request('period');
-        $educ->Thesis_topic = request('thesis_topic');
-        $educ->university_desc = request('university_description');
+
+    // Add Education
+    public function addEducation($request) {
+        // Edit
+        $educ = Education::find($request->get('id'));
+        // Insert
+        if(!$educ) {
+            $educ = new Education();
+        }
+        $educ->name = $request->get('name');
+        $educ->GPA = $request->get('GPA');
+        $educ->degree = $request->get('degree');
+        $educ->TOEFL = $request->get('toefl');
+        $educ->education_period = $request->get('period');
+        $educ->Thesis_topic = $request->get('thesis_topic');
+        $educ->university_desc = $request->get('university_description');
 
         $educ->save();
-        return back()->with('success', 'You have successfully sumbitted data');
     }
-    // Delete Education
-    public function destroy($id)
-    {
-        $education = Education::findOrFail($id);
-        $education->delete();
-        return redirect('education/educationList');
-    }
-    // Search Education
-    public function search(Request $request)
-    {   
-        if(!empty($request->input('name')))
-        {
-            $name = $request->get('name');
-            $education = Education::where('name','LIKE','%'.$name.'%')->paginate(5);
-            if(count($education) > 0)
-                return view('/education/educationList',['education' => $education]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
 
-        }
-        if(!empty($request->input('degree')))
-        {
-            $degree = $request->get('degree');
-            $education = Education::where('degree','LIKE','%'.$degree.'%')->paginate(5);
-            if(count($education) > 0)
-                return view('/education/educationList',['experience' => $education]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
-        }
-        if(!empty($request->input('Thesis_topic')))
-        {
-            $Thesis_topic = $request->get('Thesis_topic');
-            $education = Education::where('Thesis_topic','LIKE','%'.$Thesis_topic.'%')->paginate(5);
-            if(count($education) > 0)
-                return view('/education/educationList',['education' => $education]);
-            else 
-                return back()->with('faliure', 'There were no results.please try again');
-        }
-        else{
-            return back()->with('faliure', 'There were no results. please try again');
-        }
-    }
-    // Edit Education Page
-    public function edit($id)
+    // Edit Education
+    public function edit(Request $request)
     {
-        $education = Education::findOrFail($id);
-        return view('education.editEducation',['education' => $education]);
+        $educ = Education::find($request->get('id'));
+        return json_encode($educ);
     }
-    // Update Education
-    public function update($id)
-    {
-        $educ = Education::findOrFail($id);
-        $educ->name = request('name');
-        $educ->GPA = request('GPA');
-        $educ->degree = request('degree');
-        $educ->TOEFL = request('toefl');
-        $educ->education_period = request('period');
-        $educ->Thesis_topic = request('thesis_topic');
-        $educ->university_desc = request('university_description');
 
-        $educ->save();
-        return redirect('education/educationList');
-    }
+    // Delete Each Education
+    public function delete(Request $request, $id) {
+        $educ = Education::find($id);
+        if($educ) {
+            $educ->delete();
+        }
+        else {
+            return response()->json([], 404);
+        }
+        return response()->json([], 200);
+    }  
+
+
+    // // Search Education
+    // public function search(Request $request)
+    // {   
+    //     if(!empty($request->input('name')))
+    //     {
+    //         $name = $request->get('name');
+    //         $education = Education::where('name','LIKE','%'.$name.'%')->paginate(5);
+    //         if(count($education) > 0)
+    //             return view('/education/educationList',['education' => $education]);
+    //         else 
+    //             return back()->with('faliure', 'There were no results. please try again');
+    //     }
+    // }
+
     // Show Each Education
-    public function show($id)
-    {
-        $education = Education::findOrFail($id);
-        return view('education.eachEducation', ['education' => $education]);
-    }
+    // public function show($id)
+    // {
+    //     $education = Education::findOrFail($id);
+    //     return view('education.eachEducation', ['education' => $education]);
+    // }
 
 }

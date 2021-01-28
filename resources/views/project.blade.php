@@ -1,12 +1,6 @@
 @extends('layouts.styleScript')
 @section('content')
-<style>
-    @media only screen and (max-width : 320px) {
-        .hide-on-mobile {
-            display: none;
-        }
-    }
-</style>
+
 <body class="is-preload">
 
     <!-- Sidebar And Navigation bar -->

@@ -20,26 +20,20 @@ Route::post('/','pouyaController@storeEmail');
 
 Route::group(['middleware' => 'auth'], function () {
   // Experience
-  Route::prefix('experience')->group(function () {
-    Route::get('newExperience','ExperienceController@new');
-    Route::post('newExperience', 'ExperienceController@store');
-    Route::get('experienceList', 'ExperienceController@index');
-    Route::get('experienceList/search', 'ExperienceController@search');
-    Route::get('eachExperience/{id}', 'ExperienceController@show');
-    Route::delete('experienceList/{id}', 'ExperienceController@destroy')->name('experience.destroy'); 
-    Route::get('editExperience/{id}', 'ExperienceController@edit'); 
-    Route::post('editExperience/{id}', 'ExperienceController@update'); 
+  Route::group(['prefix' => 'experience', 'as' => 'experience.'], function() {
+    Route::get('list', 'ExperienceController@list')->name('table');
+    Route::get('table/list', 'ExperienceController@experienceTable')->name('list.table');
+    Route::post('new', 'ExperienceController@store')->name('store');
+    Route::get('edit', 'ExperienceController@edit')->name('edit');
+    Route::get('delete/{id}', 'ExperienceController@delete')->name('delete');
   });
   // Education
-  Route::prefix('education')->group(function () {
-    Route::get('newEducation', 'EducationController@new'); 
-    Route::post('newEducation', 'EducationController@store'); 
-    Route::get('educationList', 'EducationController@index'); 
-    Route::get('educationList/search', 'EducationController@search');  
-    Route::delete('educationList/{id}', 'EducationController@destroy')->name('education.destroy'); 
-    Route::get('editEducation/{id}', 'EducationController@edit'); 
-    Route::post('editEducation/{id}', 'EducationController@update'); 
-    Route::get('eachEducation/{id}', 'EducationController@show');
+  Route::group(['prefix' => 'education', 'as' => 'education.'], function() {
+    Route::get('list', 'EducationController@list')->name('table');
+    Route::get('table/list', 'EducationController@educationTable')->name('list.table');
+    Route::post('new', 'EducationController@store')->name('store');
+    Route::get('edit', 'EducationController@edit')->name('edit');
+    Route::get('delete/{id}', 'EducationController@delete')->name('delete');
   });
   // Publication
   Route::prefix('publication')->group(function () {
@@ -88,14 +82,13 @@ Route::group(['middleware' => 'auth'], function () {
   // Admin Page
   Route::get('/adminHome','AdminController@adminHome');
   Route::get('/logout', 'AdminController@logout');
-  Route::prefix('admin')->group(function () {
-    Route::get('newAdmin', 'AdminController@new'); 
-    Route::post('newAdmin', 'AdminController@store'); 
-    Route::get('adminList', 'AdminController@index'); 
-    Route::get('editAdmin/{id}', 'AdminController@edit');
-    Route::post('editAdmin/{id}', 'AdminController@update');
-    Route::get('adminList/search', 'AdminController@search');
-    Route::delete('adminList/{id}', 'AdminController@destroy')->name('admin.destroy'); 
+  // Admin
+  Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('list', 'AdminController@list')->name('table');
+    Route::get('table/list', 'AdminController@adminTable')->name('list.table');
+    Route::post('new', 'AdminController@store')->name('store');
+    Route::get('edit', 'AdminController@edit')->name('edit');
+    Route::get('delete/{id}', 'AdminController@delete')->name('delete');
   });
   // Setting
   Route::prefix('setting')->group(function () {
@@ -103,24 +96,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('homeSetting', 'SettingController@update');
   });
   // Project
-  Route::prefix('project')->group(function () {
-    Route::get('newProject', 'ProjectController@new');
-    Route::post('newProject', 'ProjectController@store');
-    Route::get('projectList','ProjectController@index');
-    Route::get('projectList/search','ProjectController@search');
-    Route::get('editProject/{id}','ProjectController@edit');
-    Route::post('editProject/{id}','ProjectController@update');
-    Route::delete('destroyProject/{id}', 'ProjectController@destroy')->name('project.destroy'); 
+  Route::group(['prefix' => 'project' ,'as' => 'project.'], function() {
+    Route::get('list', 'ProjectController@list')->name('table');
+    Route::get('list/table', 'ProjectController@projectTable')->name('list.table');
+    Route::post('new', 'ProjectController@store')->name('store');
+    Route::get('edit', 'ProjectController@edit')->name('edit');
+    Route::get('/delete/{id}', 'ProjectController@delete')->name('delete');
   });
   // Description
-  Route::prefix('description')->group(function () {
-    Route::get('newDescription', 'DescriptionController@new');
-    Route::post('newDescription', 'DescriptionController@store');
-    Route::get('descriptionList', 'DescriptionController@index');
-    Route::get('descriptionList/search', 'DescriptionController@search');
-    Route::get('editDescription/{id}', 'DescriptionController@editDescription');
-    Route::post('editDescription/{id}', 'DescriptionController@update');
-    Route::delete('descriptionList/{id}', 'DescriptionController@destroy')->name('description.destroy'); 
+  Route::group(['prefix' => 'description' ,'as' => 'description.'], function() {
+    Route::get('list', 'DescriptionController@list')->name('table');
+    Route::get('list/table', 'DescriptionController@descriptionTable')->name('list.table');
+    Route::post('new', 'DescriptionController@store')->name('store');
+    Route::get('edit', 'DescriptionController@edit')->name('edit');
+    Route::get('/delete/{id}', 'DescriptionController@delete')->name('delete');
   });
 
   Route::prefix('media')->group(function () {

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\HomeSetting;
+
+use App\Models\HomeSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

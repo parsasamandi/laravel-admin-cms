@@ -1,96 +1,110 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\DataTables\AdminDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Admin;
 
 class AdminController extends Controller
 {
-   public function adminHome()
-   {
-       return view('/adminHome');
-   }
+    // Admin Table
+    public function list() {
+        // DataTable
+        $dataTable = new AdminDataTable();
 
-    // New Admin
-    public function new(Request $request)
-    {  
-        return view('admin.newAdmin');
+        // Admin Table
+        $vars['adminTable'] = $dataTable->html();
+
+        return view('adminList', $vars);
+    }
+
+    // Get Admin
+    public function adminTable(AdminDataTable $dataTable) {
+        return $dataTable->render('adminList');
     }
 
     // Store Admin
-    public function store(Request $request)
-    {
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+    public function store(Request $request) {
+        $validation = Validator::make($request->all(), [
+            'name' => 'required',
+            'password' => 'nullable|min:6',
+            'password2' => 'same:password',
+            'email' => 'email|unique:users, email,' . $request->get('email')
         ]);
-        return back()->with('success', 'You have successfully sumbitted data');
+
+        $error_array = array();
+        $success_output = '';
+        
+        // Validation
+        if($validation->fails()) {
+            foreach($validation->messages()->getMessages() as $field_name => $messages) {
+                $error_array[] = $messages;
+            }
+        }
+        else {
+            // Insert
+            if($request->get('#button_action') == "insert") {
+                $this->newAdmin($request);
+                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+            }
+            // Update
+            else if($request->get('#button_action') == "update") {
+                $this->newAdmin($request);
+                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+            }
+        }
+        $output = array(
+            'error' => $error_array,
+            'success' => $success_output
+        );
+
+        return json_encode($output);
     }
 
-    // Admin List
-    public function index(Request $request)
-    {
-        $admin = User::all();
-        return view('admin/adminList', [
-            'admin' => $admin
-        ]);
+    // Add Or Update Admin
+    public function addAdmin($request) {
+        // Edit
+        $admin = User::find($request->get('id'));
+        if(!$admin) {
+            // Insert
+            $admin = new User();
+        }
+        $admin->name = $request->get('name');
+        $admin->email = $request->get('email');
+        if($request->get('password') != 'رمز عبور جدید' and $request->get('password') != 'تکرار رمز عبور جدید') {
+            $admin->password = Hash::make($request->get('password'));
+        }
+
+        $admin->save();
     }
 
-    // Deleting Admin
-    public function destroy($id)
-    {
-        $admin = User::findOrFail($id);
-        $admin->delete();
-        return redirect('admin/adminList');
+    // Delete Each Admin
+    public function delete(Request $request, $id) {
+        $admin = User::find($id);
+        if($admin) {
+            $admin->delete();
+        }
+        else {
+            return response()->json([], 404);
+        }
+        return response()->json([], 200);
     }
 
     // Edit Admin
-    public function edit($id)
-    {
-        $admin = User::findOrFail($id);
-        return view('admin.editAdmin', ['admin' => $admin]);
+    public function edit(Request $request) {
+        $admin = User::findOrFail($request->get('id'));
+        return json_encode($admin);
     }
 
-    // Update Admin
-    public function update($id,Request $request)
-    {
-        $admin = User::findOrFail($id);
-        $admin->name = $request['name'];
-        $admin->email = $request['email'];
-        if($request['password'] == $request['password2'])
-        {
-            $admin->password = Hash::make($request['password']);
-        }
-        $admin->save();
-        return redirect('admin/adminList');
+    // AdminHome
+    public function adminHome() {
+        return view('adminHome');
     }
 
-    // Search for Admin
-    public function search(Request $request)
-    {
-        if(!empty($request->input('name')))
-        {
-            $name = $request->get('name');
-            $user = User::where('name','LIKE','%'.$name.'%')->paginate(5);
-            if(count($user) > 0)
-            return view('/admin/adminList',['user' => $user]);
-            else 
-            return back()->with('faliure', 'There were no results. please try again');
-        }
-        if(!empty($request->input('email')))
-        {
-            $email = $request->get('email');
-            $user = User::where('email','LIKE','%'.$email.'%')->paginate(5);
-            if(count($user) > 0)
-            return view('/admin/adminList',['user' => $user]);
-            else 
-            return back()->with('faliure', 'There were no results. please try again');
-        }
-    }
-    //Logout
+    // Logout
     public function logout(Request $request) {
         Auth::logout();
         return redirect('login/login');

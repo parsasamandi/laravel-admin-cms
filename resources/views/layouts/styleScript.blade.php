@@ -8,8 +8,9 @@
     <meta name="keywords" content="Pouya Samandi,Pouya,Mechanic,Robatic,Engineering">
     <meta name="author" content="Pouya Samandi">
     <title>Pouya Samandi</title>
-    <link href="/css/cvProj.css" rel="stylesheet" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ mix('css/cvProj.css') }}" rel="stylesheet" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    
 @show
 
 <script>
@@ -51,7 +52,7 @@
 			<a href="mailto:p.samandizadeh.shoushtari">samandi.pouya@gmail.com</a>
         </ul>
     </footer>
-    @section('script')
+    @section('scripts')
         <script src="/js/jquery.min.js" crossorigin="anonymous"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/jquery.min.js"></script>

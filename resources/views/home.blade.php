@@ -5,10 +5,12 @@
 	<title>Pouya Samandi</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Pouya Samandizadeh,Mechanical Engineering">
-	<!-- bootstrap.all.min.css -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/index.css" />
+    <meta name="description" content="Pouya Samandizadeh,Mechanical Engineer">
+	{{-- Bootstrap --}}
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	{{-- Home --}}
+	<link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+	{{-- Icon --}}
 	<link rel="shortcut icon" href="#" />
 </head>
 
@@ -108,16 +110,17 @@
 		</ul>
 	</footer>
 
+
 	<!-- Scripts -->
+	<script src="{{ mix('js/app.js') }}"></script>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.poptrox.min.js"></script>
-	<script src="js/jquery.scrolly.min.js"></script>
+	 <script src="js/jquery.poptrox.min.js"></script>
+	 <script src="js/jquery.scrolly.min.js"></script>
 	<script src="js/jquery.scrollex.min.js"></script>
 	<script src="/js/browser.min.js"></script>
 	<script src="/js/breakpoints.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/util.js"></script>
-	<script src="/js/main.js"></script>
+	{{-- <script src="/js/bootstrap.min.js"></script> --}}
+	<script src="{{ asset('js/main.js') }}"></script>
 
 	<script>
 		// address different parts of website

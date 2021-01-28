@@ -5,10 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
-use App\Media_text;
-use App\Media;
-use App\Project;
-use App\Description;
+use App\Models\Media_text;
+use App\Models\Media;
+use App\Models\Project;
+use App\Models\Description;
 
 class MediaController extends Controller
 {

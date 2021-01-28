@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Link;
-use App\Description;
+use App\Models\Link;
+use App\Models\Description;
 
 class LinkController extends Controller
 {

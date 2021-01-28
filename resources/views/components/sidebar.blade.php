@@ -11,11 +11,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul style="font-size:16px" class="navbar-nav">
             <li style="font-size:30px;" class="text-white">Projects</li>
-            {{--<li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="goto('{{ $project->section_id }}')">{{ $project->section_id }}</a></li>--}}
+            {{-- Projects --}}
             @if(isset($section_id))
                 {{ $section_id }}
-            @endif
-            @if(isset($cv_titles))
+            {{-- CV --}}
+            @elseif(isset($cv_titles))
                 {{ $cv_titles }}
             @endif
         </ul>
@@ -23,10 +23,10 @@
 </nav>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top navBarStyle">
-    <a class="navbar-brand text-white" href="/">Pouya Samandi</a>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary navBarStyle">
+    <a class="navbar-brand text-gray" href="/">Pouya Samandi</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,11 +37,13 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="cv">CV</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
                 <a class="nav-link text-white" href="project">Projects</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link"  onclick="goto('footer')">Contact me </a>
+                <a style="cursor: pointer;" class="nav-link text-white" onclick="goto('contact')">Contact me <span
+                        class="sr-only">(current)</span>
+                </a>
             </li>
         </ul>
     </div>

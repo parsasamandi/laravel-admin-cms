@@ -4,88 +4,99 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Project;
-use App\Description;
-use App\Media;
+use App\DataTables\ProjectDataTable;
+use App\Models\Project;
+use App\Models\Description;
+use App\Models\Media;
 
 class ProjectController extends Controller
 {
-    // Show Project Page
-    public function index()
-    {
-        $project = Project::all();
-        $description = Description::all();
-        $media = Media::all();
-        return view('/project', [
-            'projects' => $project,
-            'descriptions' => $description,
-            'media' => $media
-        ]);
+    // Project Table
+    public function list() {
+        // DataTable
+        $dataTable = new ProjectDataTable();
+
+        // Project Table
+        $vars['projectTable'] = $dataTable->html();
+
+        return view('projectList', $vars);
     }
 
-    // New Project Page
-    public function new()
-    {
-        return view('project/newProject');
+    // Get Project
+    public function projectTable(ProjectDataTable $dataTable) {
+        return $dataTable->render('projectList');
+    }
+
+    // Store Project
+    public function store(Request $request) {
+        $validation = Validator::make($request->all(), [
+            'name' => 'required',
+            'background' => 'required',
+            'section_id' => 'required'
+        ]);
+
+        $error_array = array();
+        $success_output = '';
+        
+        // Validation
+        if($validation->fails()) {
+            foreach($validation->messages()->getMessages() as $field_name => $messages) {
+                $error_array[] = $messages;
+            }
+        }
+        else {
+            // Insert
+            if($request->get('#button_action') == "insert") {
+                $this->newProject($request);
+                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+            }
+            // Update
+            else if($request->get('#button_action') == "update") {
+                $this->newProject($request);
+                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+            }
+        }
+        $output = array(
+            'error' => $error_array,
+            'success' => $success_output
+        );
+
+        return json_encode($output);
     }
  
     // New Project Page
-    public function store(Request $request)
+    public function newProject($request)
     {
-        $project = new Project();
-        $project->name = request('name');
-        $project->background_color = request('background');
-        $project->section_id = request('section_id');
+        // Edit
+        $project = Project::find($request->get('id'));
+        if(!$project) {
+            // Insert
+            $project = new Project();
+        }
+        $project->name = $request->get('name');
+        $project->background_color = $request->get('background');
+        $project->section_id = $request->get('section_id');
 
         $project->save();
-        return back()->with('success', 'You have successfully sumbitted data');
     }
     // Edit Project Page
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $project = Project::where('project_id', $id)->first();
-        return view('project.editProject', ['project' => $project]);
+        $project = Project::find($request->get('id'));
+        return json_encode($project);
     }
-    // Update Project Page
-    public function update($id,Request $request)
-    {
 
-        Project::where('project_id', $id)->update(array(
-            'name' => request('name'),
-            'background_color' => request('background'),
-            'section_id' => request('section_id'),
-        ));
-        return redirect('project/projectList');
-    }
     // Delete Project
-    public function destroy($id)
-    {
-        $project = Project::where('project_id', $id);
-        $project->delete();
-
-        return redirect('project/projectList');
-    }
-    // Delete Project
-    public function search(Request $request)
-    {
-        if(!empty($request->input('name')))
-        {
-            $name = $request->get('name');
-            $project = Project::where('name','LIKE','%'.$name.'%')->paginate(5);
-            if(count($project) > 0)
-                return view('/project/projectList',['project' => $project]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
+    public function delete($id) {
+        $project = Project::find($id);
+        if($project) {
+            $project->delete();
         }
+        else {
+            return response()->json([], 404);
+        }
+        return response()->json([], 200);
     }
 
-    // Show Project List
-    public function indexProjectList()
-    {
-        $project = Project::all();
-        return view('project/projectList',[
-            'project' => $project
-        ]);
-    }
     
 }

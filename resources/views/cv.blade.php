@@ -13,7 +13,6 @@
         </x-slot>
     </x-sidebar>
 
-
     <!-- Page Content-->
     <div class="container-fluid p-0">
         <!-- Experience-->

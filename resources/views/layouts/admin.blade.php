@@ -7,7 +7,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>@yield('title')</title>
+        {{-- Admin Style --}}
         <link href="/css/admin.css" rel="stylesheet" />
+        {{-- Mix App --}}
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @show       
 
     <body class="sb-nav-fixed">
@@ -33,6 +36,7 @@
                 </li>
             </ul>
         </nav>
+        {{-- Main Menu --}}
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
@@ -112,34 +116,47 @@
                                     <a class="nav-link" href="/refree/refreeList">Refree List</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cvDescription" aria-expanded="false" aria-controls="collapseLayouts">
+
+                            {{-- Education List --}}
+                            <div class="sb-sidenav-menu-heading">Experience</div>
+                            <a class="nav-link" href="{{ route('experience.table') }}">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <i class="fas fa-columns"></i>
+                                </div>
+                                Experience
+                            </a>
+                            {{-- Description List --}}
+                            <div class="sb-sidenav-menu-heading">Description</div>
+                            <a class="nav-link" href="{{ route('description.table') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-info"></i>
                                 </div>
                                 Description
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="cvDescription" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/description/newDescription">New Description</a>
-                                    <a class="nav-link" href="/description/descriptionList">Description List</a>
-                                </nav>
-                            </div>
-
+                            {{-- User List --}}
+                            <div class="sb-sidenav-menu-heading">User</div>
+                            <a class="nav-link" href="{{ route('admin.table') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                User
+                            </a>
+                            {{-- Education List --}}
+                            <div class="sb-sidenav-menu-heading">Education</div>
+                            <a class="nav-link" href="{{ route('education.table') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                Education
+                            </a>
+                            {{-- Project List --}}
                             <div class="sb-sidenav-menu-heading">Projects</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#project" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="{{ route('project.table') }}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-project-diagram"></i>
                                 </div>
                                 Project
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="project" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/project/newProject">New Project</a>
-                                    <a class="nav-link" href="/project/projectList">Project List</a>
-                                </nav>
-                            </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#project_title" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-project-diagram"></i>
@@ -151,19 +168,6 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="/project/newProjectTitle">New Project Title</a>
                                     <a class="nav-link" href="/project/projectTitleList">Project Title List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#description" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </div>
-                                Description
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="description" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/description/newDescription">New Description</a>
-                                    <a class="nav-link" href="/description/descriptionList">Description List</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#media" aria-expanded="false" aria-controls="collapseLayouts">
@@ -194,20 +198,7 @@
                                     <a class="nav-link" href="/link/linkList">Link List</a>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Admin</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                Admin
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="admin" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/admin/newAdmin">New Admin</a>
-                                    <a class="nav-link" href="/admin/adminList">Admin List</a>
-                                </nav>
-                            </div>
+                            {{-- Home List --}}
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#home_setting" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
@@ -226,9 +217,11 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
+                {{-- Content --}}
                 <main>
                     @yield('content')
                 </main>
+                {{-- Footer --}}
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -240,19 +233,18 @@
                             </div>
                         </div>
                     </div>
-                    
                 </footer>
             </div>
         </div>
         
-        @section('script')
-            {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> --}}
-            <script src="/js/jquery.min.js" crossorigin="anonymous"></script>
-            <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-            <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        @section('scripts')
+            {{-- App Script --}}
+            <script src="{{ mix('js/app.js') }}"></script>
+            <script src="{{ mix('js/vendor.js') }}"></script>
+            <script src="{{ mix('js/manifest.js') }}"></script>
             <script src="/js/all.min.js" crossorigin="anonymous"></script>
-            <!-- <script src="/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
             <script src="/js/scripts.js"></script>
-        @show       
+        @show      
+         
     </body>
 </html>
