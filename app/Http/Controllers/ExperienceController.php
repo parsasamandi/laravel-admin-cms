@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\ExperienceDataTable;
 use App\Models\Experience;
+use App\Providers\SuccessMessages;
 
 class ExperienceController extends Controller
 {
-    
-
     // Experience Table
     public function list(Request $request) {
         // DataTable
@@ -27,7 +26,7 @@ class ExperienceController extends Controller
     }
     
     // Store Description
-    public function store(Request $request)
+    public function store(Request $request,SuccessMessages $message)
     {
         $validation = Validator::make($request->all(), [
             'title' => 'required'
@@ -46,12 +45,12 @@ class ExperienceController extends Controller
             // Insert
             if($request->get('button_action') == "insert") {
                 $this->addExperience($request);
-                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+                $success_output = $message->getInsert();
             }
             // Update
             else if($request->get('button_action') == "update") {
                 $this->addExperience($request);
-                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+                $success_output = $message->getUpdate();
             }
         }
         $output = array(
@@ -103,6 +102,10 @@ class ExperienceController extends Controller
     public function delete(Request $request, $id) {
         $exper = Experience::find($id);
         if($exper) {
+            $imageDelete = public_path("images/$exper->image");
+            if($imageDelete) {
+                File::delete($imageDelete); 
+            }
             $exper->delete();
         }
         else {

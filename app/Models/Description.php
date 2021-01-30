@@ -18,7 +18,7 @@ class Description extends Model
     }
     // Link Relation
     public function link() {
-        return $this->hasMany(Link::class,'desc_id');
+        return $this->hasMany(Link::class);
     }
     // Media Relation
     public function media() {

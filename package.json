@@ -26,7 +26,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "admin-lte-persian": "^2.4.10",
+        "@fortawesome/fontawesome-free": "^5.15.1",
+        "@fortawesome/fontawesome-svg-core": "^1.2.32",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "betajs-browser": "^1.0.132",
         "browser-js": "^1.10.1",
         "datatables.net": "^1.10.23",

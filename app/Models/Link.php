@@ -12,6 +12,6 @@ class link extends Model
 
     public function description()
     {
-        return $this->belongsTo(Description::class,'desc_id');
+        return $this->belongsTo(Description::class);
     }
 }

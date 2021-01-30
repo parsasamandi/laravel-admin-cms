@@ -59,7 +59,7 @@
     </x-admin.insert>
 
     {{-- Delete Modal --}}
-    <x-admin.delete title="Do you confirm to delete description?"/>
+    <x-admin.delete title="Do you confirm to delete education?"/>
 @endsection
 
 {{-- Scripts --}}

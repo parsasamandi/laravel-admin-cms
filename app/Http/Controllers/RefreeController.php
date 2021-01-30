@@ -93,29 +93,7 @@ class RefreeController extends Controller
         $refree->save();
         return redirect('refree/refreeList');
     }
-
-    // Search for refree
-    public function search(Request $request)
-    {
-        if(!empty($request->input('name')))
-        {
-            $name = $request->get('name');
-            $refree = Refree::where('name','LIKE','%'.$name.'%')->paginate(5);
-            if(count($refree) > 0)
-                return view('/refree/refreeList',['refree' => $refree]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
-        }
-        if(!empty($request->input('desc')))
-        {
-            $desc = $request->get('desc');
-            $refree = Refree::where('desc','LIKE','%'.$desc.'%')->paginate(5);
-            if(count($refree) > 0)
-                return view('/refree/refreeList',['refree' => $refree]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
-        }
-}   
+  
     
     
 }

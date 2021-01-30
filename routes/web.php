@@ -131,14 +131,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/media/mediaTextList/{id}', 'MediaTextController@destroy')->name('mediaText.destroy');
   });
   // Link
-  Route::prefix('link')->group(function () {
-    Route::get('newLink', 'LinkController@new');
-    Route::post('newLink', 'LinkController@store');
-    Route::get('linkList', 'LinkController@index');
-    Route::get('linkList/search', 'LinkController@search');
-    Route::get('editLink/{id}', 'LinkController@edit');
-    Route::post('editLink/{id}', 'LinkController@update');
-    Route::delete('editLink/{id}', 'LinkController@destroy')->name('link.destroy'); 
+  Route::group(['prefix' => 'link' ,'as' => 'link.'], function() {
+    Route::get('list', 'LinkController@list')->name('table');
+    Route::get('list/table', 'LinkController@linkTable')->name('list.table');
+    Route::post('new', 'LinkController@store')->name('store');
+    Route::get('edit', 'LinkController@edit')->name('edit');
+    Route::get('/delete/{id}', 'LinkController@delete')->name('delete');
   });
   // Project
   Route::prefix('project')->group(function () {

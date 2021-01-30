@@ -185,19 +185,12 @@
                                     <a class="nav-link" href="/media/mediaTextList">Media Text List</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#link" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link" href="{{ route('link.table') }}">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                    <i class="fas fa-book"></i>
                                 </div>
                                 Link
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="link" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/link/newLink">New Link</a>
-                                    <a class="nav-link" href="/link/linkList">Link List</a>
-                                </nav>
-                            </div>
                             {{-- Home List --}}
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#home_setting" aria-expanded="false" aria-controls="collapseLayouts">

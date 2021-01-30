@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\DescriptionDataTable;
+use App\Providers\SuccessMessages;
 use App\Models\Description;
 use App\Models\Project;
 use App\Models\Experience;
@@ -23,10 +24,7 @@ class DescriptionController extends Controller
         // Experiences
         $experiences = Experience::select('title','id')->get();
 
-        return view('descriptionList', $vars, [
-            'projects' => $projects,
-            'experiences' => $experiences
-        ]);
+        return view('descriptionList', $vars, compact('projects','experiences'));
     }
 
     // DataTable
@@ -35,7 +33,7 @@ class DescriptionController extends Controller
     }
     
     // Store Description
-    public function store(Request $request)
+    public function store(Request $request,SuccessMessages $message)
     {
         $validation = Validator::make($request->all(), [
             'experienceBox' => 'required_without:projectBox',
@@ -55,12 +53,12 @@ class DescriptionController extends Controller
             // Insert
             if($request->get('button_action') == "insert") {
                 $this->addDescription($request);
-                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+                $success_output = $message->getInsert();
             }
             // Update
             else if($request->get('button_action') == "update") {
                 $this->addDescription($request);
-                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+                $success_output = $message->getUpdate();
             }
         }
         $output = array(

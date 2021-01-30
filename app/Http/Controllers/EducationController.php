@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Education;
 use App\DataTables\EducationDataTable;
+use App\Providers\SuccessMessages;
 
 class EducationController extends Controller
 {
@@ -26,7 +27,7 @@ class EducationController extends Controller
     }
 
     // Store Description
-    public function store(Request $request)
+    public function store(Request $request,SuccessMessages $message)
     {
         $validation = Validator::make($request->all(), [
             'name' => 'required',
@@ -46,12 +47,12 @@ class EducationController extends Controller
             // Insert
             if($request->get('button_action') == "insert") {
                 $this->addEducation($request);
-                $success_output = '<div class="alert alert-success">The data is submitted successfully</div>';
+                $success_output =  $message->getInsert();
             }
             // Update
             else if($request->get('button_action') == "update") {
                 $this->addEducation($request);
-                $success_output = '<div class="alert alert-success">The data is updated successfully</div>';
+                $success_output = $message->getUpdate();
             }
         }
         $output = array(
