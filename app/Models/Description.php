@@ -1,34 +1,74 @@
 <?php
 
 namespace App\Models;
-use App\Models\Project;
-use App\Models\Link;
-use App\Models\Experience;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $project_id
+ * @property int $experience_id
+ * @property int $publication_id
+ * @property string $desc
+ * @property int $size
+ * @property Experience $experience
+ * @property Project $project
+ * @property Description $description
+ * @property Link[] $links
+ * @property Medium[] $media
+ */
 class Description extends Model
 {
     public $timestamps = false;
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
     protected $table = 'description';
 
-    // Project Relation
-    public function project() {
-        return $this->belongsTo(Project::class);
-    }
-    // Link Relation
-    public function link() {
-        return $this->hasMany(Link::class);
-    }
-    // Media Relation
-    public function media() {
-        return $this->hasOne(Media::class,'desc_id');
-    }
-    public function getLink() {
-        return Link::where('desc_id',$this->id)->select('link')->get();
-    }
-    public function experience() {
-        return $this->belongsTo(Experience::class);
+    /**
+     * @var array
+     */
+    protected $fillable = ['project_id', 'experience_id', 'publication_id', 'desc', 'size'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function experience()
+    {
+        return $this->belongsTo('App\Models\Experience');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function description()
+    {
+        return $this->belongsTo('App\Models\Description', 'publication_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function links()
+    {
+        return $this->hasMany('App\Models\Link', 'desc_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function media()
+    {
+        return $this->hasMany('App\Models\Medium', 'desc_id');
+    }
 }

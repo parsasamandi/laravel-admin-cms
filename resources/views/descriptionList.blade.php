@@ -71,7 +71,7 @@
             // Record Modal
             $('#create_record').click(function () {
                 $('#formModal').modal('show');
-                $('#adminForm')[0].reset();
+                $('#descriptionForm')[0].reset();
                 $('#form_output').html('');
             });
             // Create a new one
@@ -85,19 +85,20 @@
                     processing: true,
                     dataType: "json",
                     success: function (data) { 
-                        if (data.error.length > 0) {
-                            var error_html = '';
-                            for (var count = 0; count < data.error.length; count++) {
-                                error_html += '<div class="alert alert-danger">' + data.error[count] + '</div>';
-                            }
-                            $('#form_output').html(error_html);
+                        $('#form_output').html(data.success);
+                        $('#descriptionForm')[0].reset();
+                        $('#button_action').val('insert');
+                        dt.draw(false);
+                    },
+                    error: function(data) { 
+                        // Parse To Json
+                        var data = JSON.parse(data.responseText);
+                        // Error
+                        error_html = '';
+                        for(var all in data.errors) {
+                            error_html += '<div class="alert alert-danger">' + data.errors[all] + '</div>';
                         }
-                        else {
-                            $('#form_output').html(data.success);
-                            $('#descriptionForm')[0].reset();
-                            $('#button_action').val('insert');
-                            dt.draw(false);
-                        }
+                        $('#form_output').html(error_html);
                     }
                 })
             });
@@ -115,6 +116,10 @@
                     data: {id: id},
                     dataType: "json",
                     success: function(data) {
+                        // Get Values From Database
+                        $('#id').val(data.id);
+                        $('#button_action').val('update');
+                        $('#action').val('Update');
                         $('#desc').val(data.desc);
                         $('#experienceBox').val(data.experience_id).trigger('change');
                         $('#projectBox').val(data.project_id).trigger('change');

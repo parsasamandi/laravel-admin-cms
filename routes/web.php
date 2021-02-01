@@ -136,6 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('list/table', 'LinkController@linkTable')->name('list.table');
     Route::post('new', 'LinkController@store')->name('store');
     Route::get('edit', 'LinkController@edit')->name('edit');
+    Route::get('eachDesc', 'LinkController@eachDesc')->name('eachDesc');
     Route::get('/delete/{id}', 'LinkController@delete')->name('delete');
   });
   // Project

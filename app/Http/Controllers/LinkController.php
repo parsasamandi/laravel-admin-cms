@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\SuccessMessages;
+use App\Providers\Action;
 use App\Models\Link;
 use App\Models\Description;
 use App\DataTables\LinkDataTable;
@@ -21,7 +22,7 @@ class LinkController extends Controller
         // Descriptions
         $descriptions = Description::select('id','desc')->get();
 
-        return view('linkList', $vars, compact('descriptions'));
+        return view('link.linkList', $vars, compact('descriptions'));
     }
 
     // DataTable
@@ -35,7 +36,7 @@ class LinkController extends Controller
         $validation = Validator::make($request->all(), [
             'text' => 'required',
             'link' => 'required',
-            'descriptionBox' => 'required'
+            'description' => 'required'
         ]);
 
         $error_array = array();
@@ -78,22 +79,14 @@ class LinkController extends Controller
 
         $link->text = $request->get('text');
         $link->link = $request->get('link');
-        $link->desc_id = $request->get('descriptionBox');
+        $link->desc_id = $request->get('description');
 
         $link->save();
     }
 
-    // Storing Link
-    public function index() {
-        $link = Link::all();
-        return view('link/linkList', [
-            'link' => $link
-        ]);
-    }
     // Edit Link Page
-    public function edit(Request $request) {
-        $link = Link::find($request->get('id'));
-        return json_encode($link);
+    public function edit(Request $request,Action $action) {
+        return json_encode($action->edit('\App\Models\Link',$request->get('id')));
     }
 
     // Delete Link

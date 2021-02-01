@@ -54,18 +54,13 @@
                                     <a class="nav-link" href="/experience/experienceList">Experience List</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#education" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                            {{-- Education List --}}
+                            <a class="nav-link" href="{{ route('education.table') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
                                 Education
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="education" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/education/newEducation">New Education</a>
-                                    <a class="nav-link" href="/education/educationList">Education List</a>
-                                    <!-- <a class="nav-link" href="/education/educationList">New University links</a> -->
-                                </nav>
-                            </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#publication" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                                 Publication
@@ -125,14 +120,6 @@
                                 </div>
                                 Experience
                             </a>
-                            {{-- Description List --}}
-                            <div class="sb-sidenav-menu-heading">Description</div>
-                            <a class="nav-link" href="{{ route('description.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-info"></i>
-                                </div>
-                                Description
-                            </a>
                             {{-- User List --}}
                             <div class="sb-sidenav-menu-heading">User</div>
                             <a class="nav-link" href="{{ route('admin.table') }}">
@@ -141,14 +128,6 @@
                                 </div>
                                 User
                             </a>
-                            {{-- Education List --}}
-                            <div class="sb-sidenav-menu-heading">Education</div>
-                            <a class="nav-link" href="{{ route('education.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                Education
-                            </a>
                             {{-- Project List --}}
                             <div class="sb-sidenav-menu-heading">Projects</div>
                             <a class="nav-link collapsed" href="{{ route('project.table') }}">
@@ -156,6 +135,13 @@
                                     <i class="fas fa-project-diagram"></i>
                                 </div>
                                 Project
+                            </a>
+                            {{-- Description List --}}
+                            <a class="nav-link" href="{{ route('description.table') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-info"></i>
+                                </div>
+                                Description
                             </a>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#project_title" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">

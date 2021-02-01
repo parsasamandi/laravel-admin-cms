@@ -8,6 +8,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\URL;
 
 class LinkDataTable extends DataTable
 {
@@ -23,7 +24,7 @@ class LinkDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->rawColumns(['action','link'])
+            ->rawColumns(['action','link','desc_id'])
             ->addColumn('text', function (Link $link) {
                 return $link->text;
             })
@@ -33,7 +34,11 @@ class LinkDataTable extends DataTable
                         ATAG; 
             })
             ->addColumn('desc_id', function (Link $link) {
-                return optional($link->description)->desc;
+                $address = URL::signedRoute('link.eachDesc', ['id' => $link->id]);
+                return <<<ATAG
+                            <a href="{$address}">Open The Description</a>
+                        ATAG;
+
             })
             ->addColumn('action', function (Link $link){
                 return <<<ATAG

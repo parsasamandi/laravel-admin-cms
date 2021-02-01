@@ -1,17 +1,35 @@
 <?php
 
 namespace App\Models;
-use App\Models\Description;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string $image
+ * @property Description[] $descriptions
+ */
 class Experience extends Model
 {
-    public $timestamps = false;
-
+    public $tmp = false;
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
     protected $table = 'experience';
 
-    public function description() {
-        return $this->hasMany(Description::class);
+    /**
+     * @var array
+     */
+    protected $fillable = ['title', 'image'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function descriptions()
+    {
+        return $this->hasMany('App\Models\Description');
     }
 }

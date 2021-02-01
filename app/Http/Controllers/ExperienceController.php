@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\ExperienceDataTable;
+use App\Providers\Action;
 use App\Models\Experience;
 use App\Providers\SuccessMessages;
 
@@ -93,9 +94,8 @@ class ExperienceController extends Controller
     }
 
     // Edit
-    public function edit(Request $request) {
-        $exper = Experience::find($request->get('id'));
-        return json_encode($exper);
+    public function edit(Request $request,Action $action) {
+       return $action->edit('\App\Models\Experience',$request->get('id'));
     }
 
     // Delete Each Experience

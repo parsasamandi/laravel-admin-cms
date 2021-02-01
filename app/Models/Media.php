@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 use App\Models\Project;
 use App\Models\Media_text;
 use App\Models\Description;

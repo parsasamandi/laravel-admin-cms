@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '381a783bdfe4edc1444432bcda3015aabf7d22e3',
+    'reference' => '68ed11aacb65456d8f0dd41cbf84de6e516978cc',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -75,14 +75,14 @@ private static $installed = array (
         0 => '*',
       ),
     ),
-    'doctrine/annotations' => 
+    'dnoegel/php-xdg-base-dir' => 
     array (
-      'pretty_version' => '1.11.1',
-      'version' => '1.11.1.0',
+      'pretty_version' => 'v0.1.1',
+      'version' => '0.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'ce77a7ba1770462cd705a91a151b6c3746f9c6ad',
+      'reference' => '8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd',
     ),
     'doctrine/cache' => 
     array (
@@ -93,32 +93,14 @@ private static $installed = array (
       ),
       'reference' => '13e3381b25847283a91948d04640543941309727',
     ),
-    'doctrine/collections' => 
-    array (
-      'pretty_version' => '1.6.7',
-      'version' => '1.6.7.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '55f8b799269a1a472457bd1a41b4f379d4cfba4a',
-    ),
-    'doctrine/common' => 
-    array (
-      'pretty_version' => '2.13.3',
-      'version' => '2.13.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f3812c026e557892c34ef37f6ab808a6b567da7f',
-    ),
     'doctrine/dbal' => 
     array (
-      'pretty_version' => 'v2.4.2',
-      'version' => '2.4.2.0',
+      'pretty_version' => '2.12.1',
+      'version' => '2.12.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fec965d330c958e175c39e61c3f6751955af32d0',
+      'reference' => 'adce7a954a1c2f14f85e94aed90c8489af204086',
     ),
     'doctrine/event-manager' => 
     array (
@@ -131,12 +113,12 @@ private static $installed = array (
     ),
     'doctrine/inflector' => 
     array (
-      'pretty_version' => '1.4.3',
-      'version' => '1.4.3.0',
+      'pretty_version' => '2.0.3',
+      'version' => '2.0.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4650c8b30c753a76bf44fb2ed00117d6f367490c',
+      'reference' => '9cf661f4eb38f7c881cac67c75ea9b00bf97b210',
     ),
     'doctrine/instantiator' => 
     array (
@@ -155,24 +137,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'e864bbf5904cb8f5bb334f99209b48018522f042',
-    ),
-    'doctrine/persistence' => 
-    array (
-      'pretty_version' => '1.3.8',
-      'version' => '1.3.8.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '7a6eac9fb6f61bba91328f15aa7547f4806ca288',
-    ),
-    'doctrine/reflection' => 
-    array (
-      'pretty_version' => '1.2.2',
-      'version' => '1.2.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'fa587178be682efe90d005e3a322590d6ebb59a5',
     ),
     'dragonmantank/cron-expression' => 
     array (
@@ -210,6 +174,15 @@ private static $installed = array (
       ),
       'reference' => '3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
     ),
+    'fakerphp/faker' => 
+    array (
+      'pretty_version' => 'v1.13.0',
+      'version' => '1.13.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ab3f5364d01f2c2c16113442fb987d26e4004913',
+    ),
     'fideloper/proxy' => 
     array (
       'pretty_version' => '4.4.1',
@@ -227,15 +200,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'df7933820090489623ce0be5e85c7e693638e536',
-    ),
-    'fzaninotto/faker' => 
-    array (
-      'pretty_version' => 'v1.9.2',
-      'version' => '1.9.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
     ),
     'graham-campbell/result-type' => 
     array (
@@ -472,21 +436,30 @@ private static $installed = array (
         0 => 'v8.25.0',
       ),
     ),
-    'kitloong/laravel-migrations-generator' => 
-    array (
-      'pretty_version' => '4.4.2',
-      'version' => '4.4.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '15b36cbf38019bf5d96dd960c7a865fa5f931d48',
-    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
       array (
         0 => '*',
       ),
+    ),
+    'krlove/code-generator' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c1f0cb6898c5e378528c095d54623171e62ee1c3',
+    ),
+    'krlove/eloquent-model-generator' => 
+    array (
+      'pretty_version' => '1.3.6',
+      'version' => '1.3.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '24dbab8ced34c71b8a8d72dc98bd343041c785b2',
     ),
     'laravel/framework' => 
     array (
@@ -504,16 +477,25 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '381a783bdfe4edc1444432bcda3015aabf7d22e3',
+      'reference' => '68ed11aacb65456d8f0dd41cbf84de6e516978cc',
     ),
-    'laravel/ui' => 
+    'laravel/tinker' => 
     array (
-      'pretty_version' => 'v2.3.0',
-      'version' => '2.3.0.0',
+      'pretty_version' => 'v2.6.0',
+      'version' => '2.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2ccaa3b821ea8ac7e05393b946d0578bdb46099b',
+      'reference' => 'daae1c43f1300fe88c05d83db6f3d8f76677ad88',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v3.2.0',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a1f82c6283c8373ea1958b8a27c3d5c98cade351',
     ),
     'laravelcollective/html' => 
     array (
@@ -687,6 +669,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5',
+    ),
+    'oscarafdev/laravel-4-generators' => 
+    array (
+      'pretty_version' => '3.2',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ddcc911cd230c0d1faa99af467a76028fdb971c1',
+    ),
+    'oscarafdev/migrations-generator' => 
+    array (
+      'pretty_version' => '2.0.24',
+      'version' => '2.0.24.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8ffb09713d2f565c81f2c42e87748221a6afeb8b',
     ),
     'phar-io/manifest' => 
     array (
@@ -899,6 +899,15 @@ private static $installed = array (
       ),
       'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
     ),
+    'psy/psysh' => 
+    array (
+      'pretty_version' => 'v0.10.6',
+      'version' => '0.10.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6f990c19f91729de8b31e639d6e204ea59f19cf3',
+    ),
     'ramsey/collection' => 
     array (
       'pretty_version' => '1.1.3',
@@ -1067,6 +1076,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'sopamo/laravel-filepond' => 
+    array (
+      'pretty_version' => 'v0.5.0',
+      'version' => '0.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '233b67c3bdb019d7429ca9bae488106df3e82ac4',
     ),
     'swiftmailer/swiftmailer' => 
     array (

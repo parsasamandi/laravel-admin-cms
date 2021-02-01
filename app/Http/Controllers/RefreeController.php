@@ -1,11 +1,11 @@
- <?php
+<?php
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Refree;
-use App\Experience;
+use App\Models\Refree;
+use App\Models\Experience;
 
 class RefreeController extends Controller
 {

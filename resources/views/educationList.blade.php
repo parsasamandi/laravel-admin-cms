@@ -92,6 +92,7 @@
                     processing: true,
                     dataType: "json",
                     success: function (data) { 
+                        console.log(data.error);
                         if (data.error.length > 0) {
                             var error_html = '';
                             for (var count = 0; count < data.error.length; count++) {

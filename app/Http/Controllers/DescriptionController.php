@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\DescriptionDataTable;
 use App\Providers\SuccessMessages;
+use App\Http\Requests\DescriptionStoreRequest;
 use App\Models\Description;
 use App\Models\Project;
 use App\Models\Experience;
@@ -33,39 +34,21 @@ class DescriptionController extends Controller
     }
     
     // Store Description
-    public function store(Request $request,SuccessMessages $message)
+    public function store(DescriptionStoreRequest $request,SuccessMessages $success)
     {
-        $validation = Validator::make($request->all(), [
-            'experienceBox' => 'required_without:projectBox',
-            'size' => 'required_without:experienceBox'
-        ]);
+        // Insert
+        if($request->get('button_action') == "insert") {
+            $this->addDescription($request);
+            $success_output = $success->getInsert();
+        }
+        // Update
+        else if($request->get('button_action') == "update") {
+            $this->addDescription($request);
+            $success_output = $success->getUpdate();
+        }
 
-        $error_array = array();
-        $success_output = '';
+        $output = ['success' => $success_output];
         
-        // Validation
-        if($validation->fails()) {
-            foreach($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        }
-        else {
-            // Insert
-            if($request->get('button_action') == "insert") {
-                $this->addDescription($request);
-                $success_output = $message->getInsert();
-            }
-            // Update
-            else if($request->get('button_action') == "update") {
-                $this->addDescription($request);
-                $success_output = $message->getUpdate();
-            }
-        }
-        $output = array(
-            'error' => $error_array,
-            'success' => $success_output
-        );
-
         return json_encode($output);
     }
 
@@ -94,6 +77,12 @@ class DescriptionController extends Controller
             default:
                 return $request;
         }
+    }
+
+    // edit
+    public function edit(Request $request) {
+        $description = Description::find($request->get('id'));
+        return json_encode($description);
     }
 
     // Delete Each Description
