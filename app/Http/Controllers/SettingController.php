@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\homeSetting;
+use App\Models\HomeSetting;
 
 class SettingController extends Controller
 {
@@ -22,7 +22,7 @@ class SettingController extends Controller
            'about_me'
        ];
 
-       $home_settings = homeSetting::whereIn('name',$names)->get();
+       $home_settings = HomeSetting::whereIn('name',$names)->get();
        $vars = [];
        foreach($home_settings as $setting)
        {
@@ -36,7 +36,7 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         // Header Image
-        $setting_image = homeSetting::where('name','image')->first();
+        $setting_image = HomeSetting::where('name','image')->first();
         if($request->hasFile('image'))
         {
             $image = $request->file('image');
@@ -46,7 +46,7 @@ class SettingController extends Controller
             $setting_image->save();
         }
         // First Name
-        $setting_first_name = homeSetting::where('name','first_name')->first();
+        $setting_first_name = HomeSetting::where('name','first_name')->first();
         $setting_first_name->value = $request->get('first_name');
         $setting_first_name->save();
         // Last Name
@@ -54,19 +54,19 @@ class SettingController extends Controller
         $setting_last_name->value = $request->get('last_name');
         $setting_last_name->save();
         // Slogan
-        $setting_slogan = homeSetting::where('name','slogan')->first();
+        $setting_slogan = HomeSetting::where('name','slogan')->first();
         $setting_slogan->value = $request->get('slogan');
         $setting_slogan->save();
         // Short Description
-        $setting_short_desc = homeSetting::where('name','short_desc')->first();
+        $setting_short_desc = HomeSetting::where('name','short_desc')->first();
         $setting_short_desc->value = $request->get('short_desc');
         $setting_short_desc->save();
         // Life Goals
-        $setting_life_goals = homeSetting::where('name','life_goals')->first();
+        $setting_life_goals = HomeSetting::where('name','life_goals')->first();
         $setting_life_goals->value = $request->get('life_goals');
         $setting_life_goals->save();
         // About Me
-        $setting_about_me = homeSetting::where('name','about_me')->first();
+        $setting_about_me = HomeSetting::where('name','about_me')->first();
         $setting_about_me->value = $request->get('about_me');
         $setting_about_me->save();
 

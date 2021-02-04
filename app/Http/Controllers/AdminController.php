@@ -6,6 +6,7 @@ use App\Models\User;
 use App\DataTables\AdminDataTable;
 use Illuminate\Http\Request;
 use App\Providers\SuccessMessages;
+use App\Http\Requests\StoreAdminRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,39 +29,19 @@ class AdminController extends Controller
     }
 
     // Store Admin
-    public function store(Request $request,SuccessMessages $message) {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required',
-            'password' => 'nullable|min:6',
-            'password2' => 'same:password',
-            'email' => 'email|unique:users, email,' . $request->get('email')
-        ]);
+    public function store(StoreAdminRequest $request,SuccessMessages $message) {
+        // Insert
+        if($request->get('#button_action') == "insert") {
+            $this->newAdmin($request);
+            $success_output = $message->getInsert();
+        }
+        // Update
+        else if($request->get('#button_action') == "update") {
+            $this->newAdmin($request);
+            $success_output = $message->getUpdate();
+        }
 
-        $error_array = array();
-        $success_output = '';
-        
-        // Validation
-        if($validation->fails()) {
-            foreach($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        }
-        else {
-            // Insert
-            if($request->get('#button_action') == "insert") {
-                $this->newAdmin($request);
-                $success_output = $message->getInsert();
-            }
-            // Update
-            else if($request->get('#button_action') == "update") {
-                $this->newAdmin($request);
-                $success_output = $message->getUpdate();
-            }
-        }
-        $output = array(
-            'error' => $error_array,
-            'success' => $success_output
-        );
+        $output = array('success' => $success_output);
 
         return json_encode($output);
     }

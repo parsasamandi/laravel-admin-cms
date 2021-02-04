@@ -4,105 +4,65 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Publication;
+use App\DataTables\PublicationDataTable;
+use App\Http\Requests\StorePublicationRequest;
+use App\Providers\SuccessMessages;
+use App\Providers\Action;
+use App\Models\ Publication;
+
 
 class PublicationController extends Controller
 {
-    // Insert publication
-    public function new()
-    {
-        return view('publication.newPublication');
-    }
-    // Store publication
-    public function store()
-    {
-        $public = new Publication();
-        $public->title = request('Title');
-        $public->desc = request('desc1');
-        $public->desc2 = request('desc2');
-        $public->desc3 = request('desc3');
-        $public->desc4 = request('desc4');
-        $public->desc5 = request('desc5');
+    public $publication = '\App\Models\Publication';
+    // Publication Table
+    public function list(Request $request) {
+        // DataTable
+        $dataTable = new PublicationDataTable();
 
-        $public->save();
-        return back()->with('success', 'You have successfully sumbitted data');
-    }
-    // Show publication
-    public function index()
-    {
-        $publication = Publication::all();      
-        return view('publication/publicationList', [
-            'publication' => $publication
-        ]);
-    }
-    // Show each publication
-    public function show($id)
-    {
-        $publication = Publication::findOrFail($id);      
-        return view('publication.eachPublication', [
-            'publication' => $publication
-        ]);
-    }
-    // Edit publication page
-    public function edit($id)
-    {
-        $publication = Publication::findOrFail($id);      
-        return view('publication.editPublication', [
-            'publication' => $publication
-        ]);
-    }
-    // Update publication 
-    public function update($id)
-    {
-        $public = Publication::findOrFail($id);      
-        $public->title = request('Title');
-        $public->desc = request('desc1');
-        $public->desc2 = request('desc2');
-        $public->desc3 = request('desc3');
-        $public->desc4 = request('desc4');
-        $public->desc5 = request('desc5');
+        $vars['publicationTable'] = $dataTable->html();
 
-        $public->save();
-        return redirect('/publication/publicationList');
+        return view('publicationList', $vars);
     }
-    public function destroy($id)
-    {
-        $publication = Publication::findOrFail($id);
-        $publication->delete();
-        return redirect('publication/publicationList');
+    // DataTable
+    public function publicationTable(PublicationDataTable $dataTable) {
+        return $dataTable->render('publicationList');
     }
-    // Search for publication
-    public function search(Request $request)
-    {   
-        if(!empty($request->input('title')))
-        {
-            $title = $request->get('title');
-            $publication = Publication::where('title','LIKE','%'.$title.'%')->paginate(5);
-            if(count($publication) > 0)
-                return view('/publication/publicationList',['publication' => $publication]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
+
+    // Store Publication
+    public function store(StorePublicationRequest $request,SuccessMessages $message) {
+
+        // Insert
+        if($request->get('button_action') == "insert") {
+            $this->addPublication($request);
+            $success_output = $message->getInsert();
         }
-        if(!empty($request->input('desc1')))
-        {
-            $desc1 = $request->get('desc1');
-            $publication = Publication::where('desc','LIKE','%'.$desc1.'%')->paginate(5);
-            if(count($publication) > 0)
-                return view('/publication/publicationList',['publication' => $publication]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
+        // Update
+        else if($request->get('button_action') == "update") {
+            $this->addPublication($request);
+            $success_output = $message->getUpdate();
         }
-        if(!empty($request->input('desc2')))
-        {
-            $desc2 = $request->get('desc2');
-            $publication = Publication::where('desc2','LIKE','%'.$desc2.'%')->paginate(5);
-            if(count($publication) > 0)
-                return view('/publication/publicationList',['publication' => $publication]);
-            else 
-                return back()->with('faliure', 'There were no results. please try again');
+
+        $output = array('success' => $success_output);
+        return json_encode($output);
+    }
+
+    // Add Or Update Publication
+    public function addPublication($request) {
+        // Edit
+        $publication = Publication::find($request->get('id'));
+        if(!$publication) {
+            // Insert
+            $publication = new Publication();
         }
-        else{
-            return back()->with('faliure', 'There were no results. please try again');
-        }
+        $publication->title = $request->get('title');   
+        $publication->save();
+    }
+    // Edit
+    public function edit(Action $action,Request $request) {
+        return $action->edit($this->publication,$request->get('id'));
+    }
+    // Delete
+    public function delete(Action $action,$id) {
+        return $action->delete($this->publication,$id);
     }
 }

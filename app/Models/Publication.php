@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Publication extends Model
 {
-    public $tmp = false;
+    public $timestamps = false;
     /**
      * The table associated with the model.
      * 

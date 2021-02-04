@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Link extends Model
 {
-    public $tmp = false;
+    public $timestamps = false;
     /**
      * The table associated with the model.
      * 

@@ -50,6 +50,7 @@
                 $('#formModal').modal('show');
                 $('#projecForm')[0].reset();
                 $('#form_output').html('');
+                $('#action').val('Insert');
             });
             // Create a new one
             $('#projectForm').on('submit', function(event) {

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Project $project
  * @property Description $description
  * @property Link[] $links
- * @property Medium[] $media
+ * @property Media[] $media
  */
 class Description extends Model
 {
@@ -69,6 +69,6 @@ class Description extends Model
      */
     public function media()
     {
-        return $this->hasMany('App\Models\Medium', 'desc_id');
+        return $this->hasMany('App\Models\Media', 'desc_id');
     }
 }

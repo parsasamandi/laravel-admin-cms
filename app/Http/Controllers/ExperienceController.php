@@ -8,9 +8,11 @@ use App\DataTables\ExperienceDataTable;
 use App\Providers\Action;
 use App\Models\Experience;
 use App\Providers\SuccessMessages;
+use File;
 
 class ExperienceController extends Controller
 {
+    public $experience = '\App\Models\Experience';
     // Experience Table
     public function list(Request $request) {
         // DataTable
@@ -27,37 +29,20 @@ class ExperienceController extends Controller
     }
     
     // Store Description
-    public function store(Request $request,SuccessMessages $message)
+    public function store(StoreExperienceRequest $request,SuccessMessages $message)
     {
-        $validation = Validator::make($request->all(), [
-            'title' => 'required'
-        ]);
+        // Insert
+        if($request->get('button_action') == "insert") {
+            $this->addExperience($request);
+            $success_output = $message->getInsert();
+        }
+        // Update
+        else if($request->get('button_action') == "update") {
+            $this->addExperience($request);
+            $success_output = $message->getUpdate();
+        }
 
-        $error_array = array();
-        $success_output = '';
-        
-        // Validation
-        if($validation->fails()) {
-            foreach($validation->messages()->getMessages() as $field_name => $messages) {
-                $error_array[] = $messages;
-            }
-        }
-        else {
-            // Insert
-            if($request->get('button_action') == "insert") {
-                $this->addExperience($request);
-                $success_output = $message->getInsert();
-            }
-            // Update
-            else if($request->get('button_action') == "update") {
-                $this->addExperience($request);
-                $success_output = $message->getUpdate();
-            }
-        }
-        $output = array(
-            'error' => $error_array,
-            'success' => $success_output
-        );
+        $output = array('success' => $success_output);
 
         return json_encode($output);
     }
@@ -95,23 +80,12 @@ class ExperienceController extends Controller
 
     // Edit
     public function edit(Request $request,Action $action) {
-       return $action->edit('\App\Models\Experience',$request->get('id'));
+       return $action->edit($this->experience,$request->get('id'));
     }
 
     // Delete Each Experience
-    public function delete(Request $request, $id) {
-        $exper = Experience::find($id);
-        if($exper) {
-            $imageDelete = public_path("images/$exper->image");
-            if($imageDelete) {
-                File::delete($imageDelete); 
-            }
-            $exper->delete();
-        }
-        else {
-            return response()->json([], 404);
-        }
-        return response()->json([], 200);
+    public function delete(Action $action, $id) {
+        return $action->delete($this->experience,$id);
     }  
 
     

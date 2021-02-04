@@ -21,7 +21,27 @@ class RefreeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addIndexColumn();
+            ->rawColumns(['action','image','link'])
+            ->addIndexColumn()
+            ->addColumn('action', function (Refree $refree) {
+                return <<<ATAG
+                            <a onclick="showConfirmationModal('{$refree->id}')">
+                                <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                            </a>
+                            &nbsp;
+                            <a onclick="showEditModal('{$refree->id}')">
+                                <i class="fa fa-edit text-danger" aria-hidden="true"></i>
+                            </a>
+                        ATAG;
+            })
+            ->addColumn('image', function (Refree $refree) {
+                return "<img src=/images/". $refree->image ." height='auto' width='60%' />";
+            })
+            ->addColumn('link', function (Refree $refree) {
+                return <<<ATAG
+                            <a href="$refree->link">Open the link</a>
+                        ATAG;
+            });
     }
 
     /**
@@ -70,9 +90,6 @@ class RefreeDataTable extends DataTable
                 ->orderable(false),
             Column::make('name')
             ->title('Name')
-                ->addClass('column-title'),
-            Column::make('desc')
-            ->title('Description')
                 ->addClass('column-title'),
             Column::make('image')
             ->title('Image')

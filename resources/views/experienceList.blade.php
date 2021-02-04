@@ -18,16 +18,12 @@
                     <label for="title">Title</label>
                     <input id="title" name="title" type="text" class="form-control" placeholder="Title">
                 </div>
-                {{-- Description --}}
-                <div class="col-md-6 mb-3">
-                    <label for="description">Description</label>
-                    <input name="description" type="text" class="form-control" placeholder="Insert New Description In Description Section" disabled>
+                {{-- Image --}}
+                <div class="col-md-6">
+                    <input id="image" name="image" type="file">
                 </div>
             </div>
-            {{-- Image --}}
-            <div class="col-md-12 mb-3 row">
-                <input id="image" name="image" type="file">
-            </div>
+    
         </x-slot>
     </x-admin.insert>
 
@@ -38,12 +34,12 @@
 {{-- Scripts --}}
 @section('scripts')
 @parent
-    {{-- Description Table --}}
+    {{-- Experience Table --}}
     {!! $experienceTable->scripts() !!}
 
     <script>
         $(document).ready(function() {
-            // Description Table
+            // Experience Table
             let dt = window.LaravelDataTables['experienceTable'];
             // Record Modal
             $('#create_record').click(function () {

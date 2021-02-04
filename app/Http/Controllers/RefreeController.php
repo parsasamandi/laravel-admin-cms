@@ -4,25 +4,62 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Providers\Action;
+use App\Http\Requests\StoreRefreeRequest;
+use App\Providers\SuccessMessages;
+use App\DataTables\RefreeDataTable;
 use App\Models\Refree;
 use App\Models\Experience;
+use File;
 
 class RefreeController extends Controller
 {
-    // new Refree Page
-    public function new()
-    {
-        return view('refree.newRefree');
+    // Refree Table
+    public function list(Request $request) {
+        // DataTable
+        $dataTable = new RefreeDataTable();
+
+        $vars['refreeTable'] = $dataTable->html();
+
+        return view('refreeList', $vars);
     }
+
+    // DataTable
+    public function refreeTable(RefreeDataTable $dataTable) {
+        return $dataTable->render('refreeList');
+    }
+    
+    // Store Refree
+    public function store(StoreRefreeRequest $request,SuccessMessages $success) {
+        // Insert
+        if($request->get('button_action') == "insert") {
+            $this->addRefree($request);
+            $success_output = $success->getInsert();
+        }
+        // Update
+        else if($request->get('button_action') == "update") {
+            $this->addRefree($request);
+            $success_output = $success->getUpdate();
+        }
+
+        $output = ['success' => $success_output];
+
+        return json_encode($output);
+    }
+
     // store new Refree
-    public function store(REquest $request)
-    {
-        $refree = new Refree();
-        $refree->name = request('name');
-        $refree->desc = request('desc');
-        $refree->link = request('link');
-        if($request->hasFile('image'))
-        {
+    public function addRefree($request) {
+        // Edit
+        $refree = Refree::find($request->get('id'));
+        if(!$refree) {
+            // Insert
+            $refree = new Refree();
+        }
+        $refree->name = $request->get('name');
+        $refree->desc = $request->get('desc');
+        $refree->link = $request->get('link');
+
+        if($request->hasFile('image')) {
             $image = $request->file('image');
             $file= rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $file);
@@ -30,69 +67,31 @@ class RefreeController extends Controller
         }
 
         $refree->save();
-        return back()->with('success', 'You have successfully sumbitted data');
     }
 
-    // Show Refree
-    public function index(REquest $request)
+    // Edit Refree
+    public function edit(Action $action,Request $request)
     {
-        $refree = Refree::all();
-        return view('refree/refreeList', [
-            'refree' => $refree
-        ]);
+        return $action->edit('\App\Models\Refree',$request->get('id'));
     }
 
     // Delete Refree
-    public function destroy($id)
-    {
+    public function delete($id) {
         $refree = Refree::findOrFail($id);
-        
-        $imageDelete = public_path("images/$refree->image");
-        if(File::exists($imageDelete))
-        {
-            File::delete($imageDelete); 
-        }
-
-        $refree->delete();
-        return redirect('refree/refreeList');
-    }
-
-    // Show refree
-    public function show($id)
-    {
-        $refree = Refree::findOrFail($id);
-        return view('refree.eachRefree', ['eachRefree' => $refree]);
-    }
-
-    // Edit refree
-    public function edit($id)
-    {
-        $refree = Refree::findOrFail($id);
-        return view('refree.editRefree', ['eachRefree' => $refree]);
-    }
-
-    // Update refree
-    public function update($id,Request $request)
-    {
-        $refree = Refree::findOrFail($id);
-        $refree->name = request('name');
-        $refree->desc = request('desc');
-        $refree->link = request('link');
-        if($request->hasFile('image'))
-        {
-            $imageDelete = public_path("images/$refree->image"); // get previous image from folder
-            if(File::exists($imageDelete)) { // unlink or remove previous image from folder
+        if($refree) {
+            $imageDelete = public_path("images/$refree->image");
+            if(File::exists($imageDelete)) {
                 File::delete($imageDelete); 
             }
-            $image = $request->file('image');
-            $file= rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $file);
-            $refree->image = $file;
+            $refree->delete();
         }
+        else {
+            return response()->json([], 404);
+        }
+        return response()->json([], 200);
 
-        $refree->save();
-        return redirect('refree/refreeList');
     }
+
   
     
     

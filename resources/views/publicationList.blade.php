@@ -1,103 +1,108 @@
 @extends('layouts.admin')
-@section('title', 'Publication List')
+@section('title','Publication List')
 
 @section('content')
     {{-- Header --}}
     <x-admin.header pageName="Publication">
         <x-slot name="table">
-            {!! $linkTable->table(['class' => 'table table-striped table-bordered table-hover-responsive w-100 nowrap text-center']) !!}
+            {!! $publicationTable->table(['class' => 'table table-striped table-bordered w-100 nowrap text-center']) !!}
         </x-slot>
     </x-admin.header>
 
     {{-- Insert Modal --}}
-    <x-admin.insert size="modal-lg" formId="publicationForm">
+    <x-admin.insert size="modal-l" formId="publicationForm">
         <x-slot name="content">
-          
+            <div class="row">
+                {{-- Title --}}
+                <div class="col-md-12">
+                    <label for="title"></label>
+                    <input id="title" name="title" Placeholder="Title" type="text" class="form-control">
+                </div>
+            </div>
         </x-slot>
     </x-admin.insert>
 
     {{-- Delete Modal --}}
-    <x-admin.delete title="Do you confirm to delete link?"/>
+    <x-admin.delete title="Do you confirm to delete publication?" />
 @endsection
 
 {{-- Scripts --}}
 @section('scripts')
 @parent
-    {{-- Description Table --}}
-    {!! $linkTable->scripts() !!}
+    {{-- Publication Table --}}
+    {!! $publicationTable->scripts() !!}
 
     <script>
         $(document).ready(function() {
-            // Select2
-            $('#descriptionBox').select2({width: '100%'});
-            // Description Table
-            let dt = window.LaravelDataTables['linkTable'];
+            // Publication Table
+            let dt = window.LaravelDataTables['publicationTable'];
             // Record Modal
             $('#create_record').click(function () {
                 $('#formModal').modal('show');
-                $('#linkForm')[0].reset();
+                $('#publicationForm')[0].reset();
                 $('#form_output').html('');
+                $('#action').val('Insert');
             });
             // Create a new one
-            $('#linkForm').on('submit', function(event) {
+            $('#publicationForm').on('submit', function(event) {
                 event.preventDefault();
                 var form_data = $(this).serialize();
                 $.ajax({
-                    url: "{{ route('link.store') }}",
+                    url: "{{ route('publication.store') }}",
                     method: "POST",
                     data: form_data,
                     processing: true,
                     dataType: "json",
                     success: function (data) { 
-                        if (data.error.length > 0) {
-                            var error_html = '';
-                            for (var count = 0; count < data.error.length; count++) {
-                                error_html += '<div class="alert alert-danger">' + data.error[count] + '</div>';
-                            }
-                            $('#form_output').html(error_html);
+                        $('#form_output').html(data.success);
+                        $('#publicationForm')[0].reset();
+                        $('#button_action').val('insert');
+                        dt.draw(false);
+                    },
+                    error: function(data) { 
+                        // Parse To Json
+                        var data = JSON.parse(data.responseText);
+                        // Error
+                        error_html = '';
+                        for(var all in data.errors) {
+                            error_html += '<div class="alert alert-danger">' + data.errors[all] + '</div>';
                         }
-                        else {
-                            $('#form_output').html(data.success);
-                            $('#linkForm')[0].reset();
-                            $('#button_action').val('insert');
-                            dt.draw(false);
-                        }
+                        $('#form_output').html(error_html);
                     }
                 })
             });
             // Edit
             window.showEditModal = function showEditModal(url) {
-                editEducation(url);
+                editPublication(url);
             }
-            function editEducation($url) {
+            function editPublication($url) {
                 var id = $url;
                 $('#formModal').modal('show');
                 $('#form_output').html('');
                 $.ajax({
-                    url: "{{ route('link.edit') }}",
+                    url: "{{ route('publication.edit') }}",
                     method: "get",
                     data: {id: id},
                     dataType: "json",
                     success: function(data) {
-                        $('#id').val(id);
+                        // Get Values From Database
+                        $('#id').val(data.id);
                         $('#button_action').val('update');
-                        $('#text').val(data.text);
-                        $('#link').val(data.link);
-                        $('#desc_id').val(data.desc_id);
-                        $('#descriptionBox').val(data.desc_id).trigger('change');
+                        $('#action').val('Update');
+                        $('#title').val(data.title);
                     }
                 })
             }
             // Delete
             window.showConfirmationModal = function showConfirmationModal(url) {
-                deleteLink(url);
+                deletePublication(url);
             }
-            function deleteLink($url) {
+            function deletePublication($url) {
                 var id = $url;
                 $('#confirmModal').modal('show');
                 $('#ok_button').click(function () {
                     $.ajax({
-                        url: "/link/delete/" + id,
+                        url: "/publication/delete/" + id,
                         method: "get",
                         dataType: "json",
                         success: function(data) {

@@ -5,7 +5,7 @@
     {{-- Header --}}
     <x-admin.header pageName="Description">
         <x-slot name="table">
-            {!! $descriptionTable->table(['class' => 'table table-striped table-bordered table-hover-responsive w-100 nowrap text-center']) !!}
+            {!! $descriptionTable->table(['class' => 'table table-striped table-bordered w-100 nowrap text-center']) !!}
         </x-slot>
     </x-admin.header>
 
@@ -25,7 +25,7 @@
                     <select id="projectBox" name="projectBox" class="browser-default custom-select">
                         <option value="">Null</option>
                         @foreach($projects as $project)
-                            <option name="project" value="{{ $project->id }}" selected>{{ $project->name }}</option>
+                            <option name="project" value="{{ $project->id }}">{{ $project->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -35,14 +35,24 @@
                     <select id="experienceBox" name="experienceBox" class="browser-default custom-select">
                         <option value="">Null</option>
                         @foreach($experiences as $experience)
-                            <option name="experience" value="{{ $experience->id }}" selected>{{ $experience->title }}</option>
+                            <option name="experience" value="{{ $experience->id }}">{{ $experience->title }}</option>
                         @endforeach
                     </select>
                 </div>   
             </div>   
-            {{-- Get col-md size from 1 to 12 --}}
             <div class="row">
-                <div class="col-md-12 mb-3">
+                {{-- Publication --}}
+                <div class="col-md-6 mb-2">
+                    <label for="publicationBox">Publication</label>
+                    <select name="publicationBox" id="publicationBox" class="browser-default custom-select">
+                        <option value="">Null</option>
+                        @foreach($publications as $publication) 
+                            <option value="publication" value="{{ $publication->id }}"></option>
+                        @endforeach
+                    </select>
+                </div>
+                {{-- Get col-md size from 1 to 12 --}}
+                <div class="col-md-6 mb-3">
                     <label for="size">Size(Choose a number from 1 to 12)</label>
                     <input type="text" class="form-control" id="size" name="size" class="custom-file-input" placeholder="Size">
                 </div>
@@ -73,6 +83,9 @@
                 $('#formModal').modal('show');
                 $('#descriptionForm')[0].reset();
                 $('#form_output').html('');
+                var x = document.getElementById("publicationBox");
+                x.style.visibility = 'hidden';
+                // Do It With Jquery
             });
             // Create a new one
             $('#descriptionForm').on('submit', function(event) {

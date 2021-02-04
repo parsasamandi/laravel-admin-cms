@@ -102,6 +102,12 @@ class LinkController extends Controller
         return response()->json([],200);
     }
 
+    // Description Detials of Link
+    public function eachDesc(Request $request) {
+        $link = Link::find($request->get('id'));
+        return view('link.eachDesc', compact('link'));
+    }
+
 
     
 }

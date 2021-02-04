@@ -28,7 +28,7 @@
                             </h4>
                             <hr>
                             <p>
-                                @foreach($eachExperience->description as $description)
+                                @foreach($eachExperience->descriptions as $description)
                                     @if(!empty($description->desc))
                                         • {{ $description->desc }}
                                         <br>

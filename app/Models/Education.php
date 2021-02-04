@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Education extends Model
 {
-    public $tmp = false;
+    public $timestamps = false;
     /**
      * The "type" of the auto-incrementing ID.
      * 

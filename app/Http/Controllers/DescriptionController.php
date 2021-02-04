@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\DescriptionDataTable;
 use App\Providers\SuccessMessages;
-use App\Http\Requests\DescriptionStoreRequest;
+use App\Http\Requests\StoreDescriptionRequest;
 use App\Models\Description;
 use App\Models\Project;
+use App\Models\Publication;
 use App\Models\Experience;
 
 class DescriptionController extends Controller
@@ -24,8 +25,10 @@ class DescriptionController extends Controller
         $projects = Project::select('name', 'id')->get();
         // Experiences
         $experiences = Experience::select('title','id')->get();
+        // Publication
+        $publications = Publication::all();
 
-        return view('descriptionList', $vars, compact('projects','experiences'));
+        return view('descriptionList', $vars, compact('projects','experiences','publications'));
     }
 
     // DataTable
@@ -34,7 +37,7 @@ class DescriptionController extends Controller
     }
     
     // Store Description
-    public function store(DescriptionStoreRequest $request,SuccessMessages $success)
+    public function store(StoreDescriptionRequest $request,SuccessMessages $success)
     {
         // Insert
         if($request->get('button_action') == "insert") {
@@ -48,7 +51,7 @@ class DescriptionController extends Controller
         }
 
         $output = ['success' => $success_output];
-        
+
         return json_encode($output);
     }
 
@@ -63,6 +66,7 @@ class DescriptionController extends Controller
         $description->desc = $request->get('desc');
         $description->project_id = $this->subSet($request->get('projectBox'));
         $description->experience_id = $this->subSet($request->get('experienceBox'));
+        $description->publication_id = $this->subSet($request->get('publicationBox'));
         $description->size = $request->get('size');
 
         $description->save();
@@ -96,4 +100,5 @@ class DescriptionController extends Controller
         }
         return response()->json([], 200);
     }    
+
 }

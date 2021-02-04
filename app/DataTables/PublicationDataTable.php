@@ -24,7 +24,7 @@ class PublicationDataTable extends DataTable
             ->addIndexColumn()
             ->rawColumns(['action'])
             ->addColumn('title', function (Publication $publication) {
-                $publication->title;
+                return $publication->title;
             })
             ->addColumn('action', function (Publication $publication) {
                 return <<<ATAG

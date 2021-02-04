@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>@yield('title')</title>
         {{-- Admin Style --}}
-        <link href="/css/admin.css" rel="stylesheet" />
+        <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
         {{-- Mix App --}}
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @show       
@@ -17,15 +17,6 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="/">Pouya Samandi</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <!-- <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div> -->
-                </div>
-            </form>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
@@ -42,107 +33,47 @@
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+                            {{-- CV --}}
                             <div class="sb-sidenav-menu-heading">CV</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Experience
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/experience/newExperience">New Experience</a>
-                                    <a class="nav-link" href="/experience/experienceList">Experience List</a>
-                                </nav>
-                            </div>
+
+                            <x-admin.urlAddress text="Experience" fontAwesome="fas fa-columns" route="{{ route('experience.table') }}" />
                             {{-- Education List --}}
-                            <a class="nav-link" href="{{ route('education.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                Education
-                            </a>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#publication" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
-                                Publication
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="publication" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/publication/newPublication">New Publication</a>
-                                    <a class="nav-link" href="/publication/publicationList">Publication List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#interest" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                <i class="fas fa-thumbs-up"></i>
-                                </div>
-                                Interest
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="interest" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/interest/newInterest">New Interest</a>
-                                    <a class="nav-link" href="/interest/interestList">Interest List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#skill" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                                </div>
-                                Skill
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="skill" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/skill/newSkill">New Skill</a>
-                                    <a class="nav-link" href="/skill/skillList">Skill List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#refree" aria-expanded="false" aria-controls="collapseLayouts">
+                            <x-admin.urlAddress text="Education" fontAwesome="fas fa-book" route="{{ route('education.table') }}" />
+                            {{-- Publication list --}}
+                            <x-admin.urlAddress text="Publication" fontAwesome="fas fa-newspaper" route="{{ route('publication.table') }}" />
+                            {{-- Interest List --}}
+                            <x-admin.urlAddress text="Interest" fontAwesome="fas fa-thumbs-up" route="{{ route('interest.table') }}" />
+                            {{-- Skill List --}}
+                            <x-admin.urlAddress text="Skill" fontAwesome="fa fa-cogs" route="{{ route('skill.table') }}" />
+                            {{-- Refree List --}}
+                            <x-admin.urlAddress text="Refree" fontAwesome="fas fa-chalkboard-teacher" route="{{ route('refree.table') }}" />
+                            {{-- User --}}
+                            <div class="sb-sidenav-menu-heading">User</div>
+                            <x-admin.urlAddress text="User" fontAwesome="fa fa-user" route="{{ route('admin.table') }}" />
+
+                            {{-- Project List --}}
+                            <div class="sb-sidenav-menu-heading">Projects</div>
+                            <x-admin.urlAddress text="Project" fontAwesome="fas fa-project-diagram" route="{{ route('project.table') }}" />
+
+                            {{-- Description List --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#description" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
-                                Refree
+                                Description
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="refree" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <div class="collapse" id="description" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/refree/newRefree">New Refree</a>
-                                    <a class="nav-link" href="/refree/refreeList">Refree List</a>
+                                    {{-- Experience --}}
+                                    <x-admin.urlAddress text="Experience" fontAwesome="null" route="{{ route('description.table') }}" />
+                                    {{-- Project --}}
+                                    <x-admin.urlAddress text="Project" fontAwesome="null" route="{{ route('description.table') }}" />
+                                    {{-- Publication --}}
+                                    <x-admin.urlAddress text="Publication" fontAwesome="null" route="{{ route('description.table') }}" />
                                 </nav>
                             </div>
 
-                            {{-- Education List --}}
-                            <div class="sb-sidenav-menu-heading">Experience</div>
-                            <a class="nav-link" href="{{ route('experience.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-columns"></i>
-                                </div>
-                                Experience
-                            </a>
-                            {{-- User List --}}
-                            <div class="sb-sidenav-menu-heading">User</div>
-                            <a class="nav-link" href="{{ route('admin.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                User
-                            </a>
-                            {{-- Project List --}}
-                            <div class="sb-sidenav-menu-heading">Projects</div>
-                            <a class="nav-link collapsed" href="{{ route('project.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                Project
-                            </a>
-                            {{-- Description List --}}
-                            <a class="nav-link" href="{{ route('description.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-info"></i>
-                                </div>
-                                Description
-                            </a>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#project_title" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-project-diagram"></i>
@@ -171,12 +102,8 @@
                                     <a class="nav-link" href="/media/mediaTextList">Media Text List</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="{{ route('link.table') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                Link
-                            </a>
+                            {{-- Link List --}}
+                            <x-admin.urlAddress text="Link" fontAwesome="fas fa-book" route="{{ route('link.table') }}" />
                             {{-- Home List --}}
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#home_setting" aria-expanded="false" aria-controls="collapseLayouts">
