@@ -43,9 +43,6 @@
       "psr-4": {
           "App\\": "app/"
       },
-      "files": [
-        "App/Providers/InsertValidation.php"
-      ],
       "classmap": [
           "database/seeds",
           "database/factories"
