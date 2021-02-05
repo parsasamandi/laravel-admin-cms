@@ -85,7 +85,7 @@
                 $('#form_output').html('');
                 var x = document.getElementById("publicationBox");
                 x.style.visibility = 'hidden';
-                // Do It With Jquery
+                /// Do It With Jquery
             });
             // Create a new one
             $('#descriptionForm').on('submit', function(event) {
