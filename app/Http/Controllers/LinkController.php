@@ -105,7 +105,8 @@ class LinkController extends Controller
     // Description Detials of Link
     public function eachDesc(Request $request) {
         $link = Link::find($request->get('id'));
-        return view('link.eachDesc', compact('link'));
+        
+        return view('link.eachDescription', compact('link'));
     }
 
 
