@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class header extends Component
 {
-    public $pageName;
+    public $pageName; 
+    public $buttonValue; // Default: null
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($pageName) {
+    public function __construct($pageName, $buttonValue = null)
+    {
         $this->pageName = $pageName;
+        $this->buttonValue = $buttonValue;
     }
 
     /**
@@ -23,6 +26,6 @@ class header extends Component
      */
     public function render()
     {
-        return view('components.admin.header');
+        return view('components.header');
     }
 }

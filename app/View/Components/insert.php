@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class insert extends Component
 {
+    public $size;
+    public $formId; // Default: null
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($size, $formId = null)
     {
-        //
+        $this->size = $size;
+        $this->formId = $formId;
     }
 
     /**
@@ -23,6 +26,6 @@ class insert extends Component
      */
     public function render()
     {
-        return view('components.admin.insert');
+        return view('components.insert');
     }
 }

@@ -18,4 +18,5 @@ window.dt = require('datatables.net');
 require('datatables.net-responsive');
 // Select2
 require('select2/dist/js/select2');
-
+// Scripts
+require('./scripts');

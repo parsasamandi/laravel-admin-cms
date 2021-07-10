@@ -1,4 +1,5 @@
 // Bootstrap
+$primary: #e9ecef;
 @import "~bootstrap/scss/bootstrap";
 // DataTables
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
@@ -11,3 +12,5 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// Custom style
+@import "custom-style";
