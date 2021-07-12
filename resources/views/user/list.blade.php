@@ -76,7 +76,7 @@
         action.reloadModal();
 
         $.ajax({
-          url: "{{ url('admin/edit') }}",
+          url: "{{ url('user/edit') }}",
           method: "get",
           data: {id: $id},
           success: function(data) {

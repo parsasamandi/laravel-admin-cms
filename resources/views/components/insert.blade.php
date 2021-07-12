@@ -8,6 +8,7 @@
       <div class="modal-body">
         {{-- Form --}}
         <form id="{{ $formId ?? null }}" class="form-horizontal" enctype="multipart/form-data">
+          @csrf
           
           <span id="form_output"></span>
 

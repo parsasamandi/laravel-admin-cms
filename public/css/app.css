@@ -16639,7 +16639,7 @@ readers do not read off random characters that represent icons */
   width: auto;
 }
 
-/* ---------------------------------- Admin and DataTable ---------------------------------- */
+/* ---------------------------------- DataTable ---------------------------------- */
 .page-item.active .page-link {
   color: #212529;
 }
@@ -16647,4 +16647,9 @@ readers do not read off random characters that represent icons */
 table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control:before {
   background-color: #e9ecef;
   color: #212529;
+}
+
+/* ---------------------------------- Bootstrap ---------------------------------- */
+.modal-footer {
+  justify-content: center;
 }

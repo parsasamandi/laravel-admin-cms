@@ -1,5 +1,5 @@
 
-/* ---------------------------------- Admin and DataTable ---------------------------------- */
+/* ---------------------------------- DataTable ---------------------------------- */
 $baseColor: #212529;
 
 .page-item.active .page-link { 
@@ -9,4 +9,8 @@ $baseColor: #212529;
 table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
     background-color: #e9ecef;
     color: $baseColor;
+}
+/* ---------------------------------- Bootstrap ---------------------------------- */
+.modal-footer {
+    justify-content: center;
 }
