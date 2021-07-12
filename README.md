@@ -13,3 +13,6 @@ This project is accessible, powerful, and provides an easy tool to CRUD.
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Changes
+Feel free to help me and make changes.
