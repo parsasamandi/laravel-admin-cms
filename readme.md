@@ -1,4 +1,4 @@
-<img width="1280" alt="laravelAdminCMS" src="https://user-images.githubusercontent.com/59174137/178456544-5393772c-64ce-4852-ad31-5814245b64d2.png">
+<img width="1279" alt="laravelAdminCMS" src="https://user-images.githubusercontent.com/59174137/178458312-5d225c97-577c-4910-a0cd-1dc8aa6d7ba2.png">
 
 ## About this
 
@@ -18,3 +18,4 @@ This project is open-sourced software licensed under the [MIT license](https://o
 
 ## Changes
 Feel free to make changes and then fork it.
+<img width="1279" alt="laravelAdminCMS" src="https://user-images.githubusercontent.com/59174137/178458257-b519b147-e3ed-46d4-87b4-b3e2873a79cf.png">
