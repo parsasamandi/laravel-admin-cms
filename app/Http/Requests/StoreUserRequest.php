@@ -18,7 +18,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required',
             'password' => 'nullable|min:6',
             'password2' => 'same:password',
-            'email' => 'email|unique:users, email,' . $request->get('email')
+            'email' => 'email|required|max:255|unique:users,email,' . $request->get('id')
         ];
     }
 }

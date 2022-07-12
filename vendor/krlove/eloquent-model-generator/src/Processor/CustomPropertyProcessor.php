@@ -7,15 +7,8 @@ use Krlove\CodeGenerator\Model\PropertyModel;
 use Krlove\EloquentModelGenerator\Config;
 use Krlove\EloquentModelGenerator\Model\EloquentModel;
 
-/**
- * Class CustomPropertyProcessor
- * @package Krlove\EloquentModelGenerator\Processor
- */
 class CustomPropertyProcessor implements ProcessorInterface
 {
-    /**
-     * @inheritdoc
-     */
     public function process(EloquentModel $model, Config $config)
     {
         if ($config->get('no_timestamps') === true) {
@@ -43,9 +36,6 @@ class CustomPropertyProcessor implements ProcessorInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getPriority()
     {
         return 5;

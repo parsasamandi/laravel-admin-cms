@@ -7,10 +7,6 @@ use Krlove\EloquentModelGenerator\Config;
 use Krlove\EloquentModelGenerator\Exception\GeneratorException;
 use Krlove\EloquentModelGenerator\Model\EloquentModel;
 
-/**
- * Class ExistenceCheckerProcessor
- * @package Krlove\EloquentModelGenerator\Processor
- */
 class ExistenceCheckerProcessor implements ProcessorInterface
 {
     /**
@@ -19,7 +15,6 @@ class ExistenceCheckerProcessor implements ProcessorInterface
     protected $databaseManager;
 
     /**
-     * ExistenceCheckerProcessor constructor.
      * @param DatabaseManager $databaseManager
      */
     public function __construct(DatabaseManager $databaseManager)
@@ -27,9 +22,6 @@ class ExistenceCheckerProcessor implements ProcessorInterface
         $this->databaseManager = $databaseManager;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function process(EloquentModel $model, Config $config)
     {
         $schemaManager = $this->databaseManager->connection($config->get('connection'))->getDoctrineSchemaManager();
@@ -40,9 +32,6 @@ class ExistenceCheckerProcessor implements ProcessorInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getPriority()
     {
         return 8;

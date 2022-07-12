@@ -9,10 +9,6 @@ use Krlove\EloquentModelGenerator\Config;
 use Krlove\EloquentModelGenerator\Model\EloquentModel;
 use Krlove\EloquentModelGenerator\TypeRegistry;
 
-/**
- * Class CustomPrimaryKeyProcessor
- * @package Krlove\EloquentModelGenerator\Processor
- */
 class CustomPrimaryKeyProcessor implements ProcessorInterface
 {
     /**
@@ -26,7 +22,6 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
     protected $typeRegistry;
 
     /**
-     * FieldProcessor constructor.
      * @param DatabaseManager $databaseManager
      * @param TypeRegistry $typeRegistry
      */
@@ -36,9 +31,6 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
         $this->typeRegistry = $typeRegistry;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function process(EloquentModel $model, Config $config)
     {
         $schemaManager = $this->databaseManager->connection($config->get('connection'))->getDoctrineSchemaManager();
@@ -83,9 +75,6 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getPriority()
     {
         return 6;

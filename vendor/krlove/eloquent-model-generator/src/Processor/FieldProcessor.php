@@ -10,10 +10,6 @@ use Krlove\EloquentModelGenerator\Config;
 use Krlove\EloquentModelGenerator\Model\EloquentModel;
 use Krlove\EloquentModelGenerator\TypeRegistry;
 
-/**
- * Class FieldProcessor
- * @package Krlove\EloquentModelGenerator\Processor
- */
 class FieldProcessor implements ProcessorInterface
 {
     /**
@@ -27,7 +23,6 @@ class FieldProcessor implements ProcessorInterface
     protected $typeRegistry;
 
     /**
-     * FieldProcessor constructor.
      * @param DatabaseManager $databaseManager
      * @param TypeRegistry $typeRegistry
      */
@@ -36,10 +31,7 @@ class FieldProcessor implements ProcessorInterface
         $this->databaseManager = $databaseManager;
         $this->typeRegistry = $typeRegistry;
     }
-
-    /**
-     * @inheritdoc
-     */
+    
     public function process(EloquentModel $model, Config $config)
     {
         $schemaManager = $this->databaseManager->connection($config->get('connection'))->getDoctrineSchemaManager();
@@ -69,9 +61,6 @@ class FieldProcessor implements ProcessorInterface
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getPriority()
     {
         return 5;

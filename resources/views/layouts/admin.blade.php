@@ -15,7 +15,7 @@
 
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="/">Pouya Samandi</a>
+            <a class="navbar-brand" href="/">Laravel Admin Panel</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
@@ -51,7 +51,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; pouyasamandi.ir</div>
+                            <a target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin"> <div class="text-muted"> <span> Copyright &copy; </> Start Bootstrap - SB Admin v6.0.1  </div> </a>
                             <div>
                                 Privacy Policy
                                 &middot;

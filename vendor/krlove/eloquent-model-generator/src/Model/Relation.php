@@ -2,10 +2,6 @@
 
 namespace Krlove\EloquentModelGenerator\Model;
 
-/**
- * Class Relation
- * @package Krlove\EloquentModelGenerator\Model
- */
 abstract class Relation
 {
     /**
@@ -24,7 +20,6 @@ abstract class Relation
     protected $localColumnName;
 
     /**
-     * Relation constructor.
      * @param string $tableName
      * @param string $joinColumnName
      * @param string $localColumnName

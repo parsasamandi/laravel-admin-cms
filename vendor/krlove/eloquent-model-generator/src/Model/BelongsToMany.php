@@ -2,10 +2,6 @@
 
 namespace Krlove\EloquentModelGenerator\Model;
 
-/**
- * Class BelongsToMany
- * @package Krlove\EloquentModelGenerator\Model
- */
 class BelongsToMany extends Relation
 {
     /**
@@ -14,7 +10,6 @@ class BelongsToMany extends Relation
     protected $joinTable;
 
     /**
-     * BelongsToMany constructor.
      * @param string $tableName
      * @param string $joinTable
      * @param string $foreignColumnName

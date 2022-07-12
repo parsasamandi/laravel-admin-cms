@@ -8,6 +8,26 @@
 
 ## CHANGELOG
 
+### v4.41.1 - 05-05-2022
+
+- Fix Field::attr() doc block.
+
+### v4.41.0 - 10-07-2021
+
+- Add exportFormat method. #160
+
+### v4.40.0 - 10-04-2021
+
+- Add method getTableId() #159
+
+### v4.39.1 - 09-12-2021
+
+- Fix doc block and add array as acceptable Column editField value.
+
+### v4.39.0 - 09-12-2021
+
+- Add missing select field options as of Editor 1.5.4.
+
 ### v4.38.0 - 06-20-2021
 
 - Fix fetching of editor table #158
