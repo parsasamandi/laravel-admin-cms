@@ -1,4 +1,4 @@
-<img width="1440" alt="Screen Shot 2021-07-14 at 12 55 28 AM" src="https://user-images.githubusercontent.com/59174137/125521288-b6620297-28c5-426e-b3a7-7f99407e2ad6.png">
+<img width="1280" alt="laravelAdminCMS" src="https://user-images.githubusercontent.com/59174137/178456544-5393772c-64ce-4852-ad31-5814245b64d2.png">
 
 ## About this
 
