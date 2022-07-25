@@ -19,3 +19,7 @@ This project is open-sourced software licensed under the [MIT license](https://o
 ## Changes
 Feel free to make changes and then fork it.
 <img width="1279" alt="laravelAdminCMS" src="https://user-images.githubusercontent.com/59174137/178458257-b519b147-e3ed-46d4-87b4-b3e2873a79cf.png">
+
+## Copyright
+
+The original template and table are copyrighted by <a href="https://github.com/StartBootstrap/startbootstrap-sb-admin">Start Bootstrap</a> and <a href="https://datatables.net/">DataTables</a> respectively.
