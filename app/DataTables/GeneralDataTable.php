@@ -38,10 +38,9 @@ class GeneralDataTable
             ->pageLength(8)
             ->dom('PBCfrtip')
             ->orderBy(1)
-            ->buttons(
-                Button::make('print')->className('btn btn-theme'),     
-                Button::make('copy')->className('btn btn-theme')
-            );
+            ->parameters([
+                'buttons' => ['export'],
+            ]);
     }
 
     /**

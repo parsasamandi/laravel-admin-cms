@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,22 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [UserController::class, 'show']);
+Route::get('/', [AdminController::class, 'show']);
 // Admin
-Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
-  Route::get('list',  [UserController::class, 'list']);
-  Route::get('table/list', [UserController::class, 'userTable'])->name('list.table');
-  Route::post('store', [UserController::class, 'store']);
-  Route::get('edit', [UserController::class, 'edit']);
-  Route::get('delete/{id}', [UserController::class, 'delete']);
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+  Route::get('list',  [AdminController::class, 'list']);
+  Route::get('table/list', [AdminController::class, 'adminTable'])->name('list.table');
+  Route::post('store', [AdminController::class, 'store']);
+  Route::get('edit', [AdminController::class, 'edit']);
+  Route::get('delete/{id}', [AdminController::class, 'delete']);
+});
+
+// Product
+Route::group(['prefix' => 'product', 'as' => 'product.'], function() {
+  Route::get('list', [ProductController::class, 'list']);
+  Route::get('table/list', [ProductController::class, 'productTable'])->name('list.table');
+  Route::post('store', [ProductController::class, 'store']);
+  Route::get('edit', [ProductController::class, 'edit']);
+  Route::get('delete/{id}', [ProductController::class, 'delete']);
+  Route::get('export', [ProductController::class, 'export']);
 });

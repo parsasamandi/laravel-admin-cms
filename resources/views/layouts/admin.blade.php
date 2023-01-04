@@ -11,11 +11,12 @@
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet" />
         {{-- Mix App --}}
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        
     @show       
 
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="/">Laravel Admin Panel</a>
+            <a class="navbar-brand" href="/">Otad Sanat Novin</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
@@ -35,9 +36,13 @@
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            {{-- User --}}
+                            {{-- Admin --}}
                             <div class="sb-sidenav-menu-heading">User</div>
-                            <x-url text="Admin" fontAwesome="fa fa-user" route="{{ url('user/list') }}" />
+                            <x-url text="Admin" fontAwesome="fa fa-user" route="{{ url('admin/list') }}" />
+                            {{-- Product --}}
+                            <div class="sb-sidenav-menu-heading">Product</div>
+                            <x-url text="Product" fontAwesome="fa fa-users" route="{{ url('product/list') }}" />
+
                         </div>
                     </div>
                 </nav>
@@ -51,7 +56,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <a target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin"> <div class="text-muted"> <span> Copyright &copy; </> Start Bootstrap - SB Admin v6.0.1  </div> </a>
+                            <a target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin"> <div class="text-muted"> <span> Copyright&copy; </> Start Bootstrap - SB Admin v6.0.1  </div> </a>
                             <div>
                                 Privacy Policy
                                 &middot;

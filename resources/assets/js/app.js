@@ -16,6 +16,10 @@ require('jquery.scrollex');
 window.datatables = require('datatables.net-bs4');
 window.dt = require('datatables.net');
 require('datatables.net-responsive');
+require( 'datatables.net-buttons-bs4');
+require( 'datatables.net-buttons/js/buttons.html5.js' );
+require( 'datatables.net-buttons/js/buttons.print.js' );
+require( 'datatables.net-buttons/js/buttons.colVis.js' );
 // Select2
 require('select2/dist/js/select2');
 // Scripts
